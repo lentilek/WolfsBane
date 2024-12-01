@@ -10,6 +10,7 @@ public class MapArea : MonoBehaviour
     public bool isVisible = false;
     public GameObject cloud;
     public GameObject models;
+    public GameObject buttonAction;
     public GameObject buttonGo;
     public GameObject buttonDiscover;
     [HideInInspector] public int row;
@@ -20,6 +21,7 @@ public class MapArea : MonoBehaviour
     {
         buttonDiscover.SetActive(false);
         buttonGo.SetActive(false);
+        buttonAction.SetActive(false);
         if(type == 3 || type == 0)
         {
             isAvailable = false;
@@ -112,6 +114,19 @@ public class MapArea : MonoBehaviour
             }
         }
         return false;
+    }
+    public void ActionButton()
+    {
+        PlayerControler.Instance.ButtonsAroundHide();
+        buttonAction.SetActive(false);
+        if (isAvailable && isVisible && !AreThereHiddenNeighbours())
+        {
+            buttonGo.SetActive(true);
+        }
+        else if (isAvailable)
+        {
+            buttonDiscover.SetActive(true);
+        }
     }
     public void GoHere()
     {

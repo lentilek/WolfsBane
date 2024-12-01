@@ -93,7 +93,7 @@ public class PlayerControler : MonoBehaviour
             }
         }
     }
-    private void VisibleButton(MapArea module)
+    /*private void VisibleButton(MapArea module)
     {
         if(module.isAvailable && module.isVisible && !module.AreThereHiddenNeighbours())
         {
@@ -104,11 +104,30 @@ public class PlayerControler : MonoBehaviour
             module.buttonDiscover.SetActive(true);
             areasToGo.Add(module);
         }
+    }*/
+    private void VisibleButton(MapArea module)
+    {
+        if (module.isAvailable)
+        {
+            module.buttonAction.SetActive(true);
+            areasToGo.Add(module);
+        }
     }
     public void ButtonsAroundOff()
     {
         for (int i = 0; i < areasToGo.Count; i++)
         {
+            areasToGo[i].buttonAction.SetActive(false);
+            areasToGo[i].buttonDiscover.SetActive(false);
+            areasToGo[i].buttonGo.SetActive(false);
+            //Debug.Log("off");
+        }
+    }
+    public void ButtonsAroundHide()
+    {
+        for (int i = 0; i < areasToGo.Count; i++)
+        {
+            areasToGo[i].buttonAction.SetActive(true);
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
         }
