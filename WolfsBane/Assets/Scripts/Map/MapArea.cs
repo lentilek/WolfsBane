@@ -130,50 +130,59 @@ public class MapArea : MonoBehaviour
     }
     public void GoHere()
     {
-        PlayerControler.Instance.ButtonsAroundOff();
-        PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
-        PlayerControler.Instance.ButtonsAround();
+        if (GameManager.Instance.UseActionPoint())
+        {
+            PlayerControler.Instance.ButtonsAroundOff();
+            PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
+            PlayerControler.Instance.ButtonsAround();
+        }
     }
     public void DiscoverLeft()
     {
-        isVisible = true;
-        cloud.SetActive(false);
-        PlayerControler.Instance.ButtonsAroundOff();
-        for(int i = 0; i < neighbours.Count; i++)
+        if(GameManager.Instance.UseActionPoint())
         {
-            if(row % 2 == 0 && neighbours[i].column <= column)
+            isVisible = true;
+            cloud.SetActive(false);
+            PlayerControler.Instance.ButtonsAroundOff();
+            for(int i = 0; i < neighbours.Count; i++)
             {
-                neighbours[i].isVisible = true;
-                neighbours[i].cloud.SetActive(false);
+                if(row % 2 == 0 && neighbours[i].column <= column)
+                {
+                    neighbours[i].isVisible = true;
+                    neighbours[i].cloud.SetActive(false);
+                }
+                else if(row % 2 == 1 && neighbours[i].column < column)
+                {
+                    neighbours[i].isVisible = true;
+                    neighbours[i].cloud.SetActive(false);
+                }
             }
-            else if(row % 2 == 1 && neighbours[i].column < column)
-            {
-                neighbours[i].isVisible = true;
-                neighbours[i].cloud.SetActive(false);
-            }
+            PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
+            PlayerControler.Instance.ButtonsAround();
         }
-        PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
-        PlayerControler.Instance.ButtonsAround();
     }
     public void DiscoverRight()
     {
-        isVisible = true;
-        cloud.SetActive(false);
-        PlayerControler.Instance.ButtonsAroundOff();
-        for (int i = 0; i < neighbours.Count; i++)
+        if(GameManager.Instance.UseActionPoint())
         {
-            if (row % 2 == 0 && neighbours[i].column > column)
+            isVisible = true;
+            cloud.SetActive(false);
+            PlayerControler.Instance.ButtonsAroundOff();
+            for (int i = 0; i < neighbours.Count; i++)
             {
-                neighbours[i].isVisible = true;
-                neighbours[i].cloud.SetActive(false);
+                if (row % 2 == 0 && neighbours[i].column > column)
+                {
+                    neighbours[i].isVisible = true;
+                    neighbours[i].cloud.SetActive(false);
+                }
+                else if (row % 2 == 1 && neighbours[i].column >= column)
+                {
+                    neighbours[i].isVisible = true;
+                    neighbours[i].cloud.SetActive(false);
+                }
             }
-            else if (row % 2 == 1 && neighbours[i].column >= column)
-            {
-                neighbours[i].isVisible = true;
-                neighbours[i].cloud.SetActive(false);
-            }
+            PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
+            PlayerControler.Instance.ButtonsAround();
         }
-        PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
-        PlayerControler.Instance.ButtonsAround();
     }
 }
