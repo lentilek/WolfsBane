@@ -347,9 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9bbadf5c1d247409bed9437e758a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cvCamera: {fileID: 0}
   moveSpeed: 3
   edgeScrollSize: 40
   cameraXmin: 0
   cameraXmax: 10
   cameraYmin: -5.5
   cameraYmax: 5.5
+  minScroll: 0.5
+  maxScroll: 4
