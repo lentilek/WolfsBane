@@ -18,10 +18,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentAIActionPoints;
     [HideInInspector] public int currentActionPoints;
     [SerializeField] private TextMeshProUGUI actionPointsTXT;
+    [SerializeField] private TextMeshProUGUI actionPointsAITXT;
+    [SerializeField] private GameObject nightButton;
     [SerializeField] private GameObject nextDayButton;
 
     [SerializeField] private int turistPerDay;
     [SerializeField] private GameObject[] turistCampModel;
+    private List<GameObject> turistCamps = new List<GameObject>();
 
     private void Awake()
     {
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
         maxGameIndicator = 100f;
         currentActionPoints = 0;        
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
+        actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         currentAIActionPoints = 0;
         nextDayButton.SetActive(false);
         GetCurrentFill();
@@ -73,22 +77,66 @@ public class GameManager : MonoBehaviour
             actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
             if (currentActionPoints == maxActionPoints)
             {
+                nightButton.SetActive(true);
+            }
+            return true;
+        }
+        return false;
+    }
+    public bool UseActionPointAI()
+    {
+        if (currentAIActionPoints < maxAIActionPoints)
+        {
+            currentAIActionPoints++;
+            actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
+            if (currentAIActionPoints == maxAIActionPoints)
+            {
+                EndNight();
                 nextDayButton.SetActive(true);
             }
             return true;
         }
         return false;
     }
+    public void Night()
+    {
+        while (UseActionPointAI())
+        {
+            //
+        }
+    }
     public void FinishDayStartNight()
     {
-        //
+        nightButton.SetActive(false);
+        Night();
+    }
+    public void EndNight()
+    {
+        foreach(GameObject turist in turistCamps)
+        {
+            if (turist.gameObject.activeSelf)
+            {
+                gameIndicator -= turist.GetComponent<Turist>().gameIndicatorWhenLived;
+                if(gameIndicator < 0) gameIndicator = 0;
+            }
+        }
     }
     public void NewDay()
     {
+        nextDayButton.SetActive(false);
+        currentActionPoints = 0;        
+        currentAIActionPoints = 0;
+        actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
+        actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
+        foreach (GameObject turist in turistCamps)
+        {
+            Destroy(turist);
+        }
+        turistCamps.Clear();
         for (int i = 0; i < turistPerDay; i++)
         {
             MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
-            Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false);
+            turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false));
         }
     }
 }

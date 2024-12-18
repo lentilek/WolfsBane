@@ -362,6 +362,18 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &389293951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8148350633603332273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd1ed220575f0d4d8f3a0802e9bf3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +844,76 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 389293951}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FinishDayStartNight
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 389293951}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewDay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -852,6 +934,24 @@ MonoBehaviour:
 --- !u!1 &1772559182158350455 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3173838844911373377, guid: 3447e5272a888234f9e46bdf21373785,
+    type: 3}
+  m_PrefabInstance: {fileID: 1772559182158350453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772559182158350456 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7836126401367828586, guid: 3447e5272a888234f9e46bdf21373785,
+    type: 3}
+  m_PrefabInstance: {fileID: 1772559182158350453}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1772559182158350457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3805936261068993665, guid: 3447e5272a888234f9e46bdf21373785,
     type: 3}
   m_PrefabInstance: {fileID: 1772559182158350453}
   m_PrefabAsset: {fileID: 0}
@@ -1016,6 +1116,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
         type: 3}
+      propertyPath: nightButton
+      value: 
+      objectReference: {fileID: 1772559182158350457}
+    - target: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
+        type: 3}
       propertyPath: nextDayButton
       value: 
       objectReference: {fileID: 1772559182158350455}
@@ -1024,6 +1129,11 @@ PrefabInstance:
       propertyPath: actionPointsTXT
       value: 
       objectReference: {fileID: 1772559182158350454}
+    - target: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
+        type: 3}
+      propertyPath: actionPointsAITXT
+      value: 
+      objectReference: {fileID: 1772559182158350456}
     - target: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
         type: 3}
       propertyPath: gameIndicatorFill

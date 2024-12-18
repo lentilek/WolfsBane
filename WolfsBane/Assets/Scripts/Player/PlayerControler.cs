@@ -120,7 +120,6 @@ public class PlayerControler : MonoBehaviour
             areasToGo[i].buttonAction.SetActive(false);
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
-            //Debug.Log("off");
         }
     }
     public void ButtonsAroundHide()
