@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class MapArea : MonoBehaviour
 {
-    public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked
+    public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked, 4 - house
     public bool isAvailable;
-    public bool isVisible = false;
+    public bool isVisible;
     public GameObject cloud;
     public GameObject models;
+    public GameObject gameplayObject;
     public GameObject buttonAction;
     public GameObject buttonGo;
     public GameObject buttonDiscover;
     [HideInInspector] public int row;
     [HideInInspector] public int column;
     [HideInInspector] public List<MapArea> neighbours;
+
+    [SerializeField] private GameObject[] blockedModels;
 
     private void Awake()
     {
@@ -34,15 +37,25 @@ public class MapArea : MonoBehaviour
         if(!isVisible)
         {
             cloud.SetActive(true);
+            models.SetActive(false);
         }
         else
         {
             cloud.SetActive(false);
+            models.SetActive(true);
         }
     }
     private void Start()
     {
+        AddEnviro();
         AreasAround();
+    }
+    private void AddEnviro()
+    {
+        if(type == 3)
+        {
+            Instantiate(blockedModels[Random.Range(0,blockedModels.Length)], this.transform, worldPositionStays: false);
+        }
     }
     private void AreasAround()
     {
@@ -143,6 +156,7 @@ public class MapArea : MonoBehaviour
         {
             isVisible = true;
             cloud.SetActive(false);
+            models.SetActive(true);
             PlayerControler.Instance.ButtonsAroundOff();
             for(int i = 0; i < neighbours.Count; i++)
             {
@@ -150,11 +164,13 @@ public class MapArea : MonoBehaviour
                 {
                     neighbours[i].isVisible = true;
                     neighbours[i].cloud.SetActive(false);
+                    neighbours[i].models.SetActive(true);
                 }
                 else if(row % 2 == 1 && neighbours[i].column < column)
                 {
                     neighbours[i].isVisible = true;
                     neighbours[i].cloud.SetActive(false);
+                    neighbours[i].models.SetActive(true);
                 }
             }
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
@@ -167,6 +183,7 @@ public class MapArea : MonoBehaviour
         {
             isVisible = true;
             cloud.SetActive(false);
+            models.SetActive(true);
             PlayerControler.Instance.ButtonsAroundOff();
             for (int i = 0; i < neighbours.Count; i++)
             {
@@ -174,11 +191,13 @@ public class MapArea : MonoBehaviour
                 {
                     neighbours[i].isVisible = true;
                     neighbours[i].cloud.SetActive(false);
+                    neighbours[i].models.SetActive(true);
                 }
                 else if (row % 2 == 1 && neighbours[i].column >= column)
                 {
                     neighbours[i].isVisible = true;
                     neighbours[i].cloud.SetActive(false);
+                    neighbours[i].models.SetActive(true);
                 }
             }
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);

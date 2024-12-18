@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI actionPointsTXT;
     [SerializeField] private GameObject nextDayButton;
 
+    [SerializeField] private int turistPerDay;
+    [SerializeField] private GameObject[] turistCampModel;
+
     private void Awake()
     {
         if (Instance == null)
@@ -38,6 +41,11 @@ public class GameManager : MonoBehaviour
         currentAIActionPoints = 0;
         nextDayButton.SetActive(false);
         GetCurrentFill();
+    }
+    private void Start()
+    {
+        MapBoard.Instance.RegularModuleList();
+        NewDay();
     }
     // update chyba bêdzie mo¿na usun¹æ i zostawiæ tylko GetCurrentFill po akcjach
     private void Update()
@@ -70,5 +78,17 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public void FinishDayStartNight()
+    {
+        //
+    }
+    public void NewDay()
+    {
+        for (int i = 0; i < turistPerDay; i++)
+        {
+            MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
+            Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false);
+        }
     }
 }

@@ -45,14 +45,6 @@ public class CameraManager : MonoBehaviour
                 moveDir.y = +1f;
             }
 
-            /*if(Input.mouseScrollDelta.x > 0f)
-            {
-                cvCamera.m_Lens.OrthographicSize = +.1f;
-            }*/
-            /*if (Input.GetAxis("Mouse ScrollWheel") != 0f && cvCamera.m_Lens.OrthographicSize > minScroll && cvCamera.m_Lens.OrthographicSize < maxScroll) // forward
-            {
-                cvCamera.m_Lens.OrthographicSize -= Input.GetAxis("Mouse ScrollWheel");
-            }*/
             if (Input.GetAxis("Mouse ScrollWheel") > 0f && cvCamera.m_Lens.OrthographicSize > minScroll) // forward
             {
                 cvCamera.m_Lens.OrthographicSize -= Input.GetAxis("Mouse ScrollWheel");
