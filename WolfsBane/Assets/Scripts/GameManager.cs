@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -45,6 +46,10 @@ public class GameManager : MonoBehaviour
         if(gameIndicator >= maxGameIndicator)
         {
             Debug.Log("Game Over");
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
         }
     }
     public void GetCurrentFill()
