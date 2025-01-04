@@ -38,6 +38,7 @@ public class MapBoard : MonoBehaviour
 
     public void RegularModuleList()
     {
+        moduleListRegular.Clear();
         for(int i = 0; i < map.Length; i++)
         {
             for(int j = 0; j < map.Length; j++)

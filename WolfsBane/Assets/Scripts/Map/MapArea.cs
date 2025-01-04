@@ -146,7 +146,7 @@ public class MapArea : MonoBehaviour
     }
     public void GoHere()
     {
-        if (GameManager.Instance.UseActionPoint())
+        if (type == 4 || GameManager.Instance.UseActionPoint())
         {
             PlayerControler.Instance.ButtonsAroundOff();
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
@@ -155,7 +155,7 @@ public class MapArea : MonoBehaviour
     }
     public void DiscoverLeft()
     {
-        if(GameManager.Instance.UseActionPoint())
+        if(type == 4 || GameManager.Instance.UseActionPoint())
         {
             isVisible = true;
             cloud.SetActive(false);
@@ -182,7 +182,7 @@ public class MapArea : MonoBehaviour
     }
     public void DiscoverRight()
     {
-        if(GameManager.Instance.UseActionPoint())
+        if(type == 4 || GameManager.Instance.UseActionPoint())
         {
             isVisible = true;
             cloud.SetActive(false);
