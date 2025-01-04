@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapArea : MonoBehaviour
 {
     public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked, 4 - house
+    public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap, 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
     public bool isAvailable;
     public bool isVisible;
     public GameObject cloud;
@@ -29,10 +30,12 @@ public class MapArea : MonoBehaviour
         {
             isAvailable = false;
             isVisible = true;
+            state = 0;
         }
         else
         {
             isAvailable = true;
+            state = 2;
         }
         if(!isVisible)
         {

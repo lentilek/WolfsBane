@@ -93,6 +93,90 @@ public class PlayerControler : MonoBehaviour
             }
         }
     }
+    public void AreasToGoAI()
+    {
+        areasToGo.Clear();
+        if ((column - 1) >= 0)
+        {
+            MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];
+            if (module.isAvailable) areasToGo.Add(module);
+        }
+        if ((column + 1) < MapBoard.Instance.map.Length)
+        {
+            MapArea module = MapBoard.Instance.map[row].moduleRow[column + 1];
+            if (module.isAvailable) areasToGo.Add(module);
+        }
+        if (row % 2 == 0)
+        {
+            if ((row - 1) >= 0)
+            {
+                MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+            if ((row - 1) >= 0 && (column + 1) < MapBoard.Instance.map.Length)
+            {
+                MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column + 1];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+            if ((row + 1) < MapBoard.Instance.map.Length)
+            {
+                MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+            if ((row + 1) < MapBoard.Instance.map.Length && (column + 1) < MapBoard.Instance.map.Length)
+            {
+                MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column + 1];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+        }
+        else
+        {
+            if ((row - 1) >= 0 && (column - 1) >= 0)
+            {
+                MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column - 1];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+            if ((row - 1) >= 0)
+            {
+                MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+            if ((row + 1) < MapBoard.Instance.map.Length && (column - 1) >= 0)
+            {
+                MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column - 1];
+                if (module.isAvailable) areasToGo.Add(module);
+            }
+            if ((row + 1) < MapBoard.Instance.map.Length)
+            {
+                MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column];
+                if(module.isAvailable)areasToGo.Add(module);
+            }
+        }
+        CheckAreasUI();
+    }
+    public void CheckAreasUI()
+    {
+        List<MapArea> areasToChoose = new List<MapArea>();
+        areasToChoose.Clear();
+        int topState = 0;
+        foreach(MapArea module in areasToGo)
+        {
+            if(module.state == topState)
+            {
+                areasToChoose.Add(module);
+            }else if(module.state > topState)
+            {
+                areasToChoose.Clear();
+                areasToChoose.Add(module);
+                topState = module.state;
+            }
+        }
+        MapArea area = areasToChoose[Random.Range(0, areasToChoose.Count)];
+        MovePlayer(area.row, area.column, area.gameObject.transform.position);
+        area.isVisible = true;
+        area.cloud.SetActive(false);
+        area.models.SetActive(true);
+    }
     /*private void VisibleButton(MapArea module)
     {
         if(module.isAvailable && module.isVisible && !module.AreThereHiddenNeighbours())

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int maxActionPoints = 14;
     public int maxAIActionPoints = 12;
+    public float actionWaitTimeAI = 1f;
     [HideInInspector] public int currentAIActionPoints;
     [HideInInspector] public int currentActionPoints;
     [SerializeField] private TextMeshProUGUI actionPointsTXT;
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         currentAIActionPoints = 0;
         nextDayButton.SetActive(false);
-        GetCurrentFill();
+        GetCurrentFillIndicator();
     }
     private void Start()
     {
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
     // update chyba bêdzie mo¿na usun¹æ i zostawiæ tylko GetCurrentFill po akcjach
     private void Update()
     {
-        GetCurrentFill();
+        //GetCurrentFillIndicator();
         if(gameIndicator >= maxGameIndicator)
         {
             Debug.Log("Game Over");
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
-    public void GetCurrentFill()
+    public void GetCurrentFillIndicator()
     {
         float fill = gameIndicator / maxGameIndicator;
         gameIndicatorFill.fillAmount = fill;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
             {
                 EndNight();
                 nextDayButton.SetActive(true);
+                return false;
             }
             return true;
         }
@@ -100,9 +102,43 @@ public class GameManager : MonoBehaviour
     }
     public void Night()
     {
-        while (UseActionPointAI())
+        StartCoroutine(NightWait());
+    }
+    IEnumerator NightWait()
+    {        
+        do
         {
-            //
+            yield return new WaitForSeconds(actionWaitTimeAI);
+            CheckIfTurist();
+            PlayerControler.Instance.AreasToGoAI();    
+            CheckIfTurist();
+        } while (UseActionPointAI());
+    }
+    public void CheckIfTurist()
+    {
+        MapArea area = MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column];
+
+        if(area.state == 5 || area.state == 6)
+        {
+            GameObject turist = null;
+            foreach(GameObject turistCamp in turistCamps)
+            {
+                if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
+                {
+                    turist = turistCamp; 
+                    break;
+                }
+            }
+            if (turist != null)
+            {
+                area.state = 2;
+                gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenKilled;
+                if (gameIndicator > 100) gameIndicator = 100;
+                GetCurrentFillIndicator();
+                Destroy(turist);
+                turistCamps.Remove(turist);
+                UseActionPointAI();
+            }
         }
     }
     public void FinishDayStartNight()
@@ -118,6 +154,7 @@ public class GameManager : MonoBehaviour
             {
                 gameIndicator -= turist.GetComponent<Turist>().gameIndicatorWhenLived;
                 if(gameIndicator < 0) gameIndicator = 0;
+                GetCurrentFillIndicator();
             }
         }
     }
@@ -130,6 +167,7 @@ public class GameManager : MonoBehaviour
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         foreach (GameObject turist in turistCamps)
         {
+            turist.GetComponent<Turist>().mapModule.state = 2;
             Destroy(turist);
         }
         turistCamps.Clear();
@@ -137,6 +175,9 @@ public class GameManager : MonoBehaviour
         {
             MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
             turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false));
+            turistCamps[i].GetComponent<Turist>().mapModule = ma;
+            ma.state = 6;
         }
+        PlayerControler.Instance.ButtonsAround();
     }
 }
