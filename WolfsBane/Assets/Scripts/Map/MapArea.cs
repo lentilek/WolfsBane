@@ -15,11 +15,14 @@ public class MapArea : MonoBehaviour
     public GameObject buttonAction;
     public GameObject buttonGo;
     public GameObject buttonDiscover;
+    public GameObject buttonInteract;
+    public GameObject buttonSetTrap;
     [HideInInspector] public int row;
     [HideInInspector] public int column;
     [HideInInspector] public List<MapArea> neighbours;
 
     [SerializeField] private GameObject[] blockedModels;
+    [SerializeField] private GameObject[] resourceModels;
 
     private void Awake()
     {
@@ -55,9 +58,16 @@ public class MapArea : MonoBehaviour
     }
     private void AddEnviro()
     {
-        if(type == 3)
+        switch (type)
         {
-            Instantiate(blockedModels[Random.Range(0,blockedModels.Length)], this.transform, worldPositionStays: false);
+            case 2:
+                Instantiate(resourceModels[Random.Range(0, resourceModels.Length)], gameplayObject.transform, worldPositionStays: false);
+                break;
+            case 3:
+                Instantiate(blockedModels[Random.Range(0,blockedModels.Length)], gameplayObject.transform, worldPositionStays: false);
+                break;
+            default:
+                break;
         }
     }
     private void AreasAround()
@@ -135,7 +145,12 @@ public class MapArea : MonoBehaviour
     {
         PlayerControler.Instance.ButtonsAroundHide();
         buttonAction.SetActive(false);
-        if (isAvailable && isVisible && !AreThereHiddenNeighbours())
+        if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
+        {
+            buttonInteract.SetActive(true);
+            buttonSetTrap.SetActive(true);
+        }
+        else if (isAvailable && isVisible && !AreThereHiddenNeighbours())
         {
             buttonGo.SetActive(true);
         }
@@ -144,7 +159,32 @@ public class MapArea : MonoBehaviour
             buttonDiscover.SetActive(true);
         }
     }
-    public void GoHere()
+    public void InteractButton()
+    {
+        if(type == 2 && GameManager.Instance.UseActionPoint())
+        {
+            PlayerInventory.Instance.CollectWood();
+            Debug.Log("get wood");
+        }
+        else if((state == 6 || state == 5) && GameManager.Instance.UseActionPoint())
+        {
+            Debug.Log("talk to turist");
+        }
+        buttonInteract.SetActive(false);
+        buttonSetTrap.SetActive(false);
+        buttonAction.SetActive(true);
+    }
+    public void SetTrapButton()
+    {
+        if((type == 1 || type == 2) && GameManager.Instance.UseActionPoint())
+        {
+            Debug.Log("set trap");
+        }
+        buttonInteract.SetActive(false);
+        buttonSetTrap.SetActive(false);
+        buttonAction.SetActive(true);
+    }
+    public void GoHereButton()
     {
         if (type == 4 || GameManager.Instance.UseActionPoint())
         {
@@ -153,7 +193,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.ButtonsAround();
         }
     }
-    public void DiscoverLeft()
+    public void DiscoverLeftButton()
     {
         if(type == 4 || GameManager.Instance.UseActionPoint())
         {
@@ -180,7 +220,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.ButtonsAround();
         }
     }
-    public void DiscoverRight()
+    public void DiscoverRightButton()
     {
         if(type == 4 || GameManager.Instance.UseActionPoint())
         {

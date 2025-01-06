@@ -36,6 +36,7 @@ public class PlayerControler : MonoBehaviour
     public void ButtonsAround()
     {
         areasToGo.Clear();
+        MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
         if ((column - 1) >= 0)
         {
             MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];        
@@ -177,18 +178,6 @@ public class PlayerControler : MonoBehaviour
         area.cloud.SetActive(false);
         area.models.SetActive(true);
     }
-    /*private void VisibleButton(MapArea module)
-    {
-        if(module.isAvailable && module.isVisible && !module.AreThereHiddenNeighbours())
-        {
-            module.buttonGo.SetActive(true);
-            areasToGo.Add(module);
-        }else if(module.isAvailable)
-        {
-            module.buttonDiscover.SetActive(true);
-            areasToGo.Add(module);
-        }
-    }*/
     private void VisibleButton(MapArea module)
     {
         if (module.isAvailable)
@@ -205,6 +194,9 @@ public class PlayerControler : MonoBehaviour
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
         }
+        MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
     }
     public void ButtonsAroundHide()
     {
@@ -214,6 +206,9 @@ public class PlayerControler : MonoBehaviour
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
         }
+        MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
+        MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
     }
     public void MovePlayer(int rowNew, int columnNew, Vector3 position)
     {

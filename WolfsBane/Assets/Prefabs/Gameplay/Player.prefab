@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 701925467623227654}
   - component: {fileID: 8788035903983835772}
+  - component: {fileID: 5302693749149839961}
   - component: {fileID: 3632167650853378406}
   - component: {fileID: 1571065899113453581}
   m_Layer: 0
@@ -81,12 +82,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3285ba764b6b2489ae89bff7d985af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosition: {x: 5, y: 0.375, z: 0}
+  playerPosition: {x: 5, y: 0.275, z: 0}
   row: 5
   column: 5
   playerModelDay: {fileID: 4664487641647487410}
   playerModelNight: {fileID: 5916191445171075309}
   areasToGo: []
+--- !u!114 &5302693749149839961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850422980824941364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84da429632845cf4b8add713fd82a45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodAmount: 0
+  woodCollect: 3
 --- !u!136 &3632167650853378406
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -165,7 +180,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.27522, y: 0.27522, z: 0.27522}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7437262614594500536}
@@ -237,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1705763281180159582
 Transform:
   m_ObjectHideFlags: 0
