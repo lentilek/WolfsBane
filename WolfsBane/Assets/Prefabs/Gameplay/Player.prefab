@@ -102,6 +102,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   woodAmount: 0
   woodCollect: 3
+  woodAmountTXT: {fileID: 0}
+  doorTrap: 0
+  fenceTrap: 0
+  trapPrefab: {fileID: 8617908825148903028, guid: e2c989282bfff7a4e93b9b18fbc70d98,
+    type: 3}
+  trapsList: []
 --- !u!136 &3632167650853378406
 CapsuleCollider:
   m_ObjectHideFlags: 0

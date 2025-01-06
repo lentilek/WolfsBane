@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(actionWaitTimeAI);
             CheckIfTurist();
+            PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column]);
             PlayerControler.Instance.AreasToGoAI();    
             CheckIfTurist();
         } while (UseActionPointAI());
@@ -161,6 +162,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
         currentActionPoints = 0;        
         currentAIActionPoints = 0;

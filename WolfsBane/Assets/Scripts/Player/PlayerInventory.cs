@@ -14,6 +14,9 @@ public class PlayerInventory : MonoBehaviour
     public bool doorTrap;
     public bool fenceTrap;
 
+    public GameObject trapPrefab;
+    [HideInInspector]public List<GameObject> trapsList = new List<GameObject>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -36,7 +39,58 @@ public class PlayerInventory : MonoBehaviour
         woodAmount += woodCollect;
         woodAmountTXT.text = $"Wood: {woodAmount}";
     }
-
+    public void BuildTrap(MapArea ma)
+    {
+        woodAmount -= trapPrefab.GetComponent<Trap>().buildConst;
+        woodAmountTXT.text = $"Wood: {woodAmount}";
+        GameObject go = Instantiate(trapPrefab, ma.gameplayObject.transform, worldPositionStays: false);
+        go.GetComponent<Trap>().module = ma;
+        if(ma.state == 2)
+        {
+            ma.state = 1;
+        }
+        else if(ma.state == 6)
+        {
+            ma.state = 5;
+        }
+        trapsList.Add(go);
+    }
+    public void CheckTrap(MapArea ma)
+    {
+        Trap trapComp = ma.gameplayObject.GetComponentInChildren<Trap>();
+        if (trapComp != null)
+        {
+            GameObject trap = trapComp.gameObject;
+            if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())
+            {
+                trapComp.module.state = 2;
+                Destroy(trap);
+                trapsList.Remove(trap);
+            }
+            else if (trapComp.module.state == 5 && GameManager.Instance.UseActionPointAI())
+            {
+                trapComp.module.state = 6;
+                Destroy(trap);
+                trapsList.Remove(trap);
+            }
+        }
+    }
+    public void DestroyAllTraps()
+    {
+        foreach (GameObject trap in trapsList)
+        {
+            Trap trapComponent = trap.GetComponent<Trap>();
+            if(trapComponent.module.state == 1)
+            {
+                trapComponent.module.state = 2;
+            }else if(trapComponent.module.state == 5)
+            {
+                trapComponent.module.state = 6;
+            }
+            Destroy(trap);
+        }
+        trapsList.Clear();
+    }
     public void BuildHouseTrap()
     {
         woodAmount--;

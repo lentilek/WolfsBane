@@ -164,7 +164,6 @@ public class MapArea : MonoBehaviour
         if(type == 2 && GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.CollectWood();
-            //Debug.Log("get wood");
         }
         else if((state == 6 || state == 5) && GameManager.Instance.UseActionPoint())
         {
@@ -176,9 +175,9 @@ public class MapArea : MonoBehaviour
     }
     public void SetTrapButton()
     {
-        if((type == 1 || type == 2) && GameManager.Instance.UseActionPoint())
+        if((type == 1 || type == 2) && (state == 2 || state == 6) && GameManager.Instance.UseActionPoint())
         {
-            Debug.Log("set trap");
+            PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
         else if(type == 4)
         {
