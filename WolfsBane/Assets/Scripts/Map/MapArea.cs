@@ -164,7 +164,7 @@ public class MapArea : MonoBehaviour
         if(type == 2 && GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.CollectWood();
-            Debug.Log("get wood");
+            //Debug.Log("get wood");
         }
         else if((state == 6 || state == 5) && GameManager.Instance.UseActionPoint())
         {
@@ -179,6 +179,19 @@ public class MapArea : MonoBehaviour
         if((type == 1 || type == 2) && GameManager.Instance.UseActionPoint())
         {
             Debug.Log("set trap");
+        }
+        else if(type == 4)
+        {
+            if (!PlayerInventory.Instance.doorTrap)
+            {
+                PlayerInventory.Instance.doorTrap = true;
+                PlayerInventory.Instance.BuildHouseTrap();
+            }
+            else if(!PlayerInventory.Instance.fenceTrap)
+            {
+                PlayerInventory.Instance.fenceTrap = true;
+                PlayerInventory.Instance.BuildHouseTrap();
+            }
         }
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);

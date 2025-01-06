@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
     }
     public void Night()
     {
+        PlayerInventory.Instance.CheckHouseForTrap();
         StartCoroutine(NightWait());
     }
     IEnumerator NightWait()
