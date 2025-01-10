@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int turistPerDay;
     [SerializeField] private GameObject[] turistCampModel;
-    private List<GameObject> turistCamps = new List<GameObject>();
+    [HideInInspector] public List<GameObject> turistCamps = new List<GameObject>();
 
     private void Awake()
     {
@@ -133,7 +133,8 @@ public class GameManager : MonoBehaviour
             }
             if (turist != null)
             {
-                area.state = 2;
+                if (area.state == 6) area.state = 2;
+                else if (area.state == 5) area.state = 1;
                 gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenKilled;
                 if (gameIndicator > 100) gameIndicator = 100;
                 GetCurrentFillIndicator();
@@ -145,6 +146,7 @@ public class GameManager : MonoBehaviour
     }
     public void FinishDayStartNight()
     {
+        PlayerControler.Instance.ButtonsAroundOff();
         nightButton.SetActive(false);
         Night();
     }

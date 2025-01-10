@@ -165,9 +165,9 @@ public class MapArea : MonoBehaviour
         {
             PlayerInventory.Instance.CollectWood();
         }
-        else if((state == 6 || state == 5) && GameManager.Instance.UseActionPoint())
+        else if((state == 6 || state == 5))
         {
-            Debug.Log("talk to turist");
+            Dialog.Instance.TuristInteract(this);
         }
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);

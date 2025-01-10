@@ -6,6 +6,7 @@ public class Turist : MonoBehaviour
 {
     public float gameIndicatorWhenKilled;
     public float gameIndicatorWhenLived;
+    public float gameIndicatorWhenScared;
     [HideInInspector] public MapArea mapModule;
 
     public void GetEaten()
