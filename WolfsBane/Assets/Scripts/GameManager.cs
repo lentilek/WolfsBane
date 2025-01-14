@@ -13,20 +13,20 @@ public class GameManager : MonoBehaviour
     private float maxGameIndicator;
     [SerializeField] private Image gameIndicatorFill;
 
-    [SerializeField] private int maxActionPoints = 14;
+    public int maxActionPoints = 14;
     public int maxAIActionPoints = 12;
     public float actionWaitTimeAI = 1f;
     [HideInInspector] public int currentAIActionPoints;
     [HideInInspector] public int currentActionPoints;
     [SerializeField] private TextMeshProUGUI actionPointsTXT;
     [SerializeField] private TextMeshProUGUI actionPointsAITXT;
-    [SerializeField] private GameObject nightButton;
+    [SerializeField] public GameObject nightButton;
     [SerializeField] private GameObject nextDayButton;
 
     [SerializeField] private int turistPerDay;
     [SerializeField] private GameObject[] turistCampModel;
     [HideInInspector] public List<GameObject> turistCamps = new List<GameObject>();
-
+    [HideInInspector] public bool isNight;
     private void Awake()
     {
         if (Instance == null)
@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         currentAIActionPoints = 0;
         nextDayButton.SetActive(false);
         GetCurrentFillIndicator();
+        isNight = false;
     }
     private void Start()
     {
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
     }
     public void Night()
     {
+        isNight = true;
         PlayerInventory.Instance.CheckHouseForTrap();
         StartCoroutine(NightWait());
     }
@@ -164,12 +166,14 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        isNight = false;
         PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
         currentActionPoints = 0;        
         currentAIActionPoints = 0;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
+        PlayerControler.Instance.PlayerGoHome();
         foreach (GameObject turist in turistCamps)
         {
             turist.GetComponent<Turist>().mapModule.state = 2;

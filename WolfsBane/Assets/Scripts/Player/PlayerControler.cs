@@ -7,9 +7,12 @@ public class PlayerControler : MonoBehaviour
 {
     public static PlayerControler Instance;
 
-    public Vector3 playerPosition;
-    public int row;
-    public int column;
+    [HideInInspector] public Vector3 playerPosition;
+    [HideInInspector] public int row;
+    [HideInInspector] public int column;
+    public Vector3 homePosition;
+    public int homeRow;
+    public int homeColumn;
     public GameObject playerModelDay;
     public GameObject playerModelNight;
     [HideInInspector] public List<MapArea> areasToGo;
@@ -26,13 +29,26 @@ public class PlayerControler : MonoBehaviour
         }
         playerModelDay.SetActive(true);
         playerModelNight.SetActive(false);
+        playerPosition = homePosition;
+        row = homeRow;
+        column = homeColumn;
     }
     private void Start()
     {
         this.gameObject.transform.position = playerPosition;
         ButtonsAround();
     }
-
+    private void Update()
+    {
+        if (MapBoard.Instance.map[row].moduleRow[column].type == 4 && !GameManager.Instance.isNight)
+        {
+            GameManager.Instance.nightButton.SetActive(true);
+        }
+        else if(GameManager.Instance.isNight || GameManager.Instance.currentActionPoints != GameManager.Instance.maxActionPoints)
+        {
+            GameManager.Instance.nightButton.SetActive(false);
+        }
+    }
     public void ButtonsAround()
     {
         areasToGo.Clear();
@@ -217,5 +233,10 @@ public class PlayerControler : MonoBehaviour
         playerPosition.x = position.x;
         playerPosition.z = position.z;
         this.transform.position = playerPosition;
+    }
+
+    public void PlayerGoHome()
+    {
+        MovePlayer(homeRow, homeColumn, homePosition);
     }
 }
