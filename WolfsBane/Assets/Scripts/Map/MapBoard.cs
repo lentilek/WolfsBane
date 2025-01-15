@@ -12,6 +12,8 @@ public class MapBoard : MonoBehaviour
     public static MapBoard Instance;
 
     public AreaRow[] map;
+
+    public List<MapArea> moduleListRegular= new List<MapArea>();
  
     private void Awake()
     {
@@ -30,6 +32,21 @@ public class MapBoard : MonoBehaviour
             {
                 map[i].moduleRow[j].row = i;
                 map[i].moduleRow[j].column = j;
+            }
+        }
+    }
+
+    public void RegularModuleList()
+    {
+        moduleListRegular.Clear();
+        for(int i = 0; i < map.Length; i++)
+        {
+            for(int j = 0; j < map.Length; j++)
+            {
+                if (map[i].moduleRow[j].type == 1)
+                {
+                    moduleListRegular.Add(map[i].moduleRow[j]);
+                }
             }
         }
     }
