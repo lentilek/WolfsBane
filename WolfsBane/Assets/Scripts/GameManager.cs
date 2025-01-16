@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        MapBoard.Instance.RegularModuleList();
         NewDay();
     }
     // update chyba bêdzie mo¿na usun¹æ i zostawiæ tylko GetCurrentFill po akcjach
@@ -166,6 +165,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        MapBoard.Instance.RegularModuleList();
         isNight = false;
         PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
@@ -186,6 +186,7 @@ public class GameManager : MonoBehaviour
             turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false));
             turistCamps[i].GetComponent<Turist>().mapModule = ma;
             ma.state = 6;
+            MapBoard.Instance.moduleListRegular.Remove(ma);
         }
         PlayerControler.Instance.ButtonsAround();
     }

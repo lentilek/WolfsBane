@@ -29,7 +29,15 @@ public class MapArea : MonoBehaviour
         buttonDiscover.SetActive(false);
         buttonGo.SetActive(false);
         buttonAction.SetActive(false);
-        if(type == 3 || type == 0)
+    }
+    private void Start()
+    {
+        //AddEnviro();
+        //AreasAround();
+    }
+    public void AddEnviro()
+    {
+        if (type == 3 || type == 0)
         {
             isAvailable = false;
             isVisible = true;
@@ -40,7 +48,7 @@ public class MapArea : MonoBehaviour
             isAvailable = true;
             state = 2;
         }
-        if(!isVisible)
+        if (!isVisible)
         {
             cloud.SetActive(true);
             models.SetActive(false);
@@ -50,27 +58,23 @@ public class MapArea : MonoBehaviour
             cloud.SetActive(false);
             models.SetActive(true);
         }
-    }
-    private void Start()
-    {
-        AddEnviro();
-        AreasAround();
-    }
-    private void AddEnviro()
-    {
+
+        cloud.SetActive(false);
+        models.SetActive(true);
+
         switch (type)
         {
             case 2:
-                Instantiate(resourceModels[Random.Range(0, resourceModels.Length)], gameplayObject.transform, worldPositionStays: false);
+                Instantiate(resourceModels[MapBoard.Instance._random.NextInt(0, resourceModels.Length)], gameplayObject.transform, worldPositionStays: false);
                 break;
             case 3:
-                Instantiate(blockedModels[Random.Range(0,blockedModels.Length)], gameplayObject.transform, worldPositionStays: false);
+                Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0,blockedModels.Length)], gameplayObject.transform, worldPositionStays: false);
                 break;
             default:
                 break;
         }
     }
-    private void AreasAround()
+    public void AreasAround()
     {
         neighbours.Clear();
         if ((column - 1) >= 0)
