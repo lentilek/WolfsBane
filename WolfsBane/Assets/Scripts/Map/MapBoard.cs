@@ -43,7 +43,7 @@ public class MapBoard : MonoBehaviour
             {
                 map[i].moduleRow[j].row = i;
                 map[i].moduleRow[j].column = j;
-                if (map[i].moduleRow[j].type != 0)
+                if (map[i].moduleRow[j].type != 0 && map[i].moduleRow[j].type != 4)
                 {
                     mapRandomBlocked.Add(map[i].moduleRow[j]);
                     mapRandomResource.Add(map[i].moduleRow[j]);

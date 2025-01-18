@@ -43,7 +43,7 @@ public class MapArea : MonoBehaviour
             isVisible = true;
             state = 0;
         }
-        else
+        else if(state != 4)
         {
             isAvailable = true;
             state = 2;
@@ -58,9 +58,6 @@ public class MapArea : MonoBehaviour
             cloud.SetActive(false);
             models.SetActive(true);
         }
-
-        cloud.SetActive(false);
-        models.SetActive(true);
 
         switch (type)
         {
