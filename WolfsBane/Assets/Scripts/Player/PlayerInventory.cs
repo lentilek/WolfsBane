@@ -55,7 +55,7 @@ public class PlayerInventory : MonoBehaviour
         }
         trapsList.Add(go);
     }
-    public void CheckTrap(MapArea ma)
+    public bool CheckTrap(MapArea ma)
     {
         Trap trapComp = ma.gameplayObject.GetComponentInChildren<Trap>();
         if (trapComp != null)
@@ -73,7 +73,9 @@ public class PlayerInventory : MonoBehaviour
                 Destroy(trap);
                 trapsList.Remove(trap);
             }
+            return true;
         }
+        return false;
     }
     public void DestroyAllTraps()
     {

@@ -48,10 +48,15 @@ MonoBehaviour:
   gameIndicatorFill: {fileID: 0}
   maxActionPoints: 14
   maxAIActionPoints: 12
+  actionWaitTimeAI: 2
   currentAIActionPoints: 0
   currentActionPoints: 0
   actionPointsTXT: {fileID: 0}
+  actionPointsAITXT: {fileID: 0}
+  nightButton: {fileID: 0}
   nextDayButton: {fileID: 0}
   turistPerDay: 5
   turistCampModel:
   - {fileID: 78779685244339640, guid: 9d484233bcff62b41a195951aedb1874, type: 3}
+  turistCamps: []
+  isNight: 0

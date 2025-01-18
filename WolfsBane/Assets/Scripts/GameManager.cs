@@ -110,14 +110,15 @@ public class GameManager : MonoBehaviour
     {        
         do
         {
+            if (CheckIfTurist())yield return new WaitForSeconds(actionWaitTimeAI);
+            if(PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
+            PlayerControler.Instance.AreasToGoAI();
+            UseActionPointAI();
             yield return new WaitForSeconds(actionWaitTimeAI);
-            CheckIfTurist();
-            PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column]);
-            PlayerControler.Instance.AreasToGoAI();    
-            CheckIfTurist();
-        } while (UseActionPointAI());
+            if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
+        } while (currentAIActionPoints < maxAIActionPoints);
     }
-    public void CheckIfTurist()
+    public bool CheckIfTurist()
     {
         MapArea area = MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column];
 
@@ -142,8 +143,10 @@ public class GameManager : MonoBehaviour
                 Destroy(turist);
                 turistCamps.Remove(turist);
                 UseActionPointAI();
+                return true;
             }
         }
+        return false;
     }
     public void FinishDayStartNight()
     {
