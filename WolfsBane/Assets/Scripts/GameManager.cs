@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        MapBoard.Instance.RegularModuleList();
         NewDay();
     }
     // update chyba bêdzie mo¿na usun¹æ i zostawiæ tylko GetCurrentFill po akcjach
@@ -111,14 +110,15 @@ public class GameManager : MonoBehaviour
     {        
         do
         {
+            if (CheckIfTurist())yield return new WaitForSeconds(actionWaitTimeAI);
+            if(PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
+            PlayerControler.Instance.AreasToGoAI();
+            UseActionPointAI();
             yield return new WaitForSeconds(actionWaitTimeAI);
-            CheckIfTurist();
-            PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column]);
-            PlayerControler.Instance.AreasToGoAI();    
-            CheckIfTurist();
-        } while (UseActionPointAI());
+            if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
+        } while (currentAIActionPoints < maxAIActionPoints);
     }
-    public void CheckIfTurist()
+    public bool CheckIfTurist()
     {
         MapArea area = MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column];
 
@@ -143,8 +143,10 @@ public class GameManager : MonoBehaviour
                 Destroy(turist);
                 turistCamps.Remove(turist);
                 UseActionPointAI();
+                return true;
             }
         }
+        return false;
     }
     public void FinishDayStartNight()
     {
@@ -166,6 +168,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        MapBoard.Instance.RegularModuleList();
         isNight = false;
         PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
@@ -186,6 +189,7 @@ public class GameManager : MonoBehaviour
             turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false));
             turistCamps[i].GetComponent<Turist>().mapModule = ma;
             ma.state = 6;
+            MapBoard.Instance.moduleListRegular.Remove(ma);
         }
         PlayerControler.Instance.ButtonsAround();
     }
