@@ -48,6 +48,10 @@ public class PlayerInventory : MonoBehaviour
         if(ma.state == 2)
         {
             ma.state = 1;
+        }        
+        else if(ma.state == 4)
+        {
+            ma.state = 3;
         }
         else if(ma.state == 6)
         {
@@ -64,6 +68,12 @@ public class PlayerInventory : MonoBehaviour
             if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())
             {
                 trapComp.module.state = 2;
+                Destroy(trap);
+                trapsList.Remove(trap);
+            }
+            else if (trapComp.module.state == 3 && GameManager.Instance.UseActionPointAI())
+            {
+                trapComp.module.state = 4;
                 Destroy(trap);
                 trapsList.Remove(trap);
             }
@@ -85,7 +95,12 @@ public class PlayerInventory : MonoBehaviour
             if(trapComponent.module.state == 1)
             {
                 trapComponent.module.state = 2;
-            }else if(trapComponent.module.state == 5)
+            }
+            else if (trapComponent.module.state == 3)
+            {
+                trapComponent.module.state = 4;
+            }
+            else if(trapComponent.module.state == 5)
             {
                 trapComponent.module.state = 6;
             }

@@ -51,6 +51,11 @@ public class Dialog : MonoBehaviour
                 GameManager.Instance.GetCurrentFillIndicator();
                 Destroy(turist);
                 GameManager.Instance.turistCamps.Remove(turist);
+                foreach (MapArea n in area.neighbours)
+                {
+                    if (n.state == 4) n.state = 2;
+                    else if (n.state == 3) n.state = 1;
+                }
             }
         }
         dialogOptions.SetActive(false);
@@ -79,6 +84,11 @@ public class Dialog : MonoBehaviour
                     else if (area.state == 5) area.state = 1;
                     Destroy(turist);
                     GameManager.Instance.turistCamps.Remove(turist);
+                    foreach (MapArea n in area.neighbours)
+                    {
+                        if (n.state == 4) n.state = 2;
+                        else if (n.state == 3) n.state = 1;
+                    }
                 }
             }
         }

@@ -179,7 +179,7 @@ public class MapArea : MonoBehaviour
     }
     public void SetTrapButton()
     {
-        if((type == 1 || type == 2) && (state == 2 || state == 6) && PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && GameManager.Instance.UseActionPoint())
+        if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }

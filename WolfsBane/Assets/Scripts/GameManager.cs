@@ -114,11 +114,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(actionWaitTimeAI);
         do
         {
-            if (CheckIfTurist())yield return new WaitForSeconds(actionWaitTimeAI);
             if(PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
+            if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
             PlayerControler.Instance.AreasToGoAI();
             UseActionPointAI();
             yield return new WaitForSeconds(actionWaitTimeAI);
+            if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
             if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
         } while (currentAIActionPoints < maxAIActionPoints);
     }
@@ -137,7 +138,7 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
-            if (turist != null)
+            if (turist != null && UseActionPointAI())
             {
                 if (area.state == 6) area.state = 2;
                 else if (area.state == 5) area.state = 1;
@@ -146,7 +147,11 @@ public class GameManager : MonoBehaviour
                 GetCurrentFillIndicator();
                 Destroy(turist);
                 turistCamps.Remove(turist);
-                UseActionPointAI();
+                foreach (MapArea n in area.neighbours)
+                {
+                    if (n.state == 4) n.state = 2;
+                    else if (n.state == 3) n.state = 1;
+                }
                 return true;
             }
         }
@@ -184,6 +189,11 @@ public class GameManager : MonoBehaviour
         foreach (GameObject turist in turistCamps)
         {
             turist.GetComponent<Turist>().mapModule.state = 2;
+            foreach (MapArea n in turist.GetComponent<Turist>().mapModule.neighbours)
+            {
+                if (n.state == 4) n.state = 2;
+                else if (n.state == 3) n.state = 1;
+            }
             Destroy(turist);
         }
         turistCamps.Clear();
@@ -193,6 +203,11 @@ public class GameManager : MonoBehaviour
             turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false));
             turistCamps[i].GetComponent<Turist>().mapModule = ma;
             ma.state = 6;
+            foreach(MapArea n in ma.neighbours)
+            {
+                if (n.state == 2) n.state = 4;
+                else if (n.state == 1) n.state = 3;
+            }
             MapBoard.Instance.moduleListRegular.Remove(ma);
         }
         PlayerControler.Instance.ButtonsAround();
