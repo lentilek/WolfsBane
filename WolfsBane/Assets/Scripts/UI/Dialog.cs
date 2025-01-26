@@ -53,8 +53,8 @@ public class Dialog : MonoBehaviour
                 GameManager.Instance.turistCamps.Remove(turist);
                 foreach (MapArea n in area.neighbours)
                 {
-                    if (n.state == 4) n.state = 2;
-                    else if (n.state == 3) n.state = 1;
+                    if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                    else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
             }
         }
@@ -86,8 +86,8 @@ public class Dialog : MonoBehaviour
                     GameManager.Instance.turistCamps.Remove(turist);
                     foreach (MapArea n in area.neighbours)
                     {
-                        if (n.state == 4) n.state = 2;
-                        else if (n.state == 3) n.state = 1;
+                        if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                        else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                     }
                 }
             }

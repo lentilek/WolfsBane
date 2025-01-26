@@ -64,7 +64,8 @@ public class GameManager : MonoBehaviour
         //GetCurrentFillIndicator();
         if(gameIndicator >= maxGameIndicator)
         {
-            Debug.Log("Game Over");
+            Time.timeScale = 0f;
+            GameUI.Instance.gameOverScreen.SetActive(true);
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -98,8 +99,7 @@ public class GameManager : MonoBehaviour
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
             if (currentAIActionPoints == maxAIActionPoints)
             {
-                //EndNight();
-                nextDayButton.SetActive(true);
+                //nextDayButton.SetActive(true);
                 return false;
             }
             return true;
@@ -128,6 +128,8 @@ public class GameManager : MonoBehaviour
             if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
             if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
         } while (currentAIActionPoints < maxAIActionPoints);
+        EndNightCheckIfWon();
+        nextDayButton.SetActive(true);
     }
     public bool CheckIfTurist()
     {
@@ -155,8 +157,8 @@ public class GameManager : MonoBehaviour
                 turistCamps.Remove(turist);
                 foreach (MapArea n in area.neighbours)
                 {
-                    if (n.state == 4) n.state = 2;
-                    else if (n.state == 3) n.state = 1;
+                    if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                    else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
                 return true;
             }
@@ -169,24 +171,20 @@ public class GameManager : MonoBehaviour
         nightButton.SetActive(false);
         Night();
     }
-    public void EndNight()
+    public void EndNightCheckIfWon()
     {
-        foreach(GameObject turist in turistCamps)
+        if(daysCounter == daysToWin)
         {
-            if (turist.gameObject.activeSelf)
-            {
-                gameIndicator -= turist.GetComponent<Turist>().gameIndicatorWhenLived;
-                if(gameIndicator < 0) gameIndicator = 0;
-                GetCurrentFillIndicator();
-            }
+            Time.timeScale = 0f;
+            GameUI.Instance.winScreen.SetActive(true);
         }
     }
     public void NewDay()
     {
+        isNight = false;
         daysCounter++;
         daysCounterTXT.text = $"Day: {daysCounter}";
-        MapBoard.Instance.RegularModuleList();
-        isNight = false;
+        MapBoard.Instance.RegularModuleList();      
         PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
         currentActionPoints = 0;        
@@ -205,8 +203,8 @@ public class GameManager : MonoBehaviour
             turist.GetComponent<Turist>().mapModule.state = 2;
             foreach (MapArea n in turist.GetComponent<Turist>().mapModule.neighbours)
             {
-                if (n.state == 4) n.state = 2;
-                else if (n.state == 3) n.state = 1;
+                if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
             }
             Destroy(turist);
         }

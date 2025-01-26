@@ -136,9 +136,20 @@ public class MapArea : MonoBehaviour
     }
     public bool AreThereHiddenNeighbours()
     {
-        for(int i = 0; i < neighbours.Count; i++)
+       foreach(MapArea n in neighbours)
+       {
+           if (n.isAvailable && !n.isVisible)
+           {
+               return true;
+           }
+       }
+       return false;
+    }
+    public bool AreThereTuristsAround()
+    {
+        foreach(MapArea n in neighbours)
         {
-            if (neighbours[i].isAvailable && !neighbours[i].isVisible)
+            if(n.state == 5 || n.state == 6)
             {
                 return true;
             }
