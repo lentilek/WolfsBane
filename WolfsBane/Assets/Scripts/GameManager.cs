@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] turistCampModel;
     [HideInInspector] public List<GameObject> turistCamps = new List<GameObject>();
     [HideInInspector] public bool isNight;
+
+    [SerializeField] private TextMeshProUGUI daysCounterTXT;
+    public int daysToWin;
+    [HideInInspector] public int daysCounter;
     private void Awake()
     {
         if (Instance == null)
@@ -38,12 +42,14 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        daysCounter = 0;
         gameIndicator = 0;
         maxGameIndicator = 100f;
-        currentActionPoints = 0;        
+        currentActionPoints = 0;
+        currentAIActionPoints = 0;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
-        currentAIActionPoints = 0;
+        daysCounterTXT.text = $"Day: {daysCounter}";
         nextDayButton.SetActive(false);
         GetCurrentFillIndicator();
         isNight = false;
@@ -92,7 +98,7 @@ public class GameManager : MonoBehaviour
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
             if (currentAIActionPoints == maxAIActionPoints)
             {
-                EndNight();
+                //EndNight();
                 nextDayButton.SetActive(true);
                 return false;
             }
@@ -177,6 +183,8 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        daysCounter++;
+        daysCounterTXT.text = $"Day: {daysCounter}";
         MapBoard.Instance.RegularModuleList();
         isNight = false;
         PlayerInventory.Instance.DestroyAllTraps();
@@ -188,6 +196,12 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.PlayerGoHome();
         foreach (GameObject turist in turistCamps)
         {
+            if (turist.gameObject.activeSelf)
+            {
+                gameIndicator -= turist.GetComponent<Turist>().gameIndicatorWhenLived;
+                if (gameIndicator < 0) gameIndicator = 0;
+                GetCurrentFillIndicator();
+            }
             turist.GetComponent<Turist>().mapModule.state = 2;
             foreach (MapArea n in turist.GetComponent<Turist>().mapModule.neighbours)
             {
