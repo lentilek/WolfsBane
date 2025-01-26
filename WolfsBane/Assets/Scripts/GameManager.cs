@@ -104,10 +104,14 @@ public class GameManager : MonoBehaviour
     {
         isNight = true;
         PlayerInventory.Instance.CheckHouseForTrap();
+    }
+    public void StartNightWait()
+    {
         StartCoroutine(NightWait());
     }
     IEnumerator NightWait()
-    {        
+    {
+        yield return new WaitForSeconds(actionWaitTimeAI);
         do
         {
             if (CheckIfTurist())yield return new WaitForSeconds(actionWaitTimeAI);

@@ -95,30 +95,45 @@ public class PlayerInventory : MonoBehaviour
     }
     public void BuildHouseTrap()
     {
-        woodAmount--;
-        woodAmountTXT.text = $"Wood: {woodAmount}";
+        if (!doorTrap)
+        {
+            House.Instance.doorTrap.SetActive(true);
+            doorTrap = true;
+            woodAmount--;
+            woodAmountTXT.text = $"Wood: {woodAmount}";
+        }
+        else if (!fenceTrap)
+        {
+            House.Instance.fenceTrap.SetActive(true);
+            fenceTrap = true;
+            woodAmount--;
+            woodAmountTXT.text = $"Wood: {woodAmount}";
+        }
     }
     public void CheckHouseForTrap()
     {
-        if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4)
-        {
-            Waiting(1f);
-            if(doorTrap)
-            {
-                GameManager.Instance.UseActionPointAI();
-                doorTrap = false;
-            }
-            if(fenceTrap)
-            {
-                GameManager.Instance.UseActionPointAI();
-                fenceTrap = false;
-            }
-            Waiting(1f);
-        }
+        StartCoroutine(Waiting(GameManager.Instance.actionWaitTimeAI));
     }
 
     IEnumerator Waiting(float time)
     {
-        yield return new WaitForSeconds(time);
+        if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4)
+        {
+            if (doorTrap)
+            {
+                yield return new WaitForSeconds(time);
+                GameManager.Instance.UseActionPointAI();
+                doorTrap = false;
+                House.Instance.doorTrap.SetActive(false);
+            }
+            if (fenceTrap)
+            {
+                yield return new WaitForSeconds(time);
+                GameManager.Instance.UseActionPointAI();
+                fenceTrap = false;
+                House.Instance.fenceTrap.SetActive(false);
+            }
+        }
+        GameManager.Instance.StartNightWait();
     }
 }

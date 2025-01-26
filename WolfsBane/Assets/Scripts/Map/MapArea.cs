@@ -12,6 +12,7 @@ public class MapArea : MonoBehaviour
     public GameObject cloud;
     public GameObject models;
     public GameObject gameplayObject;
+    public GameObject decorations;
     public GameObject buttonAction;
     public GameObject buttonGo;
     public GameObject buttonDiscover;
@@ -42,11 +43,13 @@ public class MapArea : MonoBehaviour
             isAvailable = false;
             isVisible = true;
             state = 0;
+            decorations.SetActive(false);
         }
-        else if(state != 4)
+        else if(type != 4)
         {
             isAvailable = true;
             state = 2;
+            decorations.SetActive(true);
         }
         if (!isVisible)
         {
@@ -176,22 +179,13 @@ public class MapArea : MonoBehaviour
     }
     public void SetTrapButton()
     {
-        if((type == 1 || type == 2) && (state == 2 || state == 6) && GameManager.Instance.UseActionPoint())
+        if((type == 1 || type == 2) && (state == 2 || state == 6) && PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
-        else if(type == 4)
+        else if(type == 4 && PlayerInventory.Instance.woodAmount > 0)
         {
-            if (!PlayerInventory.Instance.doorTrap)
-            {
-                PlayerInventory.Instance.doorTrap = true;
-                PlayerInventory.Instance.BuildHouseTrap();
-            }
-            else if(!PlayerInventory.Instance.fenceTrap)
-            {
-                PlayerInventory.Instance.fenceTrap = true;
-                PlayerInventory.Instance.BuildHouseTrap();
-            }
+            PlayerInventory.Instance.BuildHouseTrap();
         }
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
