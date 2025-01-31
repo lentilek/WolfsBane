@@ -253,7 +253,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 1.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1500302651}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 2
+    OrthographicSize: 1.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -853,9 +853,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 389293951}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Night
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5424664597846290156, guid: 3447e5272a888234f9e46bdf21373785,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private int edgeScrollSize = 20;
     [SerializeField] private float cameraXmin, cameraXmax, cameraYmin, cameraYmax, minScroll, maxScroll;
     private bool useEdgeScroll;
+    [SerializeField] private float basicZoom = 1.5f;
     private void Awake()
     {
         useEdgeScroll = false;
@@ -23,7 +24,7 @@ public class CameraManager : MonoBehaviour
         {
             useEdgeScroll = !useEdgeScroll;
             transform.position = PlayerControler.Instance.playerPosition;
-            cvCamera.m_Lens.OrthographicSize = 2f;
+            cvCamera.m_Lens.OrthographicSize = basicZoom;
         }
         if(useEdgeScroll)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class GameUI : MonoBehaviour
 
     public GameObject gameOverScreen;
     public GameObject winScreen;
+
     private void Awake()
     {
         if (Instance == null)
