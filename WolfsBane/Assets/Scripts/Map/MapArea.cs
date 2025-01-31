@@ -162,8 +162,14 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            buttonInteract.SetActive(true);
-            buttonSetTrap.SetActive(true);
+            if(type == 2 || state == 5 || state == 6)
+            {
+                buttonInteract.SetActive(true);
+            }
+            if(((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst) || (type == 4 && PlayerInventory.Instance.woodAmount > 0))
+            {
+                buttonSetTrap.SetActive(true);
+            }
         }
         else if (isAvailable && isVisible && !AreThereHiddenNeighbours())
         {
