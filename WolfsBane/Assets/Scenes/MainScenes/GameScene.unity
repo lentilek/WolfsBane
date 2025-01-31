@@ -864,12 +864,17 @@ PrefabInstance:
     - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Night
+      value: FinishDayStartNight
       objectReference: {fileID: 0}
     - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4784886359511929856, guid: 3447e5272a888234f9e46bdf21373785,
         type: 3}

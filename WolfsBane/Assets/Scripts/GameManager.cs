@@ -169,6 +169,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerControler.Instance.ButtonsAroundOff();
         nightButton.SetActive(false);
+        GameUI.Instance.Night();
         Night();
     }
     public void EndNightCheckIfWon()
@@ -181,6 +182,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        GameUI.Instance.Day();
         isNight = false;
         daysCounter++;
         daysCounterTXT.text = $"Day: {daysCounter}";

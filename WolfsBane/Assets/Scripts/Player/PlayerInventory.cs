@@ -31,18 +31,18 @@ public class PlayerInventory : MonoBehaviour
         doorTrap = false;
         fenceTrap = false;
         woodAmount = 0;
-        woodAmountTXT.text = $"Wood: {woodAmount}";
+        woodAmountTXT.text = $"{woodAmount}";
     }
 
     public void CollectWood()
     {
         woodAmount += woodCollect;
-        woodAmountTXT.text = $"Wood: {woodAmount}";
+        woodAmountTXT.text = $"{woodAmount}";
     }
     public void BuildTrap(MapArea ma)
     {
         woodAmount -= trapPrefab.GetComponent<Trap>().buildConst;
-        woodAmountTXT.text = $"Wood: {woodAmount}";
+        woodAmountTXT.text = $"{woodAmount}";
         GameObject go = Instantiate(trapPrefab, ma.gameplayObject.transform, worldPositionStays: false);
         go.GetComponent<Trap>().module = ma;
         if(ma.state == 2)
@@ -115,14 +115,14 @@ public class PlayerInventory : MonoBehaviour
             House.Instance.doorTrap.SetActive(true);
             doorTrap = true;
             woodAmount--;
-            woodAmountTXT.text = $"Wood: {woodAmount}";
+            woodAmountTXT.text = $"{woodAmount}";
         }
         else if (!fenceTrap)
         {
             House.Instance.fenceTrap.SetActive(true);
             fenceTrap = true;
             woodAmount--;
-            woodAmountTXT.text = $"Wood: {woodAmount}";
+            woodAmountTXT.text = $"{woodAmount}";
         }
     }
     public void CheckHouseForTrap()
