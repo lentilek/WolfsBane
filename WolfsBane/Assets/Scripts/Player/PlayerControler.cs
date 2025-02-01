@@ -232,11 +232,18 @@ public class PlayerControler : MonoBehaviour
         column = columnNew;
         playerPosition.x = position.x;
         playerPosition.z = position.z;
-        this.transform.position = playerPosition;
+
+        PlayerMoveAnimation.Instance.MoveAnimation(playerPosition);
+        //this.transform.position = playerPosition;
     }
 
     public void PlayerGoHome()
     {
-        MovePlayer(homeRow, homeColumn, homePosition);
+        //MovePlayer(homeRow, homeColumn, homePosition);
+        row = homeRow;
+        column = homeColumn;
+        playerPosition.x = homePosition.x;
+        playerPosition.z = homePosition.z;
+        transform.position = playerPosition;
     }
 }

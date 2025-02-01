@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 701925467623227654}
   - component: {fileID: 8788035903983835772}
   - component: {fileID: 5302693749149839961}
+  - component: {fileID: 9222464858074414124}
   - component: {fileID: 3632167650853378406}
   - component: {fileID: 1571065899113453581}
   m_Layer: 0
@@ -113,6 +114,19 @@ MonoBehaviour:
   trapPrefab: {fileID: 8617908825148903028, guid: e2c989282bfff7a4e93b9b18fbc70d98,
     type: 3}
   trapsList: []
+--- !u!114 &9222464858074414124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850422980824941364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69badafff9215444ab29e8a77742449b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed: 0.5
 --- !u!136 &3632167650853378406
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -382,6 +396,7 @@ MonoBehaviour:
   cameraYmax: 5.5
   minScroll: 0.5
   maxScroll: 4
+  basicZoom: 1.5
 --- !u!1001 &1719641241035854479
 PrefabInstance:
   m_ObjectHideFlags: 0
