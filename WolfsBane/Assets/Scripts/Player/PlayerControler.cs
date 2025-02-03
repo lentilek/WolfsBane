@@ -13,8 +13,7 @@ public class PlayerControler : MonoBehaviour
     public Vector3 homePosition;
     public int homeRow;
     public int homeColumn;
-    public GameObject playerModelDay;
-    public GameObject playerModelNight;
+    public GameObject playerModel;
     [HideInInspector] public List<MapArea> areasToGo;
     private void Awake()
     {
@@ -27,8 +26,7 @@ public class PlayerControler : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
-        playerModelDay.SetActive(true);
-        playerModelNight.SetActive(false);
+        playerModel.SetActive(true);
         playerPosition = homePosition;
         row = homeRow;
         column = homeColumn;

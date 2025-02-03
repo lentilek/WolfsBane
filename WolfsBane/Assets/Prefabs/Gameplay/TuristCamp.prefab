@@ -50,6 +50,7 @@ MonoBehaviour:
   gameIndicatorWhenLived: 5
   gameIndicatorWhenScared: 10
   mapModule: {fileID: 0}
+  fireVFX: {fileID: 5327726162944584774}
 --- !u!1 &2658165691878825725
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +436,12 @@ PrefabInstance:
 --- !u!4 &679062057198283098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5753332335680020314, guid: d3e479f808816b741bf421530560f692,
+    type: 3}
+  m_PrefabInstance: {fileID: 5096792820728346112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5327726162944584774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1104666854466247238, guid: d3e479f808816b741bf421530560f692,
     type: 3}
   m_PrefabInstance: {fileID: 5096792820728346112}
   m_PrefabAsset: {fileID: 0}

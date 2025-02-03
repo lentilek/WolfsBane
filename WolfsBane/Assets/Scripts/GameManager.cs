@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI daysCounterTXT;
     public int daysToWin;
     [HideInInspector] public int daysCounter;
+
+    [SerializeField] private Light mainLight;
+    [SerializeField] private Color nightLightColor;
     private void Awake()
     {
         if (Instance == null)
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
         nextDayButton.SetActive(false);
         GetCurrentFillIndicator();
         isNight = false;
+        mainLight.color = Color.white;
     }
     private void Start()
     {
@@ -170,6 +174,8 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.ButtonsAroundOff();
         nightButton.SetActive(false);
         GameUI.Instance.Night();
+        mainLight.color = nightLightColor;
+        PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 30, 0);
         Night();
     }
     public void EndNightCheckIfWon()
@@ -194,6 +200,8 @@ public class GameManager : MonoBehaviour
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         PlayerControler.Instance.PlayerGoHome();
+        PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 210, 0);
+        mainLight.color = Color.white;
         foreach (GameObject turist in turistCamps)
         {
             if (turist.gameObject.activeSelf)
