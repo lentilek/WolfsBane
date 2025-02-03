@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5987643077046256292}
   - component: {fileID: 4357023302082765880}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: inner flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,12 +60,12 @@ Transform:
   m_GameObject: {fileID: 6081413877968945184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.482, z: 0.138}
+  m_LocalPosition: {x: 0, y: -0.219, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5753332335680020314}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5987643077046256292
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.97
+      scalar: 0.003
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 2076734422617523729}
   - component: {fileID: 5577190463549920}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: outer flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4895,7 +4895,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5753332335680020314}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2076734422617523729
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5150,7 +5150,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 0.005
       minScalar: 1
       maxCurve:
         serializedVersion: 2
