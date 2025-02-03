@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
 
     public GameObject gameOverScreen;
     public GameObject winScreen;
+    public GameObject pauseScreen;
 
     public GameObject timeDay;
     public GameObject timeNight;
@@ -30,9 +31,31 @@ public class GameUI : MonoBehaviour
         }
         gameOverScreen.SetActive(false);
         winScreen.SetActive(false);
+        pauseScreen.SetActive(false);
         Day();
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && !pauseScreen.activeSelf)
+        {
+            Pause();
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && pauseScreen.activeSelf)
+        {
+            Resume();
+        }
+    }
 
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        pauseScreen.SetActive(true);
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
+    }
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);

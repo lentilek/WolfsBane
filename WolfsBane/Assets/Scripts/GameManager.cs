@@ -71,10 +71,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             GameUI.Instance.gameOverScreen.SetActive(true);
         }
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(0);
-        }
     }
     public void GetCurrentFillIndicator()
     {
