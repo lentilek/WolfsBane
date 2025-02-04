@@ -24,17 +24,24 @@ public class MapArea : MonoBehaviour
 
     [SerializeField] private GameObject[] blockedModels;
     [SerializeField] private GameObject[] resourceModels;
+    public GameObject smellVFX;
 
     private void Awake()
     {
         buttonDiscover.SetActive(false);
         buttonGo.SetActive(false);
         buttonAction.SetActive(false);
+        smellVFX.SetActive(false);
     }
-    private void Start()
+    private void Update()
     {
-        //AddEnviro();
-        //AreasAround();
+        if(isVisible && (state == 3 || state == 4) && !smellVFX.activeSelf)
+        {
+            smellVFX.SetActive(true);
+        }else if(!isVisible || (state != 3 && state != 4))
+        {
+            smellVFX.SetActive(false);
+        }
     }
     public void AddEnviro()
     {
