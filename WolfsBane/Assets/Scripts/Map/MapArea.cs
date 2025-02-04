@@ -184,9 +184,9 @@ public class MapArea : MonoBehaviour
             {
                 buttonInteract.SetActive(false);
             }
-            if(((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
-                ((PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst) || 
-                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap))) && 
+            if((((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
+                (PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst)) || 
+                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && 
                 (GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || type == 4))
             {
                 buttonSetTrap.SetActive(true);
