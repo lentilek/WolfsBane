@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        Time.timeScale = 1f;
         daysCounter = 0;
         gameIndicator = 0;
         maxGameIndicator = 100f;
@@ -58,10 +59,7 @@ public class GameManager : MonoBehaviour
         isNight = false;
         mainLight.color = Color.white;
     }
-    private void Start()
-    {
-        NewDay();
-    }
+
     // update chyba bêdzie mo¿na usun¹æ i zostawiæ tylko GetCurrentFill po akcjach
     private void Update()
     {
@@ -187,8 +185,7 @@ public class GameManager : MonoBehaviour
         GameUI.Instance.Day();
         isNight = false;
         daysCounter++;
-        daysCounterTXT.text = $"Day: {daysCounter}";
-        MapBoard.Instance.RegularModuleList();      
+        daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
         currentActionPoints = 0;        
@@ -215,6 +212,7 @@ public class GameManager : MonoBehaviour
             Destroy(turist);
         }
         turistCamps.Clear();
+        MapBoard.Instance.RegularModuleList();
         for (int i = 0; i < turistPerDay; i++)
         {
             MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
