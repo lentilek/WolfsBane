@@ -75,4 +75,8 @@ public class GameUI : MonoBehaviour
         apDay.SetActive(false);
         apNight.SetActive(true);
     }
+    public void UISound()
+    {
+        AudioManager.Instance.PlaySound("uiSound");
+    }
 }

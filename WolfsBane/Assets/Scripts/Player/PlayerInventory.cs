@@ -41,6 +41,7 @@ public class PlayerInventory : MonoBehaviour
     }
     public void BuildTrap(MapArea ma)
     {
+        AudioManager.Instance.PlaySound("trap");
         woodAmount -= trapPrefab.GetComponent<Trap>().buildConst;
         woodAmountTXT.text = $"{woodAmount}";
         GameObject go = Instantiate(trapPrefab, ma.gameplayObject.transform, worldPositionStays: false);
@@ -112,6 +113,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (!doorTrap)
         {
+            AudioManager.Instance.PlaySound("trap");
             House.Instance.doorTrap.SetActive(true);
             doorTrap = true;
             woodAmount--;
@@ -119,6 +121,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else if (!fenceTrap)
         {
+            AudioManager.Instance.PlaySound("trap");
             House.Instance.fenceTrap.SetActive(true);
             fenceTrap = true;
             woodAmount--;

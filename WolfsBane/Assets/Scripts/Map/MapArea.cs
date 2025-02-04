@@ -184,6 +184,7 @@ public class MapArea : MonoBehaviour
     {
         if(type == 2 && GameManager.Instance.UseActionPoint())
         {
+            AudioManager.Instance.PlaySound("collect");
             PlayerInventory.Instance.CollectWood();
         }
         else if((state == 6 || state == 5))
@@ -270,5 +271,9 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
+    }
+    public void UISound()
+    {
+        AudioManager.Instance.PlaySound("uiSound");
     }
 }
