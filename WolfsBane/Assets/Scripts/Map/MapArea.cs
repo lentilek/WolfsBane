@@ -6,7 +6,8 @@ using UnityEngine;
 public class MapArea : MonoBehaviour
 {
     public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked, 4 - house
-    public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap, 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
+    public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap,
+                          // 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
     public bool isAvailable;
     public bool isVisible;
     public GameObject cloud;
@@ -25,6 +26,8 @@ public class MapArea : MonoBehaviour
     [SerializeField] private GameObject[] blockedModels;
     [SerializeField] private GameObject[] resourceModels;
     public GameObject smellVFX;
+    public GameObject noActionTip;
+    public GameObject noAPTip;
 
     private void Awake()
     {
@@ -32,6 +35,8 @@ public class MapArea : MonoBehaviour
         buttonGo.SetActive(false);
         buttonAction.SetActive(false);
         smellVFX.SetActive(false);
+        noActionTip.SetActive(false);
+        noAPTip.SetActive(false);
     }
     private void Update()
     {
@@ -72,10 +77,12 @@ public class MapArea : MonoBehaviour
         switch (type)
         {
             case 2:
-                Instantiate(resourceModels[MapBoard.Instance._random.NextInt(0, resourceModels.Length)], gameplayObject.transform, worldPositionStays: false);
+                Instantiate(resourceModels[MapBoard.Instance._random.NextInt(0, resourceModels.Length)], 
+                    gameplayObject.transform, worldPositionStays: false);
                 break;
             case 3:
-                Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0,blockedModels.Length)], gameplayObject.transform, worldPositionStays: false);
+                Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0,blockedModels.Length)], 
+                    gameplayObject.transform, worldPositionStays: false);
                 break;
             default:
                 break;
@@ -169,13 +176,37 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            if(type == 2 || state == 5 || state == 6)
+            if((type == 2 || state == 5 || state == 6) && GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints)
             {
                 buttonInteract.SetActive(true);
             }
-            if(((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst) || (type == 4 && PlayerInventory.Instance.woodAmount > 0))
+            else
+            {
+                buttonInteract.SetActive(false);
+            }
+            if(((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
+                ((PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst) || 
+                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap))) && 
+                (GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || type == 4))
             {
                 buttonSetTrap.SetActive(true);
+            }
+            else
+            {
+                buttonSetTrap.SetActive(false);
+            }
+            if (GameManager.Instance.currentActionPoints >= GameManager.Instance.maxActionPoints && type != 4)
+            {
+                noAPTip.SetActive(true);
+            }
+            else if (!buttonInteract.activeSelf && !buttonSetTrap.activeSelf)
+            {
+                noAPTip.SetActive(false);
+                noActionTip.SetActive(true);
+            }
+            else
+            {
+                noActionTip.SetActive(false);
             }
         }
         else if (isAvailable && isVisible && !AreThereHiddenNeighbours())
@@ -201,10 +232,14 @@ public class MapArea : MonoBehaviour
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
         buttonAction.SetActive(true);
+        PlayerControler.Instance.ButtonsAroundOff();
+        PlayerControler.Instance.ButtonsAround();
     }
     public void SetTrapButton()
     {
-        if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && GameManager.Instance.UseActionPoint())
+        if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
+            PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && 
+            GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
@@ -215,6 +250,8 @@ public class MapArea : MonoBehaviour
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
         buttonAction.SetActive(true);
+        PlayerControler.Instance.ButtonsAroundOff();
+        PlayerControler.Instance.ButtonsAround();
     }
     public void GoHereButton()
     {
@@ -224,6 +261,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
+        buttonGo.SetActive(false);
     }
     public void DiscoverLeftButton()
     {
@@ -251,6 +289,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
+        buttonDiscover.SetActive(false);
     }
     public void DiscoverRightButton()
     {
@@ -278,6 +317,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
+        buttonDiscover.SetActive(false);
     }
     public void UISound()
     {

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GameManager : MonoBehaviour
 {
@@ -138,7 +139,8 @@ public class GameManager : MonoBehaviour
             GameObject turist = null;
             foreach(GameObject turistCamp in turistCamps)
             {
-                if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
+                if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && 
+                    turistCamp.GetComponent<Turist>().mapModule.column == area.column)
                 {
                     turist = turistCamp; 
                     break;
@@ -165,6 +167,7 @@ public class GameManager : MonoBehaviour
     }
     public void FinishDayStartNight()
     {
+        MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].noAPTip.SetActive(false);
         PlayerControler.Instance.ButtonsAroundOff();
         nightButton.SetActive(false);
         GameUI.Instance.Night();
@@ -216,7 +219,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < turistPerDay; i++)
         {
             MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
-            turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], ma.gameplayObject.transform, worldPositionStays: false));
+            turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], 
+                ma.gameplayObject.transform, worldPositionStays: false));
             turistCamps[i].GetComponent<Turist>().mapModule = ma;
             ma.state = 6;
             foreach(MapArea n in ma.neighbours)
