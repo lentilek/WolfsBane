@@ -87,6 +87,7 @@ public class MapBoard : MonoBehaviour
             m.AreasAround();
             m.AddEnviro();
         }
+        GameManager.Instance.NewDay();
     }
     public void RegularModuleList()
     {

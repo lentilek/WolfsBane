@@ -13,8 +13,7 @@ public class PlayerControler : MonoBehaviour
     public Vector3 homePosition;
     public int homeRow;
     public int homeColumn;
-    public GameObject playerModelDay;
-    public GameObject playerModelNight;
+    public GameObject playerModel;
     [HideInInspector] public List<MapArea> areasToGo;
     private void Awake()
     {
@@ -27,8 +26,7 @@ public class PlayerControler : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
-        playerModelDay.SetActive(true);
-        playerModelNight.SetActive(false);
+        playerModel.SetActive(true);
         playerPosition = homePosition;
         row = homeRow;
         column = homeColumn;
@@ -52,7 +50,15 @@ public class PlayerControler : MonoBehaviour
     public void ButtonsAround()
     {
         areasToGo.Clear();
-        MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
+        if(GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || 
+            MapBoard.Instance.map[row].moduleRow[column].type == 4)
+        {
+            MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
+        }
+        else
+        {
+            MapBoard.Instance.map[row].moduleRow[column].noAPTip.SetActive(true);
+        }
         if ((column - 1) >= 0)
         {
             MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];        
@@ -196,7 +202,8 @@ public class PlayerControler : MonoBehaviour
     }
     private void VisibleButton(MapArea module)
     {
-        if (module.isAvailable)
+        if (module.isAvailable && 
+            (GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || module.type == 4))
         {
             module.buttonAction.SetActive(true);
             areasToGo.Add(module);
@@ -211,8 +218,7 @@ public class PlayerControler : MonoBehaviour
             areasToGo[i].buttonGo.SetActive(false);
         }
         MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(false);
-        MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
-        MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
+        ButtonHide();
     }
     public void ButtonsAroundHide()
     {
@@ -223,8 +229,14 @@ public class PlayerControler : MonoBehaviour
             areasToGo[i].buttonGo.SetActive(false);
         }
         MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
+        ButtonHide();
+    }
+    public void ButtonHide()
+    {
         MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
         MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].noActionTip.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].noAPTip.SetActive(false);
     }
     public void MovePlayer(int rowNew, int columnNew, Vector3 position)
     {
