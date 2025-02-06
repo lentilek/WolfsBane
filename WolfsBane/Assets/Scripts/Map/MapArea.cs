@@ -163,6 +163,7 @@ public class MapArea : MonoBehaviour
     {
         foreach(MapArea n in neighbours)
         {
+            //Debug.Log(n.state);
             if(n.state == 5 || n.state == 6)
             {
                 return true;

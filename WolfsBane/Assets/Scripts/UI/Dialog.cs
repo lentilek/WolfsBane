@@ -44,8 +44,10 @@ public class Dialog : MonoBehaviour
             }
             if (turist != null)
             {
-                if (area.state == 6) area.state = 2;
-                else if (area.state == 5) area.state = 1;
+                if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
+                else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
+                else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
+                else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
                 GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
                 if (GameManager.Instance.gameIndicator > 100) GameManager.Instance.gameIndicator = 100;
                 GameManager.Instance.GetCurrentFillIndicator();
@@ -53,6 +55,7 @@ public class Dialog : MonoBehaviour
                 GameManager.Instance.turistCamps.Remove(turist);
                 foreach (MapArea n in area.neighbours)
                 {
+                    //Debug.Log("area");
                     if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
                     else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
