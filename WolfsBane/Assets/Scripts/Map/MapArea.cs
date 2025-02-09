@@ -177,7 +177,7 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            if((type == 2 || state == 5 || state == 6) && GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints)
+            if((type == 2 || state == 5 || state == 6) && GameManager.Instance.currentActionPoints > 0)
             {
                 buttonInteract.SetActive(true);
             }
@@ -188,7 +188,7 @@ public class MapArea : MonoBehaviour
             if((((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
                 (PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst)) || 
                 (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && 
-                (GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || type == 4))
+                (GameManager.Instance.currentActionPoints > 0 || type == 4))
             {
                 buttonSetTrap.SetActive(true);
             }
@@ -196,7 +196,7 @@ public class MapArea : MonoBehaviour
             {
                 buttonSetTrap.SetActive(false);
             }
-            if (GameManager.Instance.currentActionPoints >= GameManager.Instance.maxActionPoints && type != 4)
+            if (GameManager.Instance.currentActionPoints == 0 && type != 4)
             {
                 noAPTip.SetActive(true);
             }

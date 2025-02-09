@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
         daysCounter = 0;
         gameIndicator = 0;
         maxGameIndicator = 100f;
-        currentActionPoints = 0;
-        currentAIActionPoints = 0;
+        currentActionPoints = maxActionPoints;
+        currentAIActionPoints = maxAIActionPoints;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         daysCounterTXT.text = $"Day: {daysCounter}";
@@ -78,11 +78,12 @@ public class GameManager : MonoBehaviour
     }
     public bool UseActionPoint()
     {
-        if (currentActionPoints < maxActionPoints)
+        if (currentActionPoints > 0)
         {
-            currentActionPoints++;
+            currentActionPoints--;
             actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
-            if (currentActionPoints == maxActionPoints)
+            Debug.Log(currentActionPoints == 0);
+            if (currentActionPoints == 0)
             {
                 nightButton.SetActive(true);
             }
@@ -92,11 +93,11 @@ public class GameManager : MonoBehaviour
     }
     public bool UseActionPointAI()
     {
-        if (currentAIActionPoints < maxAIActionPoints)
+        if (currentAIActionPoints > 0)
         {
-            currentAIActionPoints++;
+            currentAIActionPoints--;
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
-            if (currentAIActionPoints == maxAIActionPoints)
+            if (currentAIActionPoints == 0)
             {
                 //nextDayButton.SetActive(true);
                 return false;
@@ -126,7 +127,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(actionWaitTimeAI);
             if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
             if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
-        } while (currentAIActionPoints < maxAIActionPoints);
+        } while (currentAIActionPoints > 0);
         EndNightCheckIfWon();
         nextDayButton.SetActive(true);
     }
@@ -191,8 +192,8 @@ public class GameManager : MonoBehaviour
         daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();
         nextDayButton.SetActive(false);
-        currentActionPoints = 0;        
-        currentAIActionPoints = 0;
+        currentActionPoints = maxActionPoints;        
+        currentAIActionPoints = maxAIActionPoints;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         PlayerControler.Instance.PlayerGoHome();
