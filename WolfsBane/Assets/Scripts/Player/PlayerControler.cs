@@ -15,6 +15,7 @@ public class PlayerControler : MonoBehaviour
     public int homeColumn;
     public GameObject playerModel;
     [HideInInspector] public List<MapArea> areasToGo;
+    private int rowLastAI, columnLastAI;
     private void Awake()
     {
         if (Instance == null)
@@ -175,7 +176,17 @@ public class PlayerControler : MonoBehaviour
                 if(module.isAvailable)areasToGo.Add(module);
             }
         }
+        if(areasToGo.Count > 1)
+        {
+            areasToGo.Remove(MapBoard.Instance.map[rowLastAI].moduleRow[columnLastAI]);
+        }
+        GetCurrentAIModule();
         CheckAreasUI();
+    }
+    public void GetCurrentAIModule()
+    {
+        rowLastAI = row;
+        columnLastAI = column;
     }
     public void CheckAreasUI()
     {

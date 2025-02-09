@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
         {
             currentActionPoints--;
             actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
-            Debug.Log(currentActionPoints == 0);
             if (currentActionPoints == 0)
             {
                 nightButton.SetActive(true);
@@ -174,6 +173,7 @@ public class GameManager : MonoBehaviour
         GameUI.Instance.Night();
         mainLight.color = nightLightColor;
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 30, 0);
+        PlayerControler.Instance.GetCurrentAIModule();
         Night();
     }
     public void EndNightCheckIfWon()
