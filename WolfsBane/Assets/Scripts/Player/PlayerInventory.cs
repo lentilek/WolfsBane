@@ -8,14 +8,17 @@ public class PlayerInventory : MonoBehaviour
     public static PlayerInventory Instance;
 
     public int woodAmount;
+    public int maxWoodAmount;
     [SerializeField] private int woodCollect;
     public TextMeshProUGUI woodAmountTXT;
 
     public int stoneAmount;
+    public int maxStoneAmount;
     [SerializeField] private int stoneCollect;
     public TextMeshProUGUI stoneAmountTXT;
 
     public int ropeAmount;
+    public int maxRopeAmount;
     [SerializeField] private int ropeCollect;
     public TextMeshProUGUI ropeAmountTXT;
 
@@ -39,27 +42,57 @@ public class PlayerInventory : MonoBehaviour
         doorTrap = false;
         fenceTrap = false;
         woodAmount = 0;
-        woodAmountTXT.text = $"{woodAmount}";
+        woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
         stoneAmount = 0;
-        stoneAmountTXT.text = $"{stoneAmount}";
+        stoneAmountTXT.text = $"{stoneAmount}/{maxStoneAmount}";
         ropeAmount = 0;
-        ropeAmountTXT.text = $"{ropeAmount}";
+        ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
     }
 
     public void CollectWood()
     {
         woodAmount += woodCollect;
-        woodAmountTXT.text = $"{woodAmount}";
+        if (woodAmount > maxWoodAmount) woodAmount = maxWoodAmount;
+        woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
     }
     public void CollectStone()
     {
         stoneAmount += stoneCollect;
-        stoneAmountTXT.text = $"{stoneAmount}";
+        if (stoneAmount > maxStoneAmount) stoneAmount = maxStoneAmount;
+        stoneAmountTXT.text = $"{stoneAmount}/{maxStoneAmount}";
     }
     public void CollectRope()
     {
         ropeAmount += ropeCollect;
-        ropeAmountTXT.text = $"{ropeAmount}";
+        if (ropeAmount > maxRopeAmount) ropeAmount = maxRopeAmount;
+        ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
+    }
+    public bool IsThereInventorySpace(int resourceIndex)
+    {
+        switch(resourceIndex)
+        {
+            case 1:
+                if(woodAmount < maxWoodAmount)
+                {
+                    return true;
+                }
+                break;
+            case 2:
+                if(stoneAmount < maxStoneAmount)
+                {
+                    return true;
+                }
+                break;
+            case 3:
+                if(ropeAmount < maxRopeAmount)
+                {
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+        return false;
     }
     public void BuildTrap(MapArea ma)
     {
@@ -138,7 +171,7 @@ public class PlayerInventory : MonoBehaviour
             House.Instance.doorTrap.SetActive(true);
             doorTrap = true;
             woodAmount--;
-            woodAmountTXT.text = $"{woodAmount}";
+            woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
         }
         else if (!fenceTrap)
         {
@@ -146,7 +179,7 @@ public class PlayerInventory : MonoBehaviour
             House.Instance.fenceTrap.SetActive(true);
             fenceTrap = true;
             woodAmount--;
-            woodAmountTXT.text = $"{woodAmount}";
+            woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
         }
     }
     public void CheckHouseForTrap()

@@ -243,19 +243,42 @@ public class MapArea : MonoBehaviour
     }
     public void InteractButton()
     {
-        if(type == 2 && GameManager.Instance.UseActionPoint())
+        if(type == 2)
         {
-            AudioManager.Instance.PlaySound("collect");
             switch (resourceType)
             {
                 case 1:
-                    PlayerInventory.Instance.CollectWood();
+                    if(PlayerInventory.Instance.IsThereInventorySpace(1) && GameManager.Instance.UseActionPoint())
+                    {
+                        AudioManager.Instance.PlaySound("collect");
+                        PlayerInventory.Instance.CollectWood();
+                    }
+                    else
+                    {
+                        Debug.Log("No inventory space");
+                    }
                     break;
                 case 2:
-                    PlayerInventory.Instance.CollectStone();
+                    if (PlayerInventory.Instance.IsThereInventorySpace(2) && GameManager.Instance.UseActionPoint())
+                    {
+                        AudioManager.Instance.PlaySound("collect");
+                        PlayerInventory.Instance.CollectStone();
+                    }
+                    else
+                    {
+                        Debug.Log("No inventory space");
+                    }
                     break;
                 case 3:
-                    PlayerInventory.Instance.CollectRope();
+                    if (PlayerInventory.Instance.IsThereInventorySpace(3) && GameManager.Instance.UseActionPoint())
+                    {
+                        AudioManager.Instance.PlaySound("collect");
+                        PlayerInventory.Instance.CollectRope();
+                    }
+                    else
+                    {
+                        Debug.Log("No inventory space");
+                    }
                     break;
                 default:
                     break;

@@ -12,13 +12,13 @@ public class Trap : MonoBehaviour
     public void BuildCost()
     {
         PlayerInventory.Instance.woodAmount -= buildCostWood;
-        PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}";
+        PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
 
         PlayerInventory.Instance.stoneAmount -= buildCostStone;
-        PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}";
+        PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
 
         PlayerInventory.Instance.ropeAmount -= buildCostRope;
-        PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}";
+        PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
     }
     public bool CanUBuild()
     {
