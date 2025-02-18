@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapArea : MonoBehaviour
 {
     public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked, 4 - house
+    public int resourceType = 0; // 0 - nothing, 1 - wood, 2 - stone, 3 - rope
     public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap,
                           // 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
     public bool isAvailable;
@@ -24,7 +25,9 @@ public class MapArea : MonoBehaviour
     [HideInInspector] public List<MapArea> neighbours;
 
     [SerializeField] private GameObject[] blockedModels;
-    [SerializeField] private GameObject[] resourceModels;
+    [SerializeField] private GameObject[] resourceModelsWood;
+    [SerializeField] private GameObject[] resourceModelsStone;
+    [SerializeField] private GameObject[] resourceModelsRope;
     public GameObject smellVFX;
     public GameObject noActionTip;
     public GameObject noAPTip;
@@ -77,11 +80,30 @@ public class MapArea : MonoBehaviour
         switch (type)
         {
             case 2:
-                Instantiate(resourceModels[MapBoard.Instance._random.NextInt(0, resourceModels.Length)], 
-                    gameplayObject.transform, worldPositionStays: false);
+                AddResources();
                 break;
             case 3:
                 Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0,blockedModels.Length)], 
+                    gameplayObject.transform, worldPositionStays: false);
+                break;
+            default:
+                break;
+        }
+    }
+    private void AddResources()
+    {
+        switch (resourceType)
+        {
+            case 1:
+                Instantiate(resourceModelsWood[MapBoard.Instance._random.NextInt(0, resourceModelsWood.Length)],
+                    gameplayObject.transform, worldPositionStays: false);
+                break;
+            case 2:
+                Instantiate(resourceModelsStone[MapBoard.Instance._random.NextInt(0, resourceModelsStone.Length)],
+                    gameplayObject.transform, worldPositionStays: false);
+                break;
+            case 3:
+                Instantiate(resourceModelsRope[MapBoard.Instance._random.NextInt(0, resourceModelsRope.Length)],
                     gameplayObject.transform, worldPositionStays: false);
                 break;
             default:
@@ -186,7 +208,7 @@ public class MapArea : MonoBehaviour
                 buttonInteract.SetActive(false);
             }
             if((((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
-                (PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst)) || 
+                PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild()) || 
                 (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && 
                 (GameManager.Instance.currentActionPoints > 0 || type == 4))
             {
@@ -224,7 +246,20 @@ public class MapArea : MonoBehaviour
         if(type == 2 && GameManager.Instance.UseActionPoint())
         {
             AudioManager.Instance.PlaySound("collect");
-            PlayerInventory.Instance.CollectWood();
+            switch (resourceType)
+            {
+                case 1:
+                    PlayerInventory.Instance.CollectWood();
+                    break;
+                case 2:
+                    PlayerInventory.Instance.CollectStone();
+                    break;
+                case 3:
+                    PlayerInventory.Instance.CollectRope();
+                    break;
+                default:
+                    break;
+            }
         }
         else if((state == 6 || state == 5))
         {
@@ -239,7 +274,7 @@ public class MapArea : MonoBehaviour
     public void SetTrapButton()
     {
         if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
-            PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && 
+            PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild() && 
             GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);

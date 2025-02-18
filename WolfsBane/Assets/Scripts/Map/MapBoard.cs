@@ -21,7 +21,7 @@ public class MapBoard : MonoBehaviour
     [HideInInspector] public List<MapArea> mapRandomBlocked = new List<MapArea>();
     [HideInInspector] public List<MapArea> mapRandomResource = new List<MapArea>();
 
-    [SerializeField] private int resourceAmount, blockedAmount;
+    [SerializeField] private int resourceWoodAmount, resourceStoneAmount, resourceRopeAmount, blockedAmount;
  
     private void Awake()
     {
@@ -72,16 +72,37 @@ public class MapBoard : MonoBehaviour
             }
             blockedAmount--;
         }
-        while(resourceAmount > 0)
+        while(resourceWoodAmount > 0)
         {
             MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
             ma.type = 2;
+            ma.resourceType = 1;
             ma.AreasAround();
             ma.AddEnviro();
             mapRandomResource.Remove(ma);
-            resourceAmount--;
+            resourceWoodAmount--;
         }
-        foreach(MapArea m in mapRandomResource)
+        while (resourceStoneAmount > 0)
+        {
+            MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
+            ma.type = 2;
+            ma.resourceType = 2;
+            ma.AreasAround();
+            ma.AddEnviro();
+            mapRandomResource.Remove(ma);
+            resourceStoneAmount--;
+        }
+        while (resourceRopeAmount > 0)
+        {
+            MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
+            ma.type = 2;
+            ma.resourceType = 3;
+            ma.AreasAround();
+            ma.AddEnviro();
+            mapRandomResource.Remove(ma);
+            resourceRopeAmount--;
+        }
+        foreach (MapArea m in mapRandomResource)
         {
             m.type = 1;
             m.AreasAround();

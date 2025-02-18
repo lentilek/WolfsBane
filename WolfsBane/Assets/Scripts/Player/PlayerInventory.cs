@@ -9,7 +9,15 @@ public class PlayerInventory : MonoBehaviour
 
     public int woodAmount;
     [SerializeField] private int woodCollect;
-    [SerializeField] private TextMeshProUGUI woodAmountTXT;
+    public TextMeshProUGUI woodAmountTXT;
+
+    public int stoneAmount;
+    [SerializeField] private int stoneCollect;
+    public TextMeshProUGUI stoneAmountTXT;
+
+    public int ropeAmount;
+    [SerializeField] private int ropeCollect;
+    public TextMeshProUGUI ropeAmountTXT;
 
     public bool doorTrap;
     public bool fenceTrap;
@@ -32,6 +40,10 @@ public class PlayerInventory : MonoBehaviour
         fenceTrap = false;
         woodAmount = 0;
         woodAmountTXT.text = $"{woodAmount}";
+        stoneAmount = 0;
+        stoneAmountTXT.text = $"{stoneAmount}";
+        ropeAmount = 0;
+        ropeAmountTXT.text = $"{ropeAmount}";
     }
 
     public void CollectWood()
@@ -39,11 +51,20 @@ public class PlayerInventory : MonoBehaviour
         woodAmount += woodCollect;
         woodAmountTXT.text = $"{woodAmount}";
     }
+    public void CollectStone()
+    {
+        stoneAmount += stoneCollect;
+        stoneAmountTXT.text = $"{stoneAmount}";
+    }
+    public void CollectRope()
+    {
+        ropeAmount += ropeCollect;
+        ropeAmountTXT.text = $"{ropeAmount}";
+    }
     public void BuildTrap(MapArea ma)
     {
         AudioManager.Instance.PlaySound("trap");
-        woodAmount -= trapPrefab.GetComponent<Trap>().buildConst;
-        woodAmountTXT.text = $"{woodAmount}";
+        trapPrefab.GetComponent<Trap>().BuildCost();
         GameObject go = Instantiate(trapPrefab, ma.gameplayObject.transform, worldPositionStays: false);
         go.GetComponent<Trap>().module = ma;
         if(ma.state == 2)

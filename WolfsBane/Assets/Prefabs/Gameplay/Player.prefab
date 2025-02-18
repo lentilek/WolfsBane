@@ -106,6 +106,12 @@ MonoBehaviour:
   woodAmount: 0
   woodCollect: 3
   woodAmountTXT: {fileID: 0}
+  stoneAmount: 0
+  stoneCollect: 2
+  stoneAmountTXT: {fileID: 0}
+  ropeAmount: 0
+  ropeCollect: 2
+  ropeAmountTXT: {fileID: 0}
   doorTrap: 0
   fenceTrap: 0
   trapPrefab: {fileID: 8617908825148903028, guid: e2c989282bfff7a4e93b9b18fbc70d98,
@@ -327,17 +333,17 @@ PrefabInstance:
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
@@ -347,12 +353,12 @@ PrefabInstance:
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1463
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0159
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}

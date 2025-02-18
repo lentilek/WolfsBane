@@ -7634,6 +7634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  resourceType: 0
   state: 2
   isAvailable: 1
   isVisible: 0
@@ -7654,9 +7655,13 @@ MonoBehaviour:
   - {fileID: 8456628839679482005, guid: 12c8e5a9c18aeb34e8b4182e3cc215e4, type: 3}
   - {fileID: 3192262827439133046, guid: 62d1357763a21d34ca47194e8c86efec, type: 3}
   - {fileID: 4372543387522920825, guid: dd6ebb9f1c288824eb374f9312b0dfbb, type: 3}
-  resourceModels:
+  resourceModelsWood:
   - {fileID: 3098748427550224654, guid: 725bb7b29a99acb49b47b43672b92305, type: 3}
   - {fileID: 3098748427550224654, guid: 70e713fbbc6ef84419d4baa451cb4573, type: 3}
+  resourceModelsStone:
+  - {fileID: 3098748427550224654, guid: a27e31afec240a94ebca104428ca0a24, type: 3}
+  resourceModelsRope:
+  - {fileID: 3098748427550224654, guid: 530adb9f2c579544eb9098bc61693f6f, type: 3}
   smellVFX: {fileID: 4055630180583652640}
   noActionTip: {fileID: 5851605182651129208}
   noAPTip: {fileID: 458171912169756293}

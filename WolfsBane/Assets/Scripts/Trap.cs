@@ -5,5 +5,28 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     [HideInInspector] public MapArea module;
-    public int buildConst;
+    public int buildCostWood;
+    public int buildCostStone;
+    public int buildCostRope;
+
+    public void BuildCost()
+    {
+        PlayerInventory.Instance.woodAmount -= buildCostWood;
+        PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}";
+
+        PlayerInventory.Instance.stoneAmount -= buildCostStone;
+        PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}";
+
+        PlayerInventory.Instance.ropeAmount -= buildCostRope;
+        PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}";
+    }
+    public bool CanUBuild()
+    {
+        if(PlayerInventory.Instance.woodAmount >= buildCostWood && PlayerInventory.Instance.stoneAmount >= buildCostStone &&
+            PlayerInventory.Instance.ropeAmount >= buildCostRope)
+        {
+            return true;
+        }
+        return false;
+    }
 }
