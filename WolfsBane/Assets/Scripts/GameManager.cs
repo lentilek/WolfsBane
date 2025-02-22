@@ -199,6 +199,10 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.PlayerGoHome();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 210, 0);
         mainLight.color = Color.white;
+        foreach (MapArea ma in MapBoard.Instance.moduleListResource)
+        {
+            ma.gameplayObject.GetComponentInChildren<ResourceRegeneration>().Regenerate();
+        }
         foreach (GameObject turist in turistCamps)
         {
             if (turist.gameObject.activeSelf)

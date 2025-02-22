@@ -15,6 +15,7 @@ public class MapBoard : MonoBehaviour
     public AreaRow[] map;
 
     [HideInInspector] public List<MapArea> moduleListRegular= new List<MapArea>();
+    [HideInInspector] public List<MapArea> moduleListResource = new List<MapArea>();
 
     [SerializeField] private uint seed = 1;
     [HideInInspector] public Random _random;
@@ -37,6 +38,7 @@ public class MapBoard : MonoBehaviour
         _random = new Random(seed);
         mapRandomBlocked.Clear();
         mapRandomResource.Clear();
+        moduleListResource.Clear();
         for(int i = 0; i < map.Length; i++)
         {
             for(int j = 0; j < map.Length; j++)
@@ -81,6 +83,7 @@ public class MapBoard : MonoBehaviour
             ma.AddEnviro();
             mapRandomResource.Remove(ma);
             resourceWoodAmount--;
+            moduleListResource.Add(ma);
         }
         while (resourceStoneAmount > 0)
         {
@@ -91,6 +94,7 @@ public class MapBoard : MonoBehaviour
             ma.AddEnviro();
             mapRandomResource.Remove(ma);
             resourceStoneAmount--;
+            moduleListResource.Add(ma);
         }
         while (resourceRopeAmount > 0)
         {
@@ -101,6 +105,7 @@ public class MapBoard : MonoBehaviour
             ma.AddEnviro();
             mapRandomResource.Remove(ma);
             resourceRopeAmount--;
+            moduleListResource.Add(ma);
         }
         foreach (MapArea m in mapRandomResource)
         {

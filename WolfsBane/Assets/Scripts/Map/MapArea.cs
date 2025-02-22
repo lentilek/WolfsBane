@@ -245,13 +245,15 @@ public class MapArea : MonoBehaviour
     {
         if(type == 2)
         {
+            ResourceRegeneration rr = gameplayObject.GetComponentInChildren<ResourceRegeneration>();
             switch (resourceType)
             {
                 case 1:
-                    if(PlayerInventory.Instance.IsThereInventorySpace(1) && GameManager.Instance.UseActionPoint())
+                    if(PlayerInventory.Instance.IsThereInventorySpace(1) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
                         AudioManager.Instance.PlaySound("collect");
                         PlayerInventory.Instance.CollectWood();
+                        rr.StartRegeneration();
                     }
                     else
                     {
@@ -259,10 +261,11 @@ public class MapArea : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (PlayerInventory.Instance.IsThereInventorySpace(2) && GameManager.Instance.UseActionPoint())
+                    if (PlayerInventory.Instance.IsThereInventorySpace(2) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
                         AudioManager.Instance.PlaySound("collect");
                         PlayerInventory.Instance.CollectStone();
+                        rr.StartRegeneration();
                     }
                     else
                     {
@@ -270,10 +273,11 @@ public class MapArea : MonoBehaviour
                     }
                     break;
                 case 3:
-                    if (PlayerInventory.Instance.IsThereInventorySpace(3) && GameManager.Instance.UseActionPoint())
+                    if (PlayerInventory.Instance.IsThereInventorySpace(3) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
                         AudioManager.Instance.PlaySound("collect");
                         PlayerInventory.Instance.CollectRope();
+                        rr.StartRegeneration();
                     }
                     else
                     {
