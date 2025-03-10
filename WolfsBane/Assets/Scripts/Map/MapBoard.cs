@@ -16,6 +16,7 @@ public class MapBoard : MonoBehaviour
 
     [HideInInspector] public List<MapArea> moduleListRegular= new List<MapArea>();
     [HideInInspector] public List<MapArea> moduleListResource = new List<MapArea>();
+    [HideInInspector] public List<MapArea> moduleListEmpty = new List<MapArea>();
 
     [SerializeField] private uint seed = 1;
     [HideInInspector] public Random _random;
@@ -125,6 +126,23 @@ public class MapBoard : MonoBehaviour
                 if (map[i].moduleRow[j].type == 1)
                 {
                     moduleListRegular.Add(map[i].moduleRow[j]);
+                }
+            }
+        }
+    }
+
+    public void EmptyModuleList()
+    {
+        moduleListEmpty.Clear();
+        for (int i = 0; i < map.Length; i++)
+        {
+            for (int j = 0; j < map.Length; j++)
+            {
+                if (map[i].moduleRow[j].type == 1 && map[i].moduleRow[j].state != 0 &&
+                    map[i].moduleRow[j].state != 5 && map[i].moduleRow[j].state != 6 && 
+                    map[i].moduleRow[j].taskIndex == 0)
+                {
+                    moduleListEmpty.Add(map[i].moduleRow[j]);
                 }
             }
         }

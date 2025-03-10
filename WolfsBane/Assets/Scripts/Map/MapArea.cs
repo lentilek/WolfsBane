@@ -9,6 +9,7 @@ public class MapArea : MonoBehaviour
     public int resourceType = 0; // 0 - nothing, 1 - wood, 2 - stone, 3 - rope
     public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap,
                           // 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
+    public int taskIndex = 0; // 0 - nothing, 1-7 tasks
     public bool isAvailable;
     public bool isVisible;
     public GameObject cloud;
@@ -199,7 +200,7 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            if((type == 2 || state == 5 || state == 6) && GameManager.Instance.currentActionPoints > 0)
+            if((type == 2 || state == 5 || state == 6 || taskIndex != 0) && GameManager.Instance.currentActionPoints > 0)
             {
                 buttonInteract.SetActive(true);
             }
@@ -291,6 +292,22 @@ public class MapArea : MonoBehaviour
         else if((state == 6 || state == 5))
         {
             Dialog.Instance.TuristInteract(this);
+        }
+        else if(taskIndex != 0)
+        {
+            switch(taskIndex)
+            {
+                case 1:
+                    gameplayObject.GetComponentInChildren<Leaves>().LeavesMiniGame(this);
+                    break;
+                case 2:
+                    if(PlayerInventory.Instance.woodAmount > 0)
+                    {
+                        gameplayObject.GetComponentInChildren<SaltCubes>().SaltCubesMiniGame(this);
+                    }
+                    break;
+                default: break;
+            }
         }
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);

@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
         daysCounter++;
         daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();
+        TaskManager.Instance.TasksDelete();
         nextDayButton.SetActive(false);
         currentActionPoints = maxActionPoints;        
         currentAIActionPoints = maxAIActionPoints;
@@ -235,6 +236,7 @@ public class GameManager : MonoBehaviour
             }
             MapBoard.Instance.moduleListRegular.Remove(ma);
         }
+        TaskManager.Instance.RandomTasks();
         PlayerControler.Instance.ButtonsAround();
     }
 }
