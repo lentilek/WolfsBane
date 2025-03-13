@@ -17,6 +17,7 @@ public class MapBoard : MonoBehaviour
     [HideInInspector] public List<MapArea> moduleListRegular= new List<MapArea>();
     [HideInInspector] public List<MapArea> moduleListResource = new List<MapArea>();
     [HideInInspector] public List<MapArea> moduleListEmpty = new List<MapArea>();
+    [HideInInspector] public List<MapArea> moduleListBlocked = new List<MapArea>();
 
     [SerializeField] private uint seed = 1;
     [HideInInspector] public Random _random;
@@ -61,12 +62,18 @@ public class MapBoard : MonoBehaviour
     }
     public void RandomMap()
     {
+        moduleListBlocked.Clear();
         while (blockedAmount > 0)
         {
             MapArea ma = mapRandomBlocked[_random.NextInt(0, mapRandomBlocked.Count)];
             ma.type = 3;
             ma.AreasAround();
             ma.AddEnviro();
+            moduleListBlocked.Add(ma);
+            if(ma.gameplayObject.GetComponentInChildren<RockResearch>() != null)
+            {
+                ma.gameplayObject.GetComponentInChildren<RockResearch>().module = ma;
+            }
             mapRandomResource.Remove(ma);
             mapRandomBlocked.Remove(ma);
             foreach(MapArea m in ma.neighbours)

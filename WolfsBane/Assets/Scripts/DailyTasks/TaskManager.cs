@@ -27,6 +27,8 @@ public class TaskManager : MonoBehaviour
     public int woodToSpawn;
     public GameObject[] woodPrefabs;
     [HideInInspector] public List<ClearPath> allClearPath = new List<ClearPath>();
+    // rock sample
+    ///
     private void Awake()
     {
         if (Instance == null)
@@ -81,6 +83,9 @@ public class TaskManager : MonoBehaviour
                 case 3:
                     ClearingThePathSetUp();
                     break;
+                case 4:
+                    PetrographicResearchSetUp();
+                    break;
                 default: break;
             }
         }
@@ -99,6 +104,9 @@ public class TaskManager : MonoBehaviour
                     break;
                 case 3:
                     ClearingThePathDelete();
+                    break;
+                case 4:
+                    PetrographicResearchDelete();
                     break;
                 default: break;
             }
@@ -197,6 +205,34 @@ public class TaskManager : MonoBehaviour
         {
             sc.module.taskIndex = 0;
             Destroy(sc.gameObject);
+        }
+    }
+    private void PetrographicResearchSetUp()
+    {
+        foreach(MapArea ma in MapBoard.Instance.moduleListBlocked)
+        {
+            RockResearch rr = ma.gameplayObject.GetComponentInChildren<RockResearch>();
+            if(rr != null)
+            {
+                rr.Prepare();
+            }
+        }
+    }
+    public void PetrograpthicResearchDone()
+    {
+        completeTasksCount++;
+        CheckTaskComplition();
+        PetrographicResearchDelete();
+    }
+    private void PetrographicResearchDelete()
+    {
+        foreach (MapArea ma in MapBoard.Instance.moduleListBlocked)
+        {
+            RockResearch rr = ma.gameplayObject.GetComponentInChildren<RockResearch>();
+            if (rr != null)
+            {
+                rr.Clear();
+            }
         }
     }
     public void CheckTaskComplition()
