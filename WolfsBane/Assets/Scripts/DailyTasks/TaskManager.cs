@@ -27,8 +27,9 @@ public class TaskManager : MonoBehaviour
     public int woodToSpawn;
     public GameObject[] woodPrefabs;
     [HideInInspector] public List<ClearPath> allClearPath = new List<ClearPath>();
-    // rock sample
-    ///
+    // lake
+    public int waterToMeasure;
+    [HideInInspector] public int waterMeasured;
     private void Awake()
     {
         if (Instance == null)
@@ -86,6 +87,12 @@ public class TaskManager : MonoBehaviour
                 case 4:
                     PetrographicResearchSetUp();
                     break;
+                case 5:
+                    MeasuringWaterSetUp();
+                    break;
+                case 6:
+                    TakeTrashSetUp();
+                    break;
                 default: break;
             }
         }
@@ -107,6 +114,12 @@ public class TaskManager : MonoBehaviour
                     break;
                 case 4:
                     PetrographicResearchDelete();
+                    break;
+                case 5:
+                    MeasuringWaterDelete();
+                    break;
+                case 6:
+                    TakeTrashDelete();
                     break;
                 default: break;
             }
@@ -235,6 +248,68 @@ public class TaskManager : MonoBehaviour
             }
         }
     }
+    private void MeasuringWaterSetUp()
+    {
+        waterMeasured = 0;
+        foreach (MapArea ma in MapBoard.Instance.moduleListBlocked)
+        {
+            LakeInteractions li = ma.gameplayObject.GetComponentInChildren<LakeInteractions>();
+            if (li != null)
+            {
+                li.MeasureWater();
+            }
+        }
+    }
+    public void MeasuringWaterDone()
+    {
+        waterMeasured++;
+        if (waterMeasured == waterToMeasure)
+        {
+            completeTasksCount++;
+            CheckTaskComplition();
+            MeasuringWaterDelete();
+        }
+    }
+    private void MeasuringWaterDelete()
+    {
+        foreach (MapArea ma in MapBoard.Instance.moduleListBlocked)
+        {
+            LakeInteractions li = ma.gameplayObject.GetComponentInChildren<LakeInteractions>();
+            if (li != null)
+            {
+                li.MeasureWaterClear();
+            }
+        }
+    }
+    private void TakeTrashSetUp()
+    {
+        foreach (MapArea ma in MapBoard.Instance.moduleListBlocked)
+        {
+            LakeInteractions li = ma.gameplayObject.GetComponentInChildren<LakeInteractions>();
+            if (li != null)
+            {
+                li.TakeTrash();
+            }
+        }
+    }
+    public void TakeTrashDone()
+    {
+        completeTasksCount++;
+        CheckTaskComplition();
+        TakeTrashDelete();
+    }
+    private void TakeTrashDelete()
+    {
+        foreach (MapArea ma in MapBoard.Instance.moduleListBlocked)
+        {
+            LakeInteractions li = ma.gameplayObject.GetComponentInChildren<LakeInteractions>();
+            if (li != null)
+            {
+                li.TakeTrashClear();
+            }
+        }
+    }
+
     public void CheckTaskComplition()
     {
         switch (completeTasksCount)

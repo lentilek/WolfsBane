@@ -74,6 +74,10 @@ public class MapBoard : MonoBehaviour
             {
                 ma.gameplayObject.GetComponentInChildren<RockResearch>().module = ma;
             }
+            if(ma.gameplayObject.GetComponentInChildren<LakeInteractions>() != null)
+            {
+                ma.gameplayObject.GetComponentInChildren<LakeInteractions>().module = ma;
+            }
             mapRandomResource.Remove(ma);
             mapRandomBlocked.Remove(ma);
             foreach(MapArea m in ma.neighbours)
