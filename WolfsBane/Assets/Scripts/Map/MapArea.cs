@@ -210,7 +210,7 @@ public class MapArea : MonoBehaviour
             }
             if((((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
                 PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild()) || 
-                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && 
+                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && taskIndex != 3 &&
                 (GameManager.Instance.currentActionPoints > 0 || type == 4))
             {
                 buttonSetTrap.SetActive(true);
@@ -304,6 +304,12 @@ public class MapArea : MonoBehaviour
                     if(PlayerInventory.Instance.woodAmount > 0)
                     {
                         gameplayObject.GetComponentInChildren<SaltCubes>().SaltCubesMiniGame(this);
+                    }
+                    break;
+                case 3:
+                    if(GameManager.Instance.UseActionPoint())
+                    {
+                        gameplayObject.GetComponentInChildren<ClearPath>().ClearPathMiniGame(this);
                     }
                     break;
                 default: break;

@@ -23,6 +23,10 @@ public class TaskManager : MonoBehaviour
     public int saltCubesPlacesToSpawn;
     public GameObject[] saltCubePlacePrefabs;
     [HideInInspector] public List<SaltCubes> allSaltCubes = new List<SaltCubes>();
+    // clearing the path
+    public int woodToSpawn;
+    public GameObject[] woodPrefabs;
+    [HideInInspector] public List<ClearPath> allClearPath = new List<ClearPath>();
     private void Awake()
     {
         if (Instance == null)
@@ -74,6 +78,9 @@ public class TaskManager : MonoBehaviour
                 case 2:
                     SaltCubesSetUp();
                     break;
+                case 3:
+                    ClearingThePathSetUp();
+                    break;
                 default: break;
             }
         }
@@ -89,6 +96,9 @@ public class TaskManager : MonoBehaviour
                     break;
                 case 2:
                     SaltCubesDelete();
+                    break;
+                case 3:
+                    ClearingThePathDelete();
                     break;
                 default: break;
             }
@@ -159,7 +169,36 @@ public class TaskManager : MonoBehaviour
             Destroy(sc.gameObject);
         }
     }
-
+    private void ClearingThePathSetUp()
+    {
+        allClearPath.Clear();
+        MapBoard.Instance.EmptyModuleList();
+        for (int i = 0; i < woodToSpawn; i++)
+        {
+            int index = Random.Range(0, MapBoard.Instance.moduleListEmpty.Count);
+            MapArea area = MapBoard.Instance.moduleListEmpty[index];
+            area.taskIndex = 3;
+            GameObject gm = Instantiate(woodPrefabs[Random.Range(0, saltCubePlacePrefabs.Length)],
+                area.gameplayObject.transform, worldPositionStays: false) as GameObject;
+            gm.GetComponent<ClearPath>().module = area;
+            allClearPath.Add(gm.GetComponent<ClearPath>());
+            MapBoard.Instance.moduleListEmpty.Remove(MapBoard.Instance.moduleListEmpty[index]);
+        }
+    }
+    public void ClearingThePathDone(MapArea area)
+    {
+        area.taskIndex = 0;
+        completeTasksCount++;
+        CheckTaskComplition();
+    }
+    private void ClearingThePathDelete()
+    {
+        foreach (ClearPath sc in allClearPath)
+        {
+            sc.module.taskIndex = 0;
+            Destroy(sc.gameObject);
+        }
+    }
     public void CheckTaskComplition()
     {
         switch (completeTasksCount)
