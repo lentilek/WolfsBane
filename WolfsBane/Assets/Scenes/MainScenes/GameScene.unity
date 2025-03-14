@@ -867,6 +867,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fd8d5174134fdf479fa85192d07964d, type: 2}
   - {fileID: 11400000, guid: 32f58bbbc22fa9e4a9c4a43720641c26, type: 2}
   - {fileID: 11400000, guid: 0d832a0fdf1b1434ba354495a8ec1604, type: 2}
+  - {fileID: 11400000, guid: a5e1aca9209148449bfedc81b3a4bf12, type: 2}
   todayTasksList: []
   completeTasksCount: 0
   leavesToClean: 3
@@ -885,6 +886,12 @@ MonoBehaviour:
   allClearPath: []
   waterToMeasure: 2
   waterMeasured: 0
+  trailCamToInstall: 2
+  trailCamInstalled: 0
+  trailCamToSpawn: 6
+  trailCamPrefabs:
+  - {fileID: 7222044349512531768, guid: d11494e8197379e47ba1d8479c9c30f5, type: 3}
+  allTrailCam: []
 --- !u!4 &1900381777
 Transform:
   m_ObjectHideFlags: 0

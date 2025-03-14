@@ -312,6 +312,12 @@ public class MapArea : MonoBehaviour
                         gameplayObject.GetComponentInChildren<ClearPath>().ClearPathMiniGame(this);
                     }
                     break;
+                case 7:
+                    if(PlayerInventory.Instance.ropeAmount > 0)
+                    {
+                        gameplayObject.GetComponentInChildren<TrailCam>().TrailCamMiniGame(this);
+                    }
+                    break;
                 default: break;
             }
         }

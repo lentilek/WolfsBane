@@ -30,6 +30,12 @@ public class TaskManager : MonoBehaviour
     // lake
     public int waterToMeasure;
     [HideInInspector] public int waterMeasured;
+    // trail cams
+    public int trailCamToInstall;
+    [HideInInspector] public int trailCamInstalled;
+    public int trailCamToSpawn;
+    public GameObject[] trailCamPrefabs;
+    [HideInInspector] public List<TrailCam> allTrailCam = new List<TrailCam>();
     private void Awake()
     {
         if (Instance == null)
@@ -93,6 +99,9 @@ public class TaskManager : MonoBehaviour
                 case 6:
                     TakeTrashSetUp();
                     break;
+                case 7:
+                    TrailCamSetUp();
+                    break;
                 default: break;
             }
         }
@@ -120,6 +129,9 @@ public class TaskManager : MonoBehaviour
                     break;
                 case 6:
                     TakeTrashDelete();
+                    break;
+                case 7:
+                    TrailCamDelete();
                     break;
                 default: break;
             }
@@ -309,7 +321,41 @@ public class TaskManager : MonoBehaviour
             }
         }
     }
-
+    private void TrailCamSetUp()
+    {
+        allTrailCam.Clear();
+        MapBoard.Instance.EmptyModuleList();
+        trailCamInstalled = 0;
+        for (int i = 0; i < trailCamToSpawn; i++)
+        {
+            int index = Random.Range(0, MapBoard.Instance.moduleListEmpty.Count);
+            MapArea area = MapBoard.Instance.moduleListEmpty[index];
+            area.taskIndex = 7;
+            GameObject gm = Instantiate(trailCamPrefabs[Random.Range(0, trailCamPrefabs.Length)],
+                area.gameplayObject.transform, worldPositionStays: false) as GameObject;
+            gm.GetComponent<TrailCam>().module = area;
+            allTrailCam.Add(gm.GetComponent<TrailCam>());
+            MapBoard.Instance.moduleListEmpty.Remove(MapBoard.Instance.moduleListEmpty[index]);
+        }
+    }
+    public void TrailCamDone(MapArea area)
+    {
+        trailCamInstalled++;
+        area.taskIndex = 0;
+        if (trailCamInstalled == trailCamToInstall)
+        {
+            completeTasksCount++;
+            CheckTaskComplition();
+        }
+    }
+    private void TrailCamDelete()
+    {
+        foreach (TrailCam tc in allTrailCam)
+        {
+            tc.module.taskIndex = 0;
+            Destroy(tc.gameObject);
+        }
+    }
     public void CheckTaskComplition()
     {
         switch (completeTasksCount)
