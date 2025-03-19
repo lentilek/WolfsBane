@@ -172,7 +172,8 @@ public class TaskManager : MonoBehaviour
     {
         leavesCleaned++;
         area.taskIndex = 0;
-        if(leavesCleaned == leavesToClean)
+        CheckTaskCounter(1);
+        if (leavesCleaned == leavesToClean)
         {
             CheckTask(1);
             completeTasksCount++;
@@ -293,6 +294,7 @@ public class TaskManager : MonoBehaviour
     public void MeasuringWaterDone()
     {
         waterMeasured++;
+        CheckTaskCounter(5);
         if (waterMeasured == waterToMeasure)
         {
             CheckTask(5);
@@ -362,6 +364,7 @@ public class TaskManager : MonoBehaviour
     {
         trailCamInstalled++;
         area.taskIndex = 0;
+        CheckTaskCounter(7);
         if (trailCamInstalled == trailCamToInstall)
         {
             CheckTask(7);
@@ -454,12 +457,41 @@ public class TaskManager : MonoBehaviour
         ui.icon.sprite = task.taskIcon;
         ui.tick.SetActive(false);
         ui.currentTaskIndex = task.taskIndex;
+        TaskCounter(task.taskIndex, ui);
     }
     private void RewardUISet(DailyTaskSO reward, DailyTasksUI ui)
     {
         ui.title.text = "Reward:";
         ui.description.text = reward.taskDescription;
         if(reward.taskIcon != null) ui.icon.sprite = reward.taskIcon;
+    }
+    private void TaskCounter(int taskIndex, DailyTasksUI ui)
+    {
+        switch (taskIndex)
+        {
+            case 1: // leaves
+                ui.counter.text = $"[{leavesCleaned}/{leavesToClean}]";
+                break;
+            case 5: // water level
+                ui.counter.text = $"[{waterMeasured}/{waterToMeasure}]";
+                break;
+            case 7: // cameras
+                ui.counter.text = $"[{trailCamInstalled}/{trailCamToInstall}]";
+                break;
+            default:
+                ui.counter.text = "";
+                break;
+        }
+    }
+    private void CheckTaskCounter(int index)
+    {
+        foreach(DailyTasksUI ui in tasksUI)
+        {
+            if(index == ui.currentTaskIndex)
+            {
+                TaskCounter(index, ui);
+            }
+        }
     }
     private void CheckTask(int index)
     {
