@@ -11,6 +11,12 @@ public class TaskManager : MonoBehaviour
     private List<DailyTaskSO> randomTasksList = new List<DailyTaskSO>();
     public List<DailyTaskSO> todayTasksList = new List<DailyTaskSO>(); // after ui hide in inspector
 
+    public List<DailyTaskSO> regularTaskRewards = new List<DailyTaskSO>();
+    public List<DailyTaskSO> specialTaskRewards = new List<DailyTaskSO>();
+    private List<DailyTaskSO> currentTaskRewards = new List<DailyTaskSO>();
+    [SerializeField] private int resourceRewardAmount;
+    [SerializeField] private int indicatorRewardAmount;
+
     [HideInInspector] public int completeTasksCount;
 
     // leaf cleaning
@@ -72,6 +78,11 @@ public class TaskManager : MonoBehaviour
 
         index = Random.Range(0, randomTasksList.Count);
         todayTasksList.Add(randomTasksList[index]);
+
+        currentTaskRewards.Clear();
+        currentTaskRewards.Add(regularTaskRewards[Random.Range(0, regularTaskRewards.Count)]);
+        currentTaskRewards.Add(regularTaskRewards[Random.Range(0, regularTaskRewards.Count)]);
+        currentTaskRewards.Add(specialTaskRewards[Random.Range(0, specialTaskRewards.Count)]);
 
         TasksSetUp();
     }
@@ -361,13 +372,57 @@ public class TaskManager : MonoBehaviour
         switch (completeTasksCount)
         {
             case 1:
-                Debug.Log("Reward 1");
+                GetReward(currentTaskRewards[0].taskIndex);
                 break;
             case 2:
-                Debug.Log("Reward 2");
+                GetReward(currentTaskRewards[1].taskIndex);
                 break;
             case 3:
-                Debug.Log("Reward 3");
+                GetReward(currentTaskRewards[2].taskIndex);
+                break;
+            default: break;
+        }
+    }
+    private void GetReward(int rewardIndex)
+    {
+        switch(rewardIndex)
+        {
+            case 1:
+                RewardResource(1);
+                break;
+            case 2:
+                RewardResource(2);
+                break;
+            case 3:
+                RewardResource(3);
+                break;
+            case 4:
+                GameManager.Instance.gameIndicator -= indicatorRewardAmount;
+                if(GameManager.Instance.gameIndicator < 0) GameManager.Instance.gameIndicator = 0;
+                GameManager.Instance.GetCurrentFillIndicator();
+                break;
+            default: break;
+        }
+    }
+    private void RewardResource(int type)
+    {
+        switch (type)
+        {
+            case 1:
+                PlayerInventory.Instance.woodAmount += resourceRewardAmount;
+                PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+                break;
+            case 2:
+                PlayerInventory.Instance.stoneAmount += resourceRewardAmount;
+                PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+                break;
+            case 3:
+                PlayerInventory.Instance.ropeAmount += resourceRewardAmount;
+                PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+                break;
+            case 4:
+                //PlayerInventory.Instance.meatAmount += resourceRewardAmount;
+                //PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
                 break;
             default: break;
         }
