@@ -79,4 +79,8 @@ public class GameUI : MonoBehaviour
     {
         AudioManager.Instance.PlaySound("uiSound");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
