@@ -10,6 +10,8 @@ public class TaskManager : MonoBehaviour
     public List<DailyTaskSO> allTasksListRegular = new List<DailyTaskSO>();
     private List<DailyTaskSO> randomTasksList = new List<DailyTaskSO>();
     public List<DailyTaskSO> todayTasksList = new List<DailyTaskSO>(); // after ui hide in inspector
+    [SerializeField] private DailyTasksUI[] tasksUI;
+    [SerializeField] private DailyTasksUI[] rewardsUI;
 
     public List<DailyTaskSO> regularTaskRewards = new List<DailyTaskSO>();
     public List<DailyTaskSO> specialTaskRewards = new List<DailyTaskSO>();
@@ -84,6 +86,7 @@ public class TaskManager : MonoBehaviour
         currentTaskRewards.Add(regularTaskRewards[Random.Range(0, regularTaskRewards.Count)]);
         currentTaskRewards.Add(specialTaskRewards[Random.Range(0, specialTaskRewards.Count)]);
 
+        UISetUp();
         TasksSetUp();
     }
     public void TasksSetUp()
@@ -171,6 +174,7 @@ public class TaskManager : MonoBehaviour
         area.taskIndex = 0;
         if(leavesCleaned == leavesToClean)
         {
+            CheckTask(1);
             completeTasksCount++;
             CheckTaskComplition();
         }
@@ -202,6 +206,7 @@ public class TaskManager : MonoBehaviour
     public void SaltCubesDone(MapArea area)
     {
         area.taskIndex = 0;
+        CheckTask(2);
         completeTasksCount++;
         CheckTaskComplition();
     }
@@ -232,6 +237,7 @@ public class TaskManager : MonoBehaviour
     public void ClearingThePathDone(MapArea area)
     {
         area.taskIndex = 0;
+        CheckTask(3);
         completeTasksCount++;
         CheckTaskComplition();
     }
@@ -256,6 +262,7 @@ public class TaskManager : MonoBehaviour
     }
     public void PetrograpthicResearchDone()
     {
+        CheckTask(4);
         completeTasksCount++;
         CheckTaskComplition();
         PetrographicResearchDelete();
@@ -288,6 +295,7 @@ public class TaskManager : MonoBehaviour
         waterMeasured++;
         if (waterMeasured == waterToMeasure)
         {
+            CheckTask(5);
             completeTasksCount++;
             CheckTaskComplition();
             MeasuringWaterDelete();
@@ -317,6 +325,7 @@ public class TaskManager : MonoBehaviour
     }
     public void TakeTrashDone()
     {
+        CheckTask(6);
         completeTasksCount++;
         CheckTaskComplition();
         TakeTrashDelete();
@@ -355,6 +364,7 @@ public class TaskManager : MonoBehaviour
         area.taskIndex = 0;
         if (trailCamInstalled == trailCamToInstall)
         {
+            CheckTask(7);
             completeTasksCount++;
             CheckTaskComplition();
         }
@@ -425,6 +435,40 @@ public class TaskManager : MonoBehaviour
                 //PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
                 break;
             default: break;
+        }
+    }
+
+    ///////////////////////   UI
+    private void UISetUp()
+    {
+        for(int i=0; i<todayTasksList.Count; i++)
+        {
+            TaskUISet(todayTasksList[i], tasksUI[i]);
+            RewardUISet(currentTaskRewards[i], rewardsUI[i]);
+        }
+    }
+    private void TaskUISet(DailyTaskSO task, DailyTasksUI ui)
+    {
+        ui.title.text = task.taskName;
+        ui.description.text = task.taskDescription;
+        ui.icon.sprite = task.taskIcon;
+        ui.tick.SetActive(false);
+        ui.currentTaskIndex = task.taskIndex;
+    }
+    private void RewardUISet(DailyTaskSO reward, DailyTasksUI ui)
+    {
+        ui.title.text = "Reward:";
+        ui.description.text = reward.taskDescription;
+        if(reward.taskIcon != null) ui.icon.sprite = reward.taskIcon;
+    }
+    private void CheckTask(int index)
+    {
+        foreach(DailyTasksUI ui in tasksUI)
+        {
+            if(ui.currentTaskIndex == index)
+            {
+                ui.tick.SetActive(true);
+            }
         }
     }
 }

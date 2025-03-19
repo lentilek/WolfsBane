@@ -9,5 +9,5 @@ public class DailyTaskSO : ScriptableObject
     public string taskName;
     public string taskDescription;
     public int taskIndex;
-    public Image taskIcon;
+    public Sprite taskIcon;
 }
