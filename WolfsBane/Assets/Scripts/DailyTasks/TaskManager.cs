@@ -9,7 +9,7 @@ public class TaskManager : MonoBehaviour
     public List<DailyTaskSO> allTasksListResource = new List<DailyTaskSO>();
     public List<DailyTaskSO> allTasksListRegular = new List<DailyTaskSO>();
     private List<DailyTaskSO> randomTasksList = new List<DailyTaskSO>();
-    public List<DailyTaskSO> todayTasksList = new List<DailyTaskSO>(); // after ui hide in inspector
+    [HideInInspector] public List<DailyTaskSO> todayTasksList = new List<DailyTaskSO>();
     [SerializeField] private DailyTasksUI[] tasksUI;
     [SerializeField] private DailyTasksUI[] rewardsUI;
 

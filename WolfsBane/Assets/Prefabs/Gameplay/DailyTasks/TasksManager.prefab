@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3676065996373216119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7455084457392005625}
+  - component: {fileID: 2801667483902090851}
+  m_Layer: 0
+  m_Name: TasksManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7455084457392005625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676065996373216119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2801667483902090851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676065996373216119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c92b50b57d718409cca665416e8e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allTasksListResource:
+  - {fileID: 11400000, guid: 5c892b286be6cd54c949e5d195eb2c97, type: 2}
+  - {fileID: 11400000, guid: ef372850d6fea3a42bc45ceb6bfed5cd, type: 2}
+  - {fileID: 11400000, guid: ceb277c616194e9459b6f6ab88b02d98, type: 2}
+  allTasksListRegular:
+  - {fileID: 11400000, guid: 4fd8d5174134fdf479fa85192d07964d, type: 2}
+  - {fileID: 11400000, guid: 32f58bbbc22fa9e4a9c4a43720641c26, type: 2}
+  - {fileID: 11400000, guid: 0d832a0fdf1b1434ba354495a8ec1604, type: 2}
+  - {fileID: 11400000, guid: a5e1aca9209148449bfedc81b3a4bf12, type: 2}
+  todayTasksList: []
+  tasksUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rewardsUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  regularTaskRewards:
+  - {fileID: 11400000, guid: 0f7972c9e2d3269448f5e1204535f85b, type: 2}
+  - {fileID: 11400000, guid: 66d5e959a0061b5488eb216f25a1e474, type: 2}
+  - {fileID: 11400000, guid: 0f39a2a439400664ba355b58ef5c5040, type: 2}
+  - {fileID: 11400000, guid: 0a1dba5b0530bf645b1ffb49cb044f92, type: 2}
+  specialTaskRewards:
+  - {fileID: 11400000, guid: 0f7972c9e2d3269448f5e1204535f85b, type: 2}
+  - {fileID: 11400000, guid: 66d5e959a0061b5488eb216f25a1e474, type: 2}
+  - {fileID: 11400000, guid: 0f39a2a439400664ba355b58ef5c5040, type: 2}
+  - {fileID: 11400000, guid: 0a1dba5b0530bf645b1ffb49cb044f92, type: 2}
+  resourceRewardAmount: 2
+  indicatorRewardAmount: 5
+  completeTasksCount: 0
+  leavesToClean: 3
+  leavesCleaned: 0
+  leavesToSpawn: 6
+  leavesPrefabs:
+  - {fileID: 5745808516216383481, guid: 95e7df322c69aae48a40b1af52a00d03, type: 3}
+  allLeaves: []
+  saltCubesPlacesToSpawn: 3
+  saltCubePlacePrefabs:
+  - {fileID: 3504289123789642673, guid: f44686f30e9960c46b7292e029f6edea, type: 3}
+  allSaltCubes: []
+  woodToSpawn: 3
+  woodPrefabs:
+  - {fileID: 8272103400696567229, guid: 381916ba21921bb4aabad06e17f6285c, type: 3}
+  allClearPath: []
+  waterToMeasure: 2
+  waterMeasured: 0
+  trailCamToInstall: 2
+  trailCamInstalled: 0
+  trailCamToSpawn: 6
+  trailCamPrefabs:
+  - {fileID: 7222044349512531768, guid: d11494e8197379e47ba1d8479c9c30f5, type: 3}
+  - {fileID: 8483493991329377392, guid: 4807aa4e2c86f464fbdca9608bffaa5c, type: 3}
+  - {fileID: 8483493991329377392, guid: 94208a336e600d047a77ca5aebff5e96, type: 3}
+  - {fileID: 8483493991329377392, guid: 183dcf1572ab24542a4516fe5491d61c, type: 3}
+  - {fileID: 8483493991329377392, guid: d3c3249d3ef8ad54888926bc74daa8b1, type: 3}
+  allTrailCam: []
