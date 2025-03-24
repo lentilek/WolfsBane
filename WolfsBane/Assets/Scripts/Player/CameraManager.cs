@@ -22,9 +22,7 @@ public class CameraManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            useEdgeScroll = !useEdgeScroll;
-            transform.position = PlayerControler.Instance.playerPosition;
-            cvCamera.m_Lens.OrthographicSize = basicZoom;
+            LockCamera();
         }
         if(useEdgeScroll)
         {
@@ -57,5 +55,11 @@ public class CameraManager : MonoBehaviour
             }
         }       
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+    }
+    public void LockCamera()
+    {
+        useEdgeScroll = !useEdgeScroll;
+        transform.position = PlayerControler.Instance.playerPosition;
+        cvCamera.m_Lens.OrthographicSize = basicZoom;
     }
 }
