@@ -52,7 +52,7 @@ public class MapArea : MonoBehaviour
             smellVFX.SetActive(false);
         }
     }
-    public void AddEnviro()
+    public void AddEnviro(int blockedType)
     {
         if (type == 3 || type == 0)
         {
@@ -84,8 +84,13 @@ public class MapArea : MonoBehaviour
                 AddResources();
                 break;
             case 3:
-                Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0,blockedModels.Length)], 
-                    gameplayObject.transform, worldPositionStays: false);
+                if (blockedType == 1) Instantiate(blockedModels[0], gameplayObject.transform, worldPositionStays: false);
+                else if (blockedType == 2) Instantiate(blockedModels[blockedModels.Length - 1], gameplayObject.transform, worldPositionStays: false);
+                else
+                {
+                    Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0, blockedModels.Length)],
+                        gameplayObject.transform, worldPositionStays: false);
+                }
                 break;
             default:
                 break;

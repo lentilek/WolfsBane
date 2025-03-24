@@ -68,7 +68,9 @@ public class MapBoard : MonoBehaviour
             MapArea ma = mapRandomBlocked[_random.NextInt(0, mapRandomBlocked.Count)];
             ma.type = 3;
             ma.AreasAround();
-            ma.AddEnviro();
+            if (blockedAmount == 2) ma.AddEnviro(1);
+            else if (blockedAmount == 1) ma.AddEnviro(2);
+            else ma.AddEnviro(0);
             moduleListBlocked.Add(ma);
             if(ma.gameplayObject.GetComponentInChildren<RockResearch>() != null)
             {
@@ -92,7 +94,7 @@ public class MapBoard : MonoBehaviour
             ma.type = 2;
             ma.resourceType = 1;
             ma.AreasAround();
-            ma.AddEnviro();
+            ma.AddEnviro(0);
             mapRandomResource.Remove(ma);
             resourceWoodAmount--;
             moduleListResource.Add(ma);
@@ -103,7 +105,7 @@ public class MapBoard : MonoBehaviour
             ma.type = 2;
             ma.resourceType = 2;
             ma.AreasAround();
-            ma.AddEnviro();
+            ma.AddEnviro(0);
             mapRandomResource.Remove(ma);
             resourceStoneAmount--;
             moduleListResource.Add(ma);
@@ -114,7 +116,7 @@ public class MapBoard : MonoBehaviour
             ma.type = 2;
             ma.resourceType = 3;
             ma.AreasAround();
-            ma.AddEnviro();
+            ma.AddEnviro(0);
             mapRandomResource.Remove(ma);
             resourceRopeAmount--;
             moduleListResource.Add(ma);
@@ -123,7 +125,7 @@ public class MapBoard : MonoBehaviour
         {
             m.type = 1;
             m.AreasAround();
-            m.AddEnviro();
+            m.AddEnviro(0);
         }
         GameManager.Instance.NewDay();
     }
