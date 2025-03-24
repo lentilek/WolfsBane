@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aac9343733d31ec40b1e44bc6c20efbe
+guid: 6d99e0c3da2cebf49ba2dcbe3d1a6ada
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: A_walk-new_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10
+        width: 512
+        height: 319
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0f3395dfb88f004d9eb7a27bfb940e8
+      internalID: 186554319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_walk-new_1
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 10
+        width: 512
+        height: 319
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47434e31c33f36c4eab9b21b8887a719
+      internalID: 394040022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_walk-new_2
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 10
+        width: 512
+        height: 319
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d332b01215c79469c756818fa29b89
+      internalID: 411637154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +182,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      A_walk-new_0: 186554319
+      A_walk-new_1: 394040022
+      A_walk-new_2: 411637154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

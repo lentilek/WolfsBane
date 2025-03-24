@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aac9343733d31ec40b1e44bc6c20efbe
+guid: 1802952b40dea0f43a2511129ba6b262
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,18 +108,84 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: A_interact_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 622
+        width: 737
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3352eb0a37b8b49428fe188496111642
+      internalID: 1401473271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_interact_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 318
+        width: 737
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26010fdded343364db80523dc408282e
+      internalID: -1895118439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A_interact_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 737
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe0431e165eb6ed438263575426b47e8
+      internalID: 1609078766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 97c3287ef87a92f488b255fe9df74c74
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      A_interact_0: 1401473271
+      A_interact_1: -1895118439
+      A_interact_2: 1609078766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
