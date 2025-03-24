@@ -414,6 +414,9 @@ public class TaskManager : MonoBehaviour
                 if(GameManager.Instance.gameIndicator < 0) GameManager.Instance.gameIndicator = 0;
                 GameManager.Instance.GetCurrentFillIndicator();
                 break;
+            case 5:
+                RewardResource(4);
+                break;
             default: break;
         }
     }
@@ -434,8 +437,8 @@ public class TaskManager : MonoBehaviour
                 PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
                 break;
             case 4:
-                //PlayerInventory.Instance.meatAmount += resourceRewardAmount;
-                //PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
+                PlayerInventory.Instance.meatAmount += resourceRewardAmount;
+                PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
                 break;
             default: break;
         }

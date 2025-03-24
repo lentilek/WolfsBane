@@ -22,6 +22,11 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private int ropeCollect;
     public TextMeshProUGUI ropeAmountTXT;
 
+    public int meatAmount;
+    public int maxMeatAmount;
+    [SerializeField] private int meatCollect;
+    public TextMeshProUGUI meatAmountTXT;
+
     public bool doorTrap;
     public bool fenceTrap;
 
@@ -47,6 +52,8 @@ public class PlayerInventory : MonoBehaviour
         stoneAmountTXT.text = $"{stoneAmount}/{maxStoneAmount}";
         ropeAmount = 0;
         ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
+        meatAmount = 0;
+        meatAmountTXT.text = $"{meatAmount}/{maxMeatAmount}";
     }
 
     public void CollectWood()
@@ -67,6 +74,12 @@ public class PlayerInventory : MonoBehaviour
         if (ropeAmount > maxRopeAmount) ropeAmount = maxRopeAmount;
         ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
     }
+    public void CollectMeat()
+    {
+        meatAmount += meatCollect;
+        if (meatAmount > maxMeatAmount) meatAmount = maxMeatAmount;
+        meatAmountTXT.text = $"{meatAmount}/{maxMeatAmount}";
+    }
     public bool IsThereInventorySpace(int resourceIndex)
     {
         switch(resourceIndex)
@@ -85,6 +98,12 @@ public class PlayerInventory : MonoBehaviour
                 break;
             case 3:
                 if(ropeAmount < maxRopeAmount)
+                {
+                    return true;
+                }
+                break;
+            case 4:
+                if(meatAmount < maxMeatAmount)
                 {
                     return true;
                 }

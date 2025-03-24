@@ -896,6 +896,18 @@ Transform:
   - {fileID: 540755922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+--- !u!114 &1227266996 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5318048675154945934, guid: 3447e5272a888234f9e46bdf21373785,
+    type: 3}
+  m_PrefabInstance: {fileID: 1772559182158350453}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1500302651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5549892051423380159, guid: 2b37c4969cd82bb45a57a7283a760f82,
@@ -1373,6 +1385,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5302693749149839961, guid: 2b37c4969cd82bb45a57a7283a760f82,
         type: 3}
+      propertyPath: meatAmountTXT
+      value: 
+      objectReference: {fileID: 1227266996}
+    - target: {fileID: 5302693749149839961, guid: 2b37c4969cd82bb45a57a7283a760f82,
+        type: 3}
       propertyPath: ropeAmountTXT
       value: 
       objectReference: {fileID: 414155966}
@@ -1386,11 +1403,6 @@ PrefabInstance:
       propertyPath: stoneAmountTXT
       value: 
       objectReference: {fileID: 414155967}
-    - target: {fileID: 8788035903983835772, guid: 2b37c4969cd82bb45a57a7283a760f82,
-        type: 3}
-      propertyPath: playerPosition.y
-      value: 0.275
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
