@@ -205,7 +205,7 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            if((type == 2 || state == 5 || state == 6 || taskIndex != 0) && GameManager.Instance.currentActionPoints > 0)
+            if(((type == 2 || state == 5 || state == 6 || taskIndex != 0) && GameManager.Instance.currentActionPoints > 0) || resourceType == 4)
             {
                 buttonInteract.SetActive(true);
             }
@@ -324,6 +324,13 @@ public class MapArea : MonoBehaviour
                     }
                     break;
                 default: break;
+            }
+        }
+        else if(resourceType == 4)
+        {
+            if(PlayerInventory.Instance.chickensAmount > 0)
+            {
+                PlayerInventory.Instance.CollectMeat();
             }
         }
         buttonInteract.SetActive(false);

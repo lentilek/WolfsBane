@@ -24,6 +24,7 @@ public class PlayerInventory : MonoBehaviour
 
     public int meatAmount;
     public int maxMeatAmount;
+    public int chickensAmount;
     [SerializeField] private int meatCollect;
     public TextMeshProUGUI meatAmountTXT;
 
@@ -76,6 +77,7 @@ public class PlayerInventory : MonoBehaviour
     }
     public void CollectMeat()
     {
+        chickensAmount--;
         meatAmount += meatCollect;
         if (meatAmount > maxMeatAmount) meatAmount = maxMeatAmount;
         meatAmountTXT.text = $"{meatAmount}/{maxMeatAmount}";
