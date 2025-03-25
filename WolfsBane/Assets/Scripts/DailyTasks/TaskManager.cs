@@ -86,8 +86,8 @@ public class TaskManager : MonoBehaviour
         currentTaskRewards.Add(regularTaskRewards[Random.Range(0, regularTaskRewards.Count)]);
         currentTaskRewards.Add(specialTaskRewards[Random.Range(0, specialTaskRewards.Count)]);
 
-        UISetUp();
         TasksSetUp();
+        UISetUp();
     }
     public void TasksSetUp()
     {
