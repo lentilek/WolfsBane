@@ -58,7 +58,31 @@ public class HighscoreSystem : MonoBehaviour
             Debug.Log("File not found");
         }*/
     }
-
+    public void GetData()
+    {
+        LoadData();
+        string id = "Player";
+        int days = GameManager.Instance.daysCounter;
+        int turist = GameManager.Instance.turistEaten;
+        float pm = GameManager.Instance.highestPM;
+        for(int i = 0; i < 5; i++)
+        {
+            if (data.days[i] < days || (data.days[i] == days && data.turistsEaten[i] > turist) ||
+                (data.days[i] == days && data.turistsEaten[i] == turist && data.panicMeter[i] > pm))
+            {
+                ChangeData(i, id, days, turist, pm);
+                break;
+            }
+        }
+        SaveData();
+    }
+    private void ChangeData(int index, string id, int days, int turist, float pm)
+    {
+        data.playerId[index] = id;
+        data.days[index] = days;
+        data.turistsEaten[index] = turist;
+        data.panicMeter[index] = pm;
+    }
     public void ClearSavedData()
     {
         //

@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI daysCounterTXT;
     public int daysToWin;
     [HideInInspector] public int daysCounter;
+    [HideInInspector] public int turistEaten;
+    [HideInInspector] public float highestPM;
 
     [SerializeField] private Light mainLight;
     [SerializeField] private Color nightLightColor;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = 1f;
         daysCounter = 0;
+        turistEaten = 0;
         gameIndicator = 0;
         maxGameIndicator = 100f;
         currentActionPoints = maxActionPoints;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
         if(gameIndicator >= maxGameIndicator)
         {
             Time.timeScale = 0f;
+            HighscoreSystem.Instance.GetData();
             GameUI.Instance.gameOverScreen.SetActive(true);
         }
     }
@@ -75,6 +79,7 @@ public class GameManager : MonoBehaviour
     {
         float fill = gameIndicator / maxGameIndicator;
         gameIndicatorFill.fillAmount = fill;
+        if (gameIndicator > highestPM) highestPM = gameIndicator;
     }
     public bool UseActionPoint()
     {
@@ -151,6 +156,7 @@ public class GameManager : MonoBehaviour
                 if (area.state == 6) area.state = 2;
                 else if (area.state == 5) area.state = 1;
                 gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenKilled;
+                turistEaten++;
                 if (gameIndicator > 100) gameIndicator = 100;
                 GetCurrentFillIndicator();
                 Destroy(turist);
@@ -181,6 +187,7 @@ public class GameManager : MonoBehaviour
         if(daysCounter == daysToWin)
         {
             Time.timeScale = 0f;
+            HighscoreSystem.Instance.GetData();
             GameUI.Instance.winScreen.SetActive(true);
         }
     }
