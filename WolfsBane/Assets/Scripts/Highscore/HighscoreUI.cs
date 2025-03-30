@@ -16,10 +16,11 @@ public class HighscoreUI : MonoBehaviour
         int i = 0;
         foreach(string id in HighscoreSystem.Instance.data.playerId)
         {
+            Debug.Log(HighscoreSystem.Instance.data.days[i]);
             playerId[i].text = $"ID: {id}";
-            days[i].text = $"Days survived: {HighscoreSystem.Instance.data.days}";
-            turistsEaten[i].text = $"Turists eaten: {HighscoreSystem.Instance.data.turistsEaten}";
-            panicMeter[i].text = $"Panic Meter: {HighscoreSystem.Instance.data.panicMeter}";
+            days[i].text = $"Days survived: {HighscoreSystem.Instance.data.days[i]}";
+            turistsEaten[i].text = $"Turists eaten: {HighscoreSystem.Instance.data.turistsEaten[i]}";
+            panicMeter[i].text = $"Panic Meter: {HighscoreSystem.Instance.data.panicMeter[i]}";
             i++;
         }
     }

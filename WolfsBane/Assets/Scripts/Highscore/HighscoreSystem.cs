@@ -17,7 +17,6 @@ public class HighscoreSystem : MonoBehaviour
             Instance = this;        
             DontDestroyOnLoad(this);
         }
-        SaveData();
     }
     public void SaveData()
     {
