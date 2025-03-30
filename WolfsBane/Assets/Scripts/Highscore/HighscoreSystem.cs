@@ -65,19 +65,28 @@ public class HighscoreSystem : MonoBehaviour
         int days = GameManager.Instance.daysCounter;
         int turist = GameManager.Instance.turistEaten;
         float pm = GameManager.Instance.highestPM;
-        for(int i = 0; i < 5; i++)
+        int i = 0;
+        while(i < 5)
         {
             if (data.days[i] < days || (data.days[i] == days && data.turistsEaten[i] > turist) ||
                 (data.days[i] == days && data.turistsEaten[i] == turist && data.panicMeter[i] > pm))
             {
                 ChangeData(i, id, days, turist, pm);
-                break;
+                i = 6;
             }
+            i++;
         }
         SaveData();
     }
     private void ChangeData(int index, string id, int days, int turist, float pm)
     {
+        for(int i = 4; i > index; i--)
+        {
+            data.playerId[i] = data.playerId[i - 1];
+            data.days[i] = data.days[i - 1];
+            data.turistsEaten[i] = data.turistsEaten[i - 1];
+            data.panicMeter[i] = data.panicMeter[i - 1];
+        }
         data.playerId[index] = id;
         data.days[index] = days;
         data.turistsEaten[index] = turist;

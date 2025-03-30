@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             HighscoreSystem.Instance.GetData();
             GameUI.Instance.gameOverScreen.SetActive(true);
+            gameIndicator = 0;
         }
     }
     public void GetCurrentFillIndicator()
