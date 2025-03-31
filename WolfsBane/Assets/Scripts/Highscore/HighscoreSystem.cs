@@ -14,8 +14,12 @@ public class HighscoreSystem : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this;        
-            DontDestroyOnLoad(this);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(Instance.gameObject);
+            Instance = this;
         }
     }
     public void SaveData()

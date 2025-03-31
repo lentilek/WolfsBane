@@ -31,7 +31,7 @@ public class PlayerInventory : MonoBehaviour
     public bool doorTrap;
     public bool fenceTrap;
 
-    public GameObject trapPrefab;
+    public GameObject[] trapPrefab;
     [HideInInspector]public List<GameObject> trapsList = new List<GameObject>();
 
     private void Awake()
@@ -115,13 +115,22 @@ public class PlayerInventory : MonoBehaviour
         }
         return false;
     }
-    public void BuildTrap(MapArea ma)
+    public void BuildTrap(int trapType, MapArea ma)
     {
         AudioManager.Instance.PlaySound("trap");
-        trapPrefab.GetComponent<Trap>().BuildCost();
-        GameObject go = Instantiate(trapPrefab, ma.gameplayObject.transform, worldPositionStays: false);
+        trapPrefab[trapType].GetComponent<Trap>().BuildCost();
+        GameObject go = Instantiate(trapPrefab[trapType], ma.gameplayObject.transform, worldPositionStays: false);
         go.GetComponent<Trap>().module = ma;
-        if(ma.state == 2)
+        trapsList.Add(go);
+        BuildTrapState(trapType, ma);
+    }
+    private void BuildTrapState(int trapType, MapArea ma)
+    {
+        if(trapType == 1 || trapType == 2)
+        {
+            ma.state = 7;
+        }
+        else if(ma.state == 2)
         {
             ma.state = 1;
         }        
@@ -133,7 +142,6 @@ public class PlayerInventory : MonoBehaviour
         {
             ma.state = 5;
         }
-        trapsList.Add(go);
     }
     public bool CheckTrap(MapArea ma)
     {
@@ -144,20 +152,26 @@ public class PlayerInventory : MonoBehaviour
             if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())
             {
                 trapComp.module.state = 2;
-                Destroy(trap);
                 trapsList.Remove(trap);
+                Destroy(trap);
             }
             else if (trapComp.module.state == 3 && GameManager.Instance.UseActionPointAI())
             {
                 trapComp.module.state = 4;
-                Destroy(trap);
                 trapsList.Remove(trap);
+                Destroy(trap);
             }
             else if (trapComp.module.state == 5 && GameManager.Instance.UseActionPointAI())
             {
                 trapComp.module.state = 6;
-                Destroy(trap);
                 trapsList.Remove(trap);
+                Destroy(trap);
+            }
+            else if(trapComp.module.state == 7 && GameManager.Instance.UseActionPointAI())
+            {
+                trapComp.module.state = 2;
+                trapsList.Remove(trap);
+                Destroy(trap);
             }
             return true;
         }
@@ -179,6 +193,10 @@ public class PlayerInventory : MonoBehaviour
             else if(trapComponent.module.state == 5)
             {
                 trapComponent.module.state = 6;
+            }
+            else if(trapComponent.module.state == 7)
+            {
+                trapComponent.module.state = 2;
             }
             Destroy(trap);
         }

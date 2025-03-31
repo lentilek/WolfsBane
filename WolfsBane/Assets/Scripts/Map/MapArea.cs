@@ -21,6 +21,7 @@ public class MapArea : MonoBehaviour
     public GameObject buttonDiscover;
     public GameObject buttonInteract;
     public GameObject buttonSetTrap;
+    public GameObject buttonsTraps;
     [HideInInspector] public int row;
     [HideInInspector] public int column;
     [HideInInspector] public List<MapArea> neighbours;
@@ -45,10 +46,10 @@ public class MapArea : MonoBehaviour
     }
     private void Update()
     {
-        if(isVisible && (state == 3 || state == 4) && !smellVFX.activeSelf)
+        if(isVisible && (state == 3 || state == 4 || state == 7) && !smellVFX.activeSelf)
         {
             smellVFX.SetActive(true);
-        }else if(!isVisible || (state != 3 && state != 4))
+        }else if(!isVisible || (state != 3 && state != 4 && state != 7))
         {
             smellVFX.SetActive(false);
         }
@@ -217,8 +218,7 @@ public class MapArea : MonoBehaviour
             {
                 buttonInteract.SetActive(false);
             }
-            if((((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
-                PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild()) || 
+            if(((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) || 
                 (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && taskIndex != 3 &&
                 (GameManager.Instance.currentActionPoints > 0 || type == 4))
             {
@@ -345,16 +345,31 @@ public class MapArea : MonoBehaviour
     }
     public void SetTrapButton()
     {
-        if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
+        buttonsTraps.SetActive(true);
+        /*if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
             PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild() && 
             GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
-        else if(type == 4 && PlayerInventory.Instance.woodAmount > 0)
+        else */if(type == 4 && PlayerInventory.Instance.woodAmount > 0)
         {
             PlayerInventory.Instance.BuildHouseTrap();
+            buttonsTraps.SetActive(false);
+            buttonAction.SetActive(true);
+            PlayerControler.Instance.ButtonsAroundOff();
+            PlayerControler.Instance.ButtonsAround();
+        }    
+        buttonSetTrap.SetActive(false);            
+        buttonInteract.SetActive(false);
+    }
+    public void BuildTrapButtons(int trapType)
+    {
+        if (PlayerInventory.Instance.trapPrefab[trapType].GetComponent<Trap>().CanUBuild() && GameManager.Instance.UseActionPoint())
+        {
+            PlayerInventory.Instance.BuildTrap(trapType, this);
         }
+        buttonsTraps.SetActive(false);
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
         buttonAction.SetActive(true);

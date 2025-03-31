@@ -8,6 +8,8 @@ public class Trap : MonoBehaviour
     public int buildCostWood;
     public int buildCostStone;
     public int buildCostRope;
+    public int buildCostMeat;
+    public int trapType; // 0 - regular, 1 - meat, 2 - big meat
 
     public void BuildCost()
     {
@@ -19,11 +21,14 @@ public class Trap : MonoBehaviour
 
         PlayerInventory.Instance.ropeAmount -= buildCostRope;
         PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+
+        PlayerInventory.Instance.meatAmount -= buildCostMeat;
+        PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
     }
     public bool CanUBuild()
     {
         if(PlayerInventory.Instance.woodAmount >= buildCostWood && PlayerInventory.Instance.stoneAmount >= buildCostStone &&
-            PlayerInventory.Instance.ropeAmount >= buildCostRope)
+            PlayerInventory.Instance.ropeAmount >= buildCostRope && PlayerInventory.Instance.meatAmount >= buildCostMeat)
         {
             return true;
         }
