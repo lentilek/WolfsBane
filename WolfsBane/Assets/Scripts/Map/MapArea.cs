@@ -26,6 +26,7 @@ public class MapArea : MonoBehaviour
     [HideInInspector] public List<MapArea> neighbours;
 
     [SerializeField] private GameObject[] blockedModels;
+    [SerializeField] private GameObject[] emptyModels;
     [SerializeField] private GameObject[] resourceModelsWood;
     [SerializeField] private GameObject[] resourceModelsStone;
     [SerializeField] private GameObject[] resourceModelsRope;
@@ -77,15 +78,18 @@ public class MapArea : MonoBehaviour
             cloud.SetActive(false);
             models.SetActive(true);
         }
-
+        
         switch (type)
         {
+            case 1:
+                Instantiate(emptyModels[Random.Range(0, emptyModels.Length)], decorations.transform, worldPositionStays: false); 
+                break;
             case 2:
                 AddResources();
                 break;
             case 3:
-                if (blockedType == 1) Instantiate(blockedModels[0], gameplayObject.transform, worldPositionStays: false);
-                else if (blockedType == 2) Instantiate(blockedModels[blockedModels.Length - 1], gameplayObject.transform, worldPositionStays: false);
+                if (blockedType == 1) Instantiate(blockedModels[Random.Range(0, 3)], gameplayObject.transform, worldPositionStays: false);
+                else if (blockedType == 2) Instantiate(blockedModels[Random.Range(3, 7)], gameplayObject.transform, worldPositionStays: false);
                 else
                 {
                     Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0, blockedModels.Length)],
