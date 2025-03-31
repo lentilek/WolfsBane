@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -129,6 +130,14 @@ public class PlayerInventory : MonoBehaviour
         if(trapType == 1 || trapType == 2)
         {
             ma.state = 7;
+            if(trapType == 2)
+            {
+                foreach (MapArea n in ma.neighbours)
+                {
+                    if (n.state == 2) n.state = 4;
+                    else if (n.state == 1) n.state = 3;
+                }
+            }
         }
         else if(ma.state == 2)
         {
@@ -170,6 +179,14 @@ public class PlayerInventory : MonoBehaviour
             else if(trapComp.module.state == 7 && GameManager.Instance.UseActionPointAI())
             {
                 trapComp.module.state = 2;
+                if (trapComp.trapType == 2)
+                {
+                    foreach (MapArea n in trapComp.module.neighbours)
+                    {
+                        if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                        else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
+                    }
+                }
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
@@ -197,6 +214,14 @@ public class PlayerInventory : MonoBehaviour
             else if(trapComponent.module.state == 7)
             {
                 trapComponent.module.state = 2;
+                if(trapComponent.trapType == 2)
+                {
+                    foreach (MapArea n in trapComponent.module.neighbours)
+                    {
+                        if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                        else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
+                    }
+                }
             }
             Destroy(trap);
         }

@@ -197,7 +197,7 @@ public class MapArea : MonoBehaviour
         foreach(MapArea n in neighbours)
         {
             //Debug.Log(n.state);
-            if(n.state == 5 || n.state == 6)
+            if(n.state == 5 || n.state == 6 || n.state == 7)
             {
                 return true;
             }
@@ -218,7 +218,7 @@ public class MapArea : MonoBehaviour
             {
                 buttonInteract.SetActive(false);
             }
-            if(((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) || 
+            if(((type == 1 || type == 2) && (state == 2 || state == 4) || 
                 (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && taskIndex != 3 &&
                 (GameManager.Instance.currentActionPoints > 0 || type == 4))
             {
