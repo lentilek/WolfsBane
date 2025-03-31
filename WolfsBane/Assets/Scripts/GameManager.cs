@@ -154,7 +154,8 @@ public class GameManager : MonoBehaviour
             }
             if (turist != null && UseActionPointAI())
             {
-                if (area.state == 6) area.state = 2;
+                if (area.AreThereTuristsAround()) area.state = 4;
+                else if (area.state == 6) area.state = 2;
                 else if (area.state == 5) area.state = 1;
                 gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenKilled;
                 turistEaten++;
