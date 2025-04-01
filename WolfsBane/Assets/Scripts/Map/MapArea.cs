@@ -6,8 +6,10 @@ using UnityEngine;
 public class MapArea : MonoBehaviour
 {
     public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked, 4 - house
+    public int resourceType = 0; // 0 - nothing, 1 - wood, 2 - stone, 3 - rope, 4 - meat
     public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap,
                           // 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
+    public int taskIndex = 0; // 0 - nothing, 1-7 tasks
     public bool isAvailable;
     public bool isVisible;
     public GameObject cloud;
@@ -19,12 +21,16 @@ public class MapArea : MonoBehaviour
     public GameObject buttonDiscover;
     public GameObject buttonInteract;
     public GameObject buttonSetTrap;
+    public GameObject buttonsTraps;
     [HideInInspector] public int row;
     [HideInInspector] public int column;
     [HideInInspector] public List<MapArea> neighbours;
 
     [SerializeField] private GameObject[] blockedModels;
-    [SerializeField] private GameObject[] resourceModels;
+    [SerializeField] private GameObject[] emptyModels;
+    [SerializeField] private GameObject[] resourceModelsWood;
+    [SerializeField] private GameObject[] resourceModelsStone;
+    [SerializeField] private GameObject[] resourceModelsRope;
     public GameObject smellVFX;
     public GameObject noActionTip;
     public GameObject noAPTip;
@@ -40,15 +46,15 @@ public class MapArea : MonoBehaviour
     }
     private void Update()
     {
-        if(isVisible && (state == 3 || state == 4) && !smellVFX.activeSelf)
+        if(isVisible && (state == 3 || state == 4 || state == 7) && !smellVFX.activeSelf)
         {
             smellVFX.SetActive(true);
-        }else if(!isVisible || (state != 3 && state != 4))
+        }else if(!isVisible || (state != 3 && state != 4 && state != 7))
         {
             smellVFX.SetActive(false);
         }
     }
-    public void AddEnviro()
+    public void AddEnviro(int blockedType)
     {
         if (type == 3 || type == 0)
         {
@@ -73,15 +79,42 @@ public class MapArea : MonoBehaviour
             cloud.SetActive(false);
             models.SetActive(true);
         }
-
+        
         switch (type)
         {
+            case 1:
+                Instantiate(emptyModels[Random.Range(0, emptyModels.Length)], decorations.transform, worldPositionStays: false); 
+                break;
             case 2:
-                Instantiate(resourceModels[MapBoard.Instance._random.NextInt(0, resourceModels.Length)], 
+                AddResources();
+                break;
+            case 3:
+                if (blockedType == 1) Instantiate(blockedModels[Random.Range(0, 3)], gameplayObject.transform, worldPositionStays: false);
+                else if (blockedType == 2) Instantiate(blockedModels[Random.Range(3, 7)], gameplayObject.transform, worldPositionStays: false);
+                else
+                {
+                    Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0, blockedModels.Length)],
+                        gameplayObject.transform, worldPositionStays: false);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    private void AddResources()
+    {
+        switch (resourceType)
+        {
+            case 1:
+                Instantiate(resourceModelsWood[MapBoard.Instance._random.NextInt(0, resourceModelsWood.Length)],
+                    gameplayObject.transform, worldPositionStays: false);
+                break;
+            case 2:
+                Instantiate(resourceModelsStone[MapBoard.Instance._random.NextInt(0, resourceModelsStone.Length)],
                     gameplayObject.transform, worldPositionStays: false);
                 break;
             case 3:
-                Instantiate(blockedModels[MapBoard.Instance._random.NextInt(0,blockedModels.Length)], 
+                Instantiate(resourceModelsRope[MapBoard.Instance._random.NextInt(0, resourceModelsRope.Length)],
                     gameplayObject.transform, worldPositionStays: false);
                 break;
             default:
@@ -164,7 +197,7 @@ public class MapArea : MonoBehaviour
         foreach(MapArea n in neighbours)
         {
             //Debug.Log(n.state);
-            if(n.state == 5 || n.state == 6)
+            if(n.state == 5 || n.state == 6 || n.state == 7)
             {
                 return true;
             }
@@ -177,7 +210,7 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            if((type == 2 || state == 5 || state == 6) && GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints)
+            if(((type == 2 || state == 5 || state == 6 || taskIndex != 0) && GameManager.Instance.currentActionPoints > 0) || resourceType == 4)
             {
                 buttonInteract.SetActive(true);
             }
@@ -185,10 +218,9 @@ public class MapArea : MonoBehaviour
             {
                 buttonInteract.SetActive(false);
             }
-            if((((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
-                (PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst)) || 
-                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && 
-                (GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || type == 4))
+            if(((type == 1 || type == 2) && (state == 2 || state == 4) || 
+                (type == 4 && PlayerInventory.Instance.woodAmount > 0 && !PlayerInventory.Instance.fenceTrap)) && taskIndex != 3 &&
+                (GameManager.Instance.currentActionPoints > 0 || type == 4))
             {
                 buttonSetTrap.SetActive(true);
             }
@@ -196,7 +228,7 @@ public class MapArea : MonoBehaviour
             {
                 buttonSetTrap.SetActive(false);
             }
-            if (GameManager.Instance.currentActionPoints >= GameManager.Instance.maxActionPoints && type != 4)
+            if (GameManager.Instance.currentActionPoints == 0 && type != 4)
             {
                 noAPTip.SetActive(true);
             }
@@ -221,14 +253,89 @@ public class MapArea : MonoBehaviour
     }
     public void InteractButton()
     {
-        if(type == 2 && GameManager.Instance.UseActionPoint())
+        if(type == 2)
         {
-            AudioManager.Instance.PlaySound("collect");
-            PlayerInventory.Instance.CollectWood();
+            ResourceRegeneration rr = gameplayObject.GetComponentInChildren<ResourceRegeneration>();
+            switch (resourceType)
+            {
+                case 1:
+                    if(PlayerInventory.Instance.IsThereInventorySpace(1) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
+                    {
+                        AudioManager.Instance.PlaySound("collect");
+                        PlayerInventory.Instance.CollectWood();
+                        rr.StartRegeneration();
+                    }
+                    else
+                    {
+                        Debug.Log("No inventory space");
+                    }
+                    break;
+                case 2:
+                    if (PlayerInventory.Instance.IsThereInventorySpace(2) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
+                    {
+                        AudioManager.Instance.PlaySound("collect");
+                        PlayerInventory.Instance.CollectStone();
+                        rr.StartRegeneration();
+                    }
+                    else
+                    {
+                        Debug.Log("No inventory space");
+                    }
+                    break;
+                case 3:
+                    if (PlayerInventory.Instance.IsThereInventorySpace(3) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
+                    {
+                        AudioManager.Instance.PlaySound("collect");
+                        PlayerInventory.Instance.CollectRope();
+                        rr.StartRegeneration();
+                    }
+                    else
+                    {
+                        Debug.Log("No inventory space");
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         else if((state == 6 || state == 5))
         {
             Dialog.Instance.TuristInteract(this);
+        }
+        else if(taskIndex != 0)
+        {
+            switch(taskIndex)
+            {
+                case 1:
+                    gameplayObject.GetComponentInChildren<Leaves>().LeavesMiniGame(this);
+                    break;
+                case 2:
+                    if(PlayerInventory.Instance.woodAmount > 0)
+                    {
+                        gameplayObject.GetComponentInChildren<SaltCubes>().SaltCubesMiniGame(this);
+                    }
+                    break;
+                case 3:
+                    if(GameManager.Instance.UseActionPoint())
+                    {
+                        gameplayObject.GetComponentInChildren<ClearPath>().ClearPathMiniGame(this);
+                    }
+                    break;
+                case 7:
+                    if(PlayerInventory.Instance.ropeAmount > 0)
+                    {
+                        gameplayObject.GetComponentInChildren<TrailCam>().TrailCamMiniGame(this);
+                    }
+                    break;
+                default: break;
+            }
+        }
+        else if(resourceType == 4)
+        {
+            if(PlayerInventory.Instance.chickensAmount > 0)
+            {
+                PlayerInventory.Instance.CollectMeat();
+            }
         }
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
@@ -238,16 +345,31 @@ public class MapArea : MonoBehaviour
     }
     public void SetTrapButton()
     {
-        if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
-            PlayerInventory.Instance.woodAmount >= PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().buildConst && 
+        buttonsTraps.SetActive(true);
+        /*if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
+            PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild() && 
             GameManager.Instance.UseActionPoint())
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
-        else if(type == 4 && PlayerInventory.Instance.woodAmount > 0)
+        else */if(type == 4 && PlayerInventory.Instance.woodAmount > 0)
         {
             PlayerInventory.Instance.BuildHouseTrap();
+            buttonsTraps.SetActive(false);
+            buttonAction.SetActive(true);
+            PlayerControler.Instance.ButtonsAroundOff();
+            PlayerControler.Instance.ButtonsAround();
+        }    
+        buttonSetTrap.SetActive(false);            
+        buttonInteract.SetActive(false);
+    }
+    public void BuildTrapButtons(int trapType)
+    {
+        if (PlayerInventory.Instance.trapPrefab[trapType].GetComponent<Trap>().CanUBuild() && GameManager.Instance.UseActionPoint())
+        {
+            PlayerInventory.Instance.BuildTrap(trapType, this);
         }
+        buttonsTraps.SetActive(false);
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
         buttonAction.SetActive(true);

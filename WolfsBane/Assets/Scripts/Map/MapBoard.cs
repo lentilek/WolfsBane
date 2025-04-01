@@ -15,13 +15,16 @@ public class MapBoard : MonoBehaviour
     public AreaRow[] map;
 
     [HideInInspector] public List<MapArea> moduleListRegular= new List<MapArea>();
+    [HideInInspector] public List<MapArea> moduleListResource = new List<MapArea>();
+    [HideInInspector] public List<MapArea> moduleListEmpty = new List<MapArea>();
+    [HideInInspector] public List<MapArea> moduleListBlocked = new List<MapArea>();
 
     [SerializeField] private uint seed = 1;
     [HideInInspector] public Random _random;
     [HideInInspector] public List<MapArea> mapRandomBlocked = new List<MapArea>();
     [HideInInspector] public List<MapArea> mapRandomResource = new List<MapArea>();
 
-    [SerializeField] private int resourceAmount, blockedAmount;
+    [SerializeField] private int resourceWoodAmount, resourceStoneAmount, resourceRopeAmount, blockedAmount;
  
     private void Awake()
     {
@@ -37,6 +40,7 @@ public class MapBoard : MonoBehaviour
         _random = new Random(seed);
         mapRandomBlocked.Clear();
         mapRandomResource.Clear();
+        moduleListResource.Clear();
         for(int i = 0; i < map.Length; i++)
         {
             for(int j = 0; j < map.Length; j++)
@@ -58,12 +62,24 @@ public class MapBoard : MonoBehaviour
     }
     public void RandomMap()
     {
+        moduleListBlocked.Clear();
         while (blockedAmount > 0)
         {
             MapArea ma = mapRandomBlocked[_random.NextInt(0, mapRandomBlocked.Count)];
             ma.type = 3;
             ma.AreasAround();
-            ma.AddEnviro();
+            if (blockedAmount == 2) ma.AddEnviro(1);
+            else if (blockedAmount == 1) ma.AddEnviro(2);
+            else ma.AddEnviro(0);
+            moduleListBlocked.Add(ma);
+            if(ma.gameplayObject.GetComponentInChildren<RockResearch>() != null)
+            {
+                ma.gameplayObject.GetComponentInChildren<RockResearch>().module = ma;
+            }
+            if(ma.gameplayObject.GetComponentInChildren<LakeInteractions>() != null)
+            {
+                ma.gameplayObject.GetComponentInChildren<LakeInteractions>().module = ma;
+            }
             mapRandomResource.Remove(ma);
             mapRandomBlocked.Remove(ma);
             foreach(MapArea m in ma.neighbours)
@@ -72,20 +88,44 @@ public class MapBoard : MonoBehaviour
             }
             blockedAmount--;
         }
-        while(resourceAmount > 0)
+        while(resourceWoodAmount > 0)
         {
             MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
             ma.type = 2;
+            ma.resourceType = 1;
             ma.AreasAround();
-            ma.AddEnviro();
+            ma.AddEnviro(0);
             mapRandomResource.Remove(ma);
-            resourceAmount--;
+            resourceWoodAmount--;
+            moduleListResource.Add(ma);
         }
-        foreach(MapArea m in mapRandomResource)
+        while (resourceStoneAmount > 0)
+        {
+            MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
+            ma.type = 2;
+            ma.resourceType = 2;
+            ma.AreasAround();
+            ma.AddEnviro(0);
+            mapRandomResource.Remove(ma);
+            resourceStoneAmount--;
+            moduleListResource.Add(ma);
+        }
+        while (resourceRopeAmount > 0)
+        {
+            MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
+            ma.type = 2;
+            ma.resourceType = 3;
+            ma.AreasAround();
+            ma.AddEnviro(0);
+            mapRandomResource.Remove(ma);
+            resourceRopeAmount--;
+            moduleListResource.Add(ma);
+        }
+        foreach (MapArea m in mapRandomResource)
         {
             m.type = 1;
             m.AreasAround();
-            m.AddEnviro();
+            m.AddEnviro(0);
         }
         GameManager.Instance.NewDay();
     }
@@ -99,6 +139,23 @@ public class MapBoard : MonoBehaviour
                 if (map[i].moduleRow[j].type == 1)
                 {
                     moduleListRegular.Add(map[i].moduleRow[j]);
+                }
+            }
+        }
+    }
+
+    public void EmptyModuleList()
+    {
+        moduleListEmpty.Clear();
+        for (int i = 0; i < map.Length; i++)
+        {
+            for (int j = 0; j < map.Length; j++)
+            {
+                if (map[i].moduleRow[j].type == 1 && map[i].moduleRow[j].state != 0 &&
+                    map[i].moduleRow[j].state != 5 && map[i].moduleRow[j].state != 6 && 
+                    map[i].moduleRow[j].taskIndex == 0)
+                {
+                    moduleListEmpty.Add(map[i].moduleRow[j]);
                 }
             }
         }

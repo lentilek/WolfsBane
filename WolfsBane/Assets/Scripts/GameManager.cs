@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI daysCounterTXT;
     public int daysToWin;
     [HideInInspector] public int daysCounter;
+    [HideInInspector] public int turistEaten;
+    [HideInInspector] public float highestPM;
 
     [SerializeField] private Light mainLight;
     [SerializeField] private Color nightLightColor;
@@ -48,10 +50,11 @@ public class GameManager : MonoBehaviour
         }
         Time.timeScale = 1f;
         daysCounter = 0;
+        turistEaten = 0;
         gameIndicator = 0;
         maxGameIndicator = 100f;
-        currentActionPoints = 0;
-        currentAIActionPoints = 0;
+        currentActionPoints = maxActionPoints;
+        currentAIActionPoints = maxAIActionPoints;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         daysCounterTXT.text = $"Day: {daysCounter}";
@@ -68,21 +71,24 @@ public class GameManager : MonoBehaviour
         if(gameIndicator >= maxGameIndicator)
         {
             Time.timeScale = 0f;
+            HighscoreSystem.Instance.GetData();
             GameUI.Instance.gameOverScreen.SetActive(true);
+            gameIndicator = 0;
         }
     }
     public void GetCurrentFillIndicator()
     {
         float fill = gameIndicator / maxGameIndicator;
         gameIndicatorFill.fillAmount = fill;
+        if (gameIndicator > highestPM) highestPM = gameIndicator;
     }
     public bool UseActionPoint()
     {
-        if (currentActionPoints < maxActionPoints)
+        if (currentActionPoints > 0)
         {
-            currentActionPoints++;
+            currentActionPoints--;
             actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
-            if (currentActionPoints == maxActionPoints)
+            if (currentActionPoints == 0)
             {
                 nightButton.SetActive(true);
             }
@@ -92,11 +98,11 @@ public class GameManager : MonoBehaviour
     }
     public bool UseActionPointAI()
     {
-        if (currentAIActionPoints < maxAIActionPoints)
+        if (currentAIActionPoints > 0)
         {
-            currentAIActionPoints++;
+            currentAIActionPoints--;
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
-            if (currentAIActionPoints == maxAIActionPoints)
+            if (currentAIActionPoints == 0)
             {
                 //nextDayButton.SetActive(true);
                 return false;
@@ -126,7 +132,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(actionWaitTimeAI);
             if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
             if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
-        } while (currentAIActionPoints < maxAIActionPoints);
+        } while (currentAIActionPoints > 0);
         EndNightCheckIfWon();
         nextDayButton.SetActive(true);
     }
@@ -148,9 +154,11 @@ public class GameManager : MonoBehaviour
             }
             if (turist != null && UseActionPointAI())
             {
-                if (area.state == 6) area.state = 2;
+                if (area.AreThereTuristsAround()) area.state = 4;
+                else if (area.state == 6) area.state = 2;
                 else if (area.state == 5) area.state = 1;
                 gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenKilled;
+                turistEaten++;
                 if (gameIndicator > 100) gameIndicator = 100;
                 GetCurrentFillIndicator();
                 Destroy(turist);
@@ -173,6 +181,7 @@ public class GameManager : MonoBehaviour
         GameUI.Instance.Night();
         mainLight.color = nightLightColor;
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 30, 0);
+        PlayerControler.Instance.GetCurrentAIModule();
         Night();
     }
     public void EndNightCheckIfWon()
@@ -180,6 +189,7 @@ public class GameManager : MonoBehaviour
         if(daysCounter == daysToWin)
         {
             Time.timeScale = 0f;
+            HighscoreSystem.Instance.GetData();
             GameUI.Instance.winScreen.SetActive(true);
         }
     }
@@ -190,14 +200,19 @@ public class GameManager : MonoBehaviour
         daysCounter++;
         daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();
+        TaskManager.Instance.TasksDelete();
         nextDayButton.SetActive(false);
-        currentActionPoints = 0;        
-        currentAIActionPoints = 0;
+        currentActionPoints = maxActionPoints;        
+        currentAIActionPoints = maxAIActionPoints;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         PlayerControler.Instance.PlayerGoHome();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 210, 0);
         mainLight.color = Color.white;
+        foreach (MapArea ma in MapBoard.Instance.moduleListResource)
+        {
+            ma.gameplayObject.GetComponentInChildren<ResourceRegeneration>().Regenerate();
+        }
         foreach (GameObject turist in turistCamps)
         {
             if (turist.gameObject.activeSelf)
@@ -230,6 +245,7 @@ public class GameManager : MonoBehaviour
             }
             MapBoard.Instance.moduleListRegular.Remove(ma);
         }
+        TaskManager.Instance.RandomTasks();
         PlayerControler.Instance.ButtonsAround();
     }
 }

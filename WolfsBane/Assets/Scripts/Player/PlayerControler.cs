@@ -15,6 +15,7 @@ public class PlayerControler : MonoBehaviour
     public int homeColumn;
     public GameObject playerModel;
     [HideInInspector] public List<MapArea> areasToGo;
+    private int rowLastAI, columnLastAI;
     private void Awake()
     {
         if (Instance == null)
@@ -42,7 +43,7 @@ public class PlayerControler : MonoBehaviour
         {
             GameManager.Instance.nightButton.SetActive(true);
         }
-        else if(GameManager.Instance.isNight || GameManager.Instance.currentActionPoints != GameManager.Instance.maxActionPoints)
+        else if(GameManager.Instance.isNight || GameManager.Instance.currentActionPoints != 0)
         {
             GameManager.Instance.nightButton.SetActive(false);
         }
@@ -50,7 +51,7 @@ public class PlayerControler : MonoBehaviour
     public void ButtonsAround()
     {
         areasToGo.Clear();
-        if(GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || 
+        if(GameManager.Instance.currentActionPoints > 0 || 
             MapBoard.Instance.map[row].moduleRow[column].type == 4)
         {
             MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
@@ -175,7 +176,17 @@ public class PlayerControler : MonoBehaviour
                 if(module.isAvailable)areasToGo.Add(module);
             }
         }
+        if(areasToGo.Count > 1)
+        {
+            areasToGo.Remove(MapBoard.Instance.map[rowLastAI].moduleRow[columnLastAI]);
+        }
+        GetCurrentAIModule();
         CheckAreasUI();
+    }
+    public void GetCurrentAIModule()
+    {
+        rowLastAI = row;
+        columnLastAI = column;
     }
     public void CheckAreasUI()
     {
@@ -203,7 +214,7 @@ public class PlayerControler : MonoBehaviour
     private void VisibleButton(MapArea module)
     {
         if (module.isAvailable && 
-            (GameManager.Instance.currentActionPoints < GameManager.Instance.maxActionPoints || module.type == 4))
+            (GameManager.Instance.currentActionPoints > 0 || module.type == 4))
         {
             module.buttonAction.SetActive(true);
             areasToGo.Add(module);

@@ -104,12 +104,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   woodAmount: 0
+  maxWoodAmount: 15
   woodCollect: 3
   woodAmountTXT: {fileID: 0}
+  stoneAmount: 0
+  maxStoneAmount: 10
+  stoneCollect: 2
+  stoneAmountTXT: {fileID: 0}
+  ropeAmount: 0
+  maxRopeAmount: 10
+  ropeCollect: 2
+  ropeAmountTXT: {fileID: 0}
+  meatAmount: 0
+  maxMeatAmount: 6
+  chickensAmount: 9
+  meatCollect: 2
+  meatAmountTXT: {fileID: 0}
   doorTrap: 0
   fenceTrap: 0
-  trapPrefab: {fileID: 8617908825148903028, guid: e2c989282bfff7a4e93b9b18fbc70d98,
-    type: 3}
+  trapPrefab:
+  - {fileID: 8617908825148903028, guid: e2c989282bfff7a4e93b9b18fbc70d98, type: 3}
+  - {fileID: 2006878116287333632, guid: 5fbe58c7dc8006f47a40103c4a1d32af, type: 3}
+  - {fileID: 2006878116287333632, guid: d5195663c974e6d4b9086fa09146231e, type: 3}
   trapsList: []
 --- !u!114 &9222464858074414124
 MonoBehaviour:
@@ -323,21 +339,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e21ad2230cdeb340a4c8c3291ba9131, type: 2}
+      objectReference: {fileID: 2100000, guid: 6c81cd473c98c36449dbdc36a6d31e3f, type: 2}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
@@ -347,12 +363,12 @@ PrefabInstance:
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1463
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0159
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6064548876389187044, guid: 5f062c30b8a6704458d1bdba21c75512,
         type: 3}
