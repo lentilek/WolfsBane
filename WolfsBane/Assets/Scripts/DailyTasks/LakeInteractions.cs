@@ -6,11 +6,13 @@ public class LakeInteractions : MonoBehaviour
 {
     [SerializeField] private GameObject buttonMeasureWater;
     [SerializeField] private GameObject buttonTakeTrash;
+    [SerializeField] private GameObject trashModels;
     [HideInInspector] public MapArea module;
     private void Awake()
     {
         buttonMeasureWater.SetActive(false);
         buttonTakeTrash.SetActive(false);
+        trashModels.SetActive(false);
     }
     public void MeasureWater()
     {
@@ -39,6 +41,7 @@ public class LakeInteractions : MonoBehaviour
     {
         module.taskIndex = 6;
         buttonTakeTrash.SetActive(true);
+        trashModels.SetActive(true);
     }
     public void TakeTrashMiniGame()
     {
@@ -52,10 +55,12 @@ public class LakeInteractions : MonoBehaviour
     }
     public void TakeTrashDone()
     {
+        trashModels.SetActive(false);
         TaskManager.Instance.TakeTrashDone();
     }
     public void TakeTrashClear()
     {
+        trashModels.SetActive(false);
         module.taskIndex = 0;
         buttonTakeTrash.SetActive(false);
     }
