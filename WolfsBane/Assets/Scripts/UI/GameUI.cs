@@ -18,6 +18,8 @@ public class GameUI : MonoBehaviour
     public GameObject apDay;
     public GameObject apNight;
 
+    [SerializeField] private GameObject[] moonPhases;
+
     private void Awake()
     {
         if (Instance == null)
@@ -60,7 +62,14 @@ public class GameUI : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
+    public void MoonPhase()
+    {
+        foreach(GameObject go in moonPhases)
+        {
+            go.SetActive(false);
+        }
+        moonPhases[GameManager.Instance.daysCounter - 1].gameObject.SetActive(true);
+    }
     public void Day()
     {
         timeDay.SetActive(true);

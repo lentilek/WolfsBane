@@ -170,6 +170,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 GameManager.Instance.UseActionPointAI();
                 GameManager.Instance.UseActionPointAI();
+                GameManager.Instance.UseActionPointAI();
             }
             GameObject trap = trapComp.gameObject;
             if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())

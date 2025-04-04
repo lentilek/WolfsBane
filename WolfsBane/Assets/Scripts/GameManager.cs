@@ -198,6 +198,7 @@ public class GameManager : MonoBehaviour
         GameUI.Instance.Day();
         isNight = false;
         daysCounter++;
+        GameUI.Instance.MoonPhase();
         daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();
         TaskManager.Instance.TasksDelete();
