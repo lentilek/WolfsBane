@@ -10,6 +10,7 @@ public class Trap : MonoBehaviour
     public int buildCostRope;
     public int buildCostMeat;
     public int trapType; // 0 - regular, 1 - meat, 2 - big meat
+    public float chance;
 
     public void BuildCost()
     {
