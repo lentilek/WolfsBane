@@ -244,6 +244,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void ButtonHide()
     {
+        MapBoard.Instance.map[row].moduleRow[column].buttonsTraps.SetActive(false);
         MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
         MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
         MapBoard.Instance.map[row].moduleRow[column].noActionTip.SetActive(false);

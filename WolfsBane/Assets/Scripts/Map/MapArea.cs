@@ -43,6 +43,9 @@ public class MapArea : MonoBehaviour
         smellVFX.SetActive(false);
         noActionTip.SetActive(false);
         noAPTip.SetActive(false);
+        buttonsTraps.SetActive(false);
+        buttonInteract.SetActive(false);
+        buttonSetTrap.SetActive(false);
     }
     private void Update()
     {
@@ -339,6 +342,7 @@ public class MapArea : MonoBehaviour
         }
         buttonInteract.SetActive(false);
         buttonSetTrap.SetActive(false);
+        buttonsTraps.SetActive(false);
         buttonAction.SetActive(true);
         PlayerControler.Instance.ButtonsAroundOff();
         PlayerControler.Instance.ButtonsAround();
