@@ -1,17 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class HighscoreData
+[CreateAssetMenu(fileName = "New Score", menuName = "ScriptableObject/Highscores")]
+public class HighscoreSO : ScriptableObject
 {
-    private static HighscoreData _current;
-
-    public static HighscoreData Current => _current ??= new HighscoreData();
-
-    public string saveName;
-
     public string id1;
     public int days1;
     public int turistseaten1;

@@ -5,14 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
-        /*if (!(PlayerPrefs.HasKey("save") && PlayerPrefs.GetInt("save") == 1))
-        {
-            HighscoreSystem.Instance.CreateSave();
-            PlayerPrefs.SetInt("save", 1);
-            //Debug.Log(PlayerPrefs.GetInt("save"));
-        }*/
         HighscoreSystem.Instance.CreateSave();
     }
     public void StartGame()
