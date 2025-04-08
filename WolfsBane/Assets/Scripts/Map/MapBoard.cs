@@ -24,7 +24,7 @@ public class MapBoard : MonoBehaviour
     [HideInInspector] public List<MapArea> mapRandomBlocked = new List<MapArea>();
     [HideInInspector] public List<MapArea> mapRandomResource = new List<MapArea>();
 
-    [SerializeField] private int resourceWoodAmount, resourceStoneAmount, resourceRopeAmount, blockedAmount;
+    [SerializeField] private int resourceWoodAmount, resourceStoneAmount, resourceRopeAmount, blockedLakesAmount, blockedRocksAmount; // 3 lakes, 4 rocks prefabs
  
     private void Awake()
     {
@@ -63,14 +63,12 @@ public class MapBoard : MonoBehaviour
     public void RandomMap()
     {
         moduleListBlocked.Clear();
-        while (blockedAmount > 0)
+        while (blockedLakesAmount > 0)
         {
             MapArea ma = mapRandomBlocked[_random.NextInt(0, mapRandomBlocked.Count)];
             ma.type = 3;
             ma.AreasAround();
-            if (blockedAmount == 2) ma.AddEnviro(1);
-            else if (blockedAmount == 1) ma.AddEnviro(2);
-            else ma.AddEnviro(0);
+            ma.AddEnviro(1);
             moduleListBlocked.Add(ma);
             if(ma.gameplayObject.GetComponentInChildren<RockResearch>() != null)
             {
@@ -86,9 +84,32 @@ public class MapBoard : MonoBehaviour
             {
                 mapRandomBlocked.Remove(m);
             }
-            blockedAmount--;
+            blockedLakesAmount--;
         }
-        while(resourceWoodAmount > 0)
+        while (blockedRocksAmount > 0)
+        {
+            MapArea ma = mapRandomBlocked[_random.NextInt(0, mapRandomBlocked.Count)];
+            ma.type = 3;
+            ma.AreasAround();
+            ma.AddEnviro(2);
+            moduleListBlocked.Add(ma);
+            if (ma.gameplayObject.GetComponentInChildren<RockResearch>() != null)
+            {
+                ma.gameplayObject.GetComponentInChildren<RockResearch>().module = ma;
+            }
+            if (ma.gameplayObject.GetComponentInChildren<LakeInteractions>() != null)
+            {
+                ma.gameplayObject.GetComponentInChildren<LakeInteractions>().module = ma;
+            }
+            mapRandomResource.Remove(ma);
+            mapRandomBlocked.Remove(ma);
+            foreach (MapArea m in ma.neighbours)
+            {
+                mapRandomBlocked.Remove(m);
+            }
+            blockedRocksAmount--;
+        }
+        while (resourceWoodAmount > 0)
         {
             MapArea ma = mapRandomResource[_random.NextInt(0, mapRandomResource.Count)];
             ma.type = 2;
