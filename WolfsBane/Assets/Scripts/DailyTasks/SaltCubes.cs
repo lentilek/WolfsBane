@@ -12,8 +12,8 @@ public class SaltCubes : MonoBehaviour
     }
     public void SaltCubesMiniGame(MapArea area)
     {
-        PlayerInventory.Instance.woodAmount--;
-        PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+        //PlayerInventory.Instance.woodAmount--;
+        //PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
         SaltCubesFinish(area);
     }
     private void SaltCubesFinish(MapArea area)
