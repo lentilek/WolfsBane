@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class LakeInteractions : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonMeasureWater;
-    [SerializeField] private GameObject buttonTakeTrash;
+    [SerializeField] private GameObject measureWater, buttonMeasureWater;
+    [SerializeField] private GameObject takeTrash, buttonTakeTrash;
     [SerializeField] private GameObject trashModels;
     [HideInInspector] public MapArea module;
     private void Awake()
     {
-        buttonMeasureWater.SetActive(false);
-        buttonTakeTrash.SetActive(false);
+        measureWater.SetActive(false);
+        takeTrash.SetActive(false);
         trashModels.SetActive(false);
+    }
+    private void Update()
+    {
+        IsPlayerNear();
     }
     public void MeasureWater()
     {
         module.taskIndex = 5;
-        buttonMeasureWater.SetActive(true);
+        measureWater.SetActive(true);
+        buttonMeasureWater.SetActive(false);
     }
     public void MeasureWaterMiniGame()
     {
@@ -31,16 +36,19 @@ public class LakeInteractions : MonoBehaviour
     {
         MeasureWaterClear();
         TaskManager.Instance.MeasuringWaterDone();
+        PlayerControler.Instance.ButtonsAroundOff();
+        PlayerControler.Instance.ButtonsAround();
     }
     public void MeasureWaterClear()
     {
         module.taskIndex = 0;
-        buttonMeasureWater.SetActive(false);
+        measureWater.SetActive(false);
     }
     public void TakeTrash()
     {
         module.taskIndex = 6;
-        buttonTakeTrash.SetActive(true);
+        takeTrash.SetActive(true);
+        buttonTakeTrash.SetActive(false);
         trashModels.SetActive(true);
     }
     public void TakeTrashMiniGame()
@@ -57,12 +65,14 @@ public class LakeInteractions : MonoBehaviour
     {
         trashModels.SetActive(false);
         TaskManager.Instance.TakeTrashDone();
+        PlayerControler.Instance.ButtonsAroundOff();
+        PlayerControler.Instance.ButtonsAround();
     }
     public void TakeTrashClear()
     {
         trashModels.SetActive(false);
         module.taskIndex = 0;
-        buttonTakeTrash.SetActive(false);
+        takeTrash.SetActive(false);
     }
     private bool IsPlayerNear()
     {
@@ -70,9 +80,13 @@ public class LakeInteractions : MonoBehaviour
         {
             if (PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column)
             {
+                if(measureWater.activeSelf) buttonMeasureWater.SetActive(true);
+                if(takeTrash.activeSelf) buttonTakeTrash.SetActive(true);
                 return true;
             }
         }
+        buttonTakeTrash.SetActive(false);
+        buttonMeasureWater.SetActive(false);
         return false;
     }
 }

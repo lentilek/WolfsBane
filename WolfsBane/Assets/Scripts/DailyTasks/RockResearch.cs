@@ -5,16 +5,21 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class RockResearch : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonRockSample;
+    [SerializeField] private GameObject rockSample, buttonRockSample;
     [HideInInspector] public MapArea module;
     private void Awake()
     {
-        buttonRockSample.SetActive(false);
+        rockSample.SetActive(false);
+    }
+    private void Update()
+    {
+        IsPlayerNear();
     }
     public void Prepare()
     {
         module.taskIndex = 4;
-        buttonRockSample.SetActive(true);
+        rockSample.SetActive(true);
+        buttonRockSample.SetActive(false);
     }
     public void MiniGame()
     {
@@ -29,11 +34,13 @@ public class RockResearch : MonoBehaviour
     public void Done()
     {
         TaskManager.Instance.PetrograpthicResearchDone();
+        PlayerControler.Instance.ButtonsAroundOff();
+        PlayerControler.Instance.ButtonsAround();
     }
     public void Clear()
     {
         module.taskIndex = 0;
-        buttonRockSample.SetActive(false);
+        rockSample.SetActive(false);
     }
 
     private bool IsPlayerNear()
@@ -42,9 +49,11 @@ public class RockResearch : MonoBehaviour
         {
             if(PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column)
             {
+                if (rockSample.activeSelf) buttonRockSample.SetActive(true);
                 return true;
             }
         }
+        buttonRockSample.SetActive(false);
         return false;
     }
 }

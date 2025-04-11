@@ -224,6 +224,7 @@ public class PlayerControler : MonoBehaviour
     {
         for (int i = 0; i < areasToGo.Count; i++)
         {
+            areasToGo[i].InteractionsButtonsOff();
             areasToGo[i].buttonAction.SetActive(false);
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
@@ -244,9 +245,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void ButtonHide()
     {
-        MapBoard.Instance.map[row].moduleRow[column].buttonsTraps.SetActive(false);
-        MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
-        MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].InteractionsButtonsOff();
         MapBoard.Instance.map[row].moduleRow[column].noActionTip.SetActive(false);
         MapBoard.Instance.map[row].moduleRow[column].noAPTip.SetActive(false);
     }
