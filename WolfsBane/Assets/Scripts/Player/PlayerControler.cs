@@ -224,6 +224,7 @@ public class PlayerControler : MonoBehaviour
     {
         for (int i = 0; i < areasToGo.Count; i++)
         {
+            areasToGo[i].InteractionsButtonsOff();
             areasToGo[i].buttonAction.SetActive(false);
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
