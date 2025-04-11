@@ -268,7 +268,8 @@ public class PlayerInventory : MonoBehaviour
 
     IEnumerator Waiting(float time)
     {
-        if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4)
+        if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4 && 
+            MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].state == 1)
         {
             if (doorTrap)
             {
