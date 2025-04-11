@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         {
             currentActionPoints--;
             actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
+            GameUI.Instance.MoveTime();
             if (currentActionPoints == 0)
             {
                 nightButton.SetActive(true);
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
         {
             currentAIActionPoints--;
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
+            GameUI.Instance.MoveTime();
             if (currentAIActionPoints == 0)
             {
                 //nextDayButton.SetActive(true);

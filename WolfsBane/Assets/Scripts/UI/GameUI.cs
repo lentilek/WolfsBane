@@ -20,6 +20,11 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private GameObject[] moonPhases;
 
+    [SerializeField] private GameObject apTime;
+    private Vector3 startingPosition;
+    private Vector3 nightPosition;
+    [SerializeField] private float moveAmount;
+
     private void Awake()
     {
         if (Instance == null)
@@ -34,6 +39,12 @@ public class GameUI : MonoBehaviour
         gameOverScreen.SetActive(false);
         winScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        startingPosition = new Vector3(apTime.transform.position.x, apTime.transform.position.y, apTime.transform.position.z);
+    }
+    private void Start()
+    {
+        float all = GameManager.Instance.maxActionPoints + GameManager.Instance.maxAIActionPoints;
+        nightPosition = new Vector3(startingPosition.x - (moveAmount / all * GameManager.Instance.maxActionPoints), startingPosition.y, startingPosition.z);
         Day();
     }
     private void Update()
@@ -76,6 +87,12 @@ public class GameUI : MonoBehaviour
         timeNight.SetActive(false);
         apDay.SetActive(true);
         apNight.SetActive(false);
+        apTime.transform.position = startingPosition;
+    }
+    public void MoveTime()
+    {
+        float all = GameManager.Instance.maxActionPoints + GameManager.Instance.maxAIActionPoints;
+        apTime.transform.position = new Vector3(apTime.transform.position.x - (moveAmount / all), apTime.transform.position.y, apTime.transform.position.z);
     }
     public void Night()
     {        
@@ -83,6 +100,7 @@ public class GameUI : MonoBehaviour
         timeNight.SetActive(true);
         apDay.SetActive(false);
         apNight.SetActive(true);
+        apTime.transform.position = new Vector3(nightPosition.x, apTime.transform.position.y, apTime.transform.position.z);
     }
     public void UISound()
     {
