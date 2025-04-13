@@ -438,9 +438,9 @@ public class MapArea : MonoBehaviour
             Dialog.Instance.TuristInteract(this);
         }
         InteractionsButtonsOff();
-        buttonAction.SetActive(true);
+        buttonAction.SetActive(false);
         PlayerControler.Instance.ButtonsAroundOff();
-        PlayerControler.Instance.ButtonsAround();
+        //PlayerControler.Instance.ButtonsAround();
     }
     public void SetTrapButton()
     {
