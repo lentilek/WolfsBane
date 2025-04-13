@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Tutorial3Controler : MonoBehaviour
+public class Tutorial5Controls : MonoBehaviour
 {
     private int currentPart;
-    [SerializeField] private MapArea area1, area2;
-    [SerializeField] private GameObject pm, part1UI, part2UI, part3UI, part4UI, part5UI, part6UI;
+    [SerializeField] private MapArea area1, area2, area3;
+    [SerializeField] private GameObject part1UI, part2UI, part3UI, part4UI, part5UI, part6UI;
     private void Awake()
     {
         currentPart = 1;
@@ -19,21 +19,27 @@ public class Tutorial3Controler : MonoBehaviour
         part6UI.SetActive(false);
         area1.buttonAction.SetActive(false);
         area2.buttonAction.SetActive(false);
+        area3.buttonAction.SetActive(false);
     }
     private void Update()
     {
-        GameManager.Instance.nightButton.SetActive(false);
-        area1.buttonAction.SetActive(false);
+        if(currentPart != 5)
+        {
+            GameManager.Instance.nightButton.SetActive(false);
+        }
+        area2.buttonAction.SetActive(false);
+        area3.buttonAction.SetActive(false);
         if (currentPart == 1)
         {
-            PlayerInventory.Instance.woodAmount = 5;
+            PlayerInventory.Instance.woodAmount = 1;
             PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
-            PlayerInventory.Instance.stoneAmount = 1;
-            PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+            GameManager.Instance.currentActionPoints = 0;
+            GameManager.Instance.actionPointsTXT.text = $"{GameManager.Instance.currentActionPoints}/{GameManager.Instance.maxActionPoints}";
+            GameUI.Instance.NightAPImage();
         }
-        if(currentPart != 3)
+        if (!(currentPart == 3 || currentPart == 4))
         {
-            area2.buttonAction.SetActive(false);
+            area1.buttonAction.SetActive(false);
         }
     }
     public void Part1Button()
@@ -47,14 +53,12 @@ public class Tutorial3Controler : MonoBehaviour
         currentPart = 3;
         part2UI.SetActive(false);
         part3UI.SetActive(true);
-        area2.buttonAction.SetActive(true);
+        area1.buttonAction.SetActive(true);
     }
     public void Part3Button()
     {
-        pm.SetActive(true);
         part3UI.SetActive(false);
         part4UI.SetActive(true);
-        area2.buttonAction.SetActive(false);
         currentPart = 4;
     }
     public void Part4Button()
@@ -62,6 +66,7 @@ public class Tutorial3Controler : MonoBehaviour
         currentPart = 5;
         part4UI.SetActive(false);
         part5UI.SetActive(true);
+        GameManager.Instance.nightButton.SetActive(true);
     }
     public void Part5Button()
     {

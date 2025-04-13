@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Tutorial2Controler : MonoBehaviour
+public class Tutorial4Controls : MonoBehaviour
 {
     private int currentPart;
-    [SerializeField] private MapArea area;
-    [SerializeField] private GameObject dailyTasks, part1UI, part2UI, part3UI, part4UI;
-    private RockResearch rr;
+    [SerializeField] private MapArea area1, area2, area3;
+    [SerializeField] private GameObject part1UI, part2UI, part3UI, part4UI;
     private void Awake()
     {
         currentPart = 1;
@@ -16,25 +15,31 @@ public class Tutorial2Controler : MonoBehaviour
         part2UI.SetActive(false);
         part3UI.SetActive(false);
         part4UI.SetActive(false);
+        area1.buttonAction.SetActive(false);
+        area2.buttonAction.SetActive(false);
     }
     private void Update()
     {
         GameManager.Instance.nightButton.SetActive(false);
-        area.buttonAction.SetActive(false);
+        area1.buttonAction.SetActive(false);
         if (currentPart == 1)
         {
-            rr = FindObjectOfType<RockResearch>();
-            PlayerInventory.Instance.woodAmount = 3;
+            PlayerInventory.Instance.woodAmount = 5;
             PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+            PlayerInventory.Instance.stoneAmount = 1;
+            PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
         }
-        rr.module.buttonAction.SetActive(false);
         if (currentPart != 3)
         {
-            rr.rockSample.SetActive(false);
+            area2.buttonAction.SetActive(false);
+            area3.buttonAction.SetActive(false);
         }
-        else if(currentPart == 3 && PlayerInventory.Instance.stoneAmount > 0)
+        else
         {
-            Part3Button();
+            if (area2.state == 6) area2.buttonAction.SetActive(false);
+            else if (area2.state == 3) Part3Button();
+            if (area3.state == 6) area3.buttonAction.SetActive(false);
+            else if (area3.state == 3) Part3Button();
         }
     }
     public void Part1Button()
@@ -42,14 +47,14 @@ public class Tutorial2Controler : MonoBehaviour
         currentPart = 2;
         part1UI.SetActive(false);
         part2UI.SetActive(true);
-        dailyTasks.SetActive(true);
     }
     public void Part2Button()
     {
+        currentPart = 3;
         part2UI.SetActive(false);
         part3UI.SetActive(true);
-        currentPart = 3;
-        rr.rockSample.SetActive(true);
+        if(area2.state != 6) area2.buttonAction.SetActive(true);
+        if(area3.state != 6) area3.buttonAction.SetActive(true);
     }
     public void Part3Button()
     {

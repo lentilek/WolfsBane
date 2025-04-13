@@ -100,6 +100,10 @@ public class GameUI : MonoBehaviour
         timeNight.SetActive(true);
         apDay.SetActive(false);
         apNight.SetActive(true);
+        NightAPImage();
+    }
+    public void NightAPImage()
+    {
         apTime.transform.position = new Vector3(nightPosition.x, apTime.transform.position.y, apTime.transform.position.z);
     }
     public void UISound()

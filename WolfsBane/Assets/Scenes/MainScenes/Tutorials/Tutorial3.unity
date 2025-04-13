@@ -12801,6 +12801,11 @@ PrefabInstance:
       propertyPath: cvCamera
       value: 
       objectReference: {fileID: 1091727822}
+    - target: {fileID: 3764533287510498696, guid: 2b37c4969cd82bb45a57a7283a760f82,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3850422980824941364, guid: 2b37c4969cd82bb45a57a7283a760f82,
         type: 3}
       propertyPath: m_Name
@@ -12853,7 +12858,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3862251307168765649}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a9bbadf5c1d247409bed9437e758a65, type: 3}
   m_Name: 

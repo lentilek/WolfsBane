@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public float actionWaitTimeAI = 1f;
     [HideInInspector] public int currentAIActionPoints;
     [HideInInspector] public int currentActionPoints;
-    [SerializeField] private TextMeshProUGUI actionPointsTXT;
+    public TextMeshProUGUI actionPointsTXT;
     [SerializeField] private TextMeshProUGUI actionPointsAITXT;
     [SerializeField] public GameObject nightButton;
     [SerializeField] private GameObject nextDayButton;
