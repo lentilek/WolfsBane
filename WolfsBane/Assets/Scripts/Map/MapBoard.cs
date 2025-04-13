@@ -41,7 +41,7 @@ public class MapBoard : MonoBehaviour
         mapRandomBlocked.Clear();
         mapRandomResource.Clear();
         moduleListResource.Clear();
-        for(int i = 0; i < map.Length; i++)
+        for (int i = 0; i < map.Length; i++)
         {
             for(int j = 0; j < map.Length; j++)
             {

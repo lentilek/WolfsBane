@@ -13,12 +13,14 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
+    public void LoadTutorial(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
     public void QuitGame()
     {
         Application.Quit();
     }
-
     public void UISound()
     {
         AudioManager.Instance.PlaySound("uiSound");

@@ -51,7 +51,7 @@ public class PlayerControler : MonoBehaviour
     public void ButtonsAround()
     {
         areasToGo.Clear();
-        if(GameManager.Instance.currentActionPoints > 0 || 
+        if (GameManager.Instance.currentActionPoints > 0 || 
             MapBoard.Instance.map[row].moduleRow[column].type == 4)
         {
             MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
