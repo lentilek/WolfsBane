@@ -5,7 +5,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class RockResearch : MonoBehaviour
 {
-    [SerializeField] private GameObject rockSample, buttonRockSample;
+    [SerializeField] public GameObject rockSample, buttonRockSample;
     [HideInInspector] public MapArea module;
     private void Awake()
     {

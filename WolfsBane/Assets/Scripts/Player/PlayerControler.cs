@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class PlayerControler : MonoBehaviour
     }
     private void Update()
     {
-        if (MapBoard.Instance.map[row].moduleRow[column].type == 4 && !GameManager.Instance.isNight)
+        if (MapBoard.Instance.map[row].moduleRow[column].type == 4 && !GameManager.Instance.isNight 
+            && SceneManager.GetActiveScene().buildIndex == 1)
         {
             GameManager.Instance.nightButton.SetActive(true);
         }

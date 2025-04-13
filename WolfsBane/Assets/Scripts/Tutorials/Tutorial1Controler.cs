@@ -21,6 +21,7 @@ public class Tutorial1Controler : MonoBehaviour
     }
     private void Update()
     {
+        GameManager.Instance.nightButton.SetActive(false);
         if(currentPart == 2 || currentPart == 3)
         {
             area2.buttonAction.SetActive(false);
