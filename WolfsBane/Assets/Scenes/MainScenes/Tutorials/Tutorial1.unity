@@ -1114,6 +1114,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1760443433}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1760443435 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6517851811081436521, guid: 8f6c9d83858cd9d4a979a0d49fe03e51,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760443433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0267f42fa2952754781ab7aeb98350fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1800404006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2112927235323275390, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
@@ -1612,6 +1624,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
+      objectReference: {fileID: 1760443435}
+    - target: {fileID: 660341320353810078, guid: c6329ee7a93a9f04eb68327b64dfcd35,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Part2Button
       objectReference: {fileID: 0}
     - target: {fileID: 1136378864512012627, guid: c6329ee7a93a9f04eb68327b64dfcd35,
         type: 3}
@@ -1622,11 +1639,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
+      objectReference: {fileID: 1760443435}
+    - target: {fileID: 1480654262124213384, guid: c6329ee7a93a9f04eb68327b64dfcd35,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Part3Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361162818913930519, guid: c6329ee7a93a9f04eb68327b64dfcd35,
+        type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361162818913930519, guid: c6329ee7a93a9f04eb68327b64dfcd35,
+        type: 3}
+      propertyPath: resourceType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162155418615040777, guid: c6329ee7a93a9f04eb68327b64dfcd35,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
+      objectReference: {fileID: 1760443435}
+    - target: {fileID: 5162155418615040777, guid: c6329ee7a93a9f04eb68327b64dfcd35,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Part2Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512536103106713442, guid: c6329ee7a93a9f04eb68327b64dfcd35,
+        type: 3}
+      propertyPath: resourceWoodAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8735679541082663872, guid: c6329ee7a93a9f04eb68327b64dfcd35,
         type: 3}

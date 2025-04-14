@@ -78,7 +78,7 @@ public class LakeInteractions : MonoBehaviour
     {
         foreach (MapArea ma in module.neighbours)
         {
-            if (PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column)
+            if (PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column && !GameManager.Instance.isNight)
             {
                 if(measureWater.activeSelf) buttonMeasureWater.SetActive(true);
                 if(takeTrash.activeSelf) buttonTakeTrash.SetActive(true);

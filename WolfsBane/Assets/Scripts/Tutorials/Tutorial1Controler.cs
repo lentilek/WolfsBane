@@ -11,37 +11,33 @@ public class Tutorial1Controler : MonoBehaviour
     private void Start()
     {
         currentPart = 1;
-        foreach(AreaRow ar in MapBoard.Instance.map)
-        {
-            foreach(MapArea ma in ar.moduleRow)
-            {
-                ma.buttonAction.SetActive(false);
-            }
-        }
+        backpack.SetActive(false);
+        part2UI.SetActive(false);
+        part3UI.SetActive(false);
+        part4UI.SetActive(false);
     }
     private void Update()
     {
         GameManager.Instance.nightButton.SetActive(false);
-        if(currentPart == 2 || currentPart == 3)
+        area2.buttonAction.SetActive(false);
+        if(currentPart == 1 || currentPart == 4)
         {
-            area2.buttonAction.SetActive(false);
             area1.state = 1;
-        }
-        else if(currentPart == 4)
-        {
             area1.buttonAction.SetActive(false);
-            area2.buttonAction.SetActive(false);
+        }
+        else
+        {
+            //area1.buttonAction.SetActive(true);
         }
     }
     public void Part1Button()
     {
         area1.buttonAction.SetActive(true);
-        area2.buttonAction.SetActive(false);
+        part2UI.SetActive(true);
         currentPart = 2;
     }
     public void Part2Button()
     {
-        area2.buttonAction.SetActive(false);
         backpack.SetActive(true);
         currentPart = 3;
         part3UI.SetActive(true);
@@ -50,7 +46,6 @@ public class Tutorial1Controler : MonoBehaviour
     public void Part3Button()
     {
         area1.buttonAction.SetActive(false);
-        area2.buttonAction.SetActive(false);
         currentPart = 4;
         part3UI.SetActive(false);
         part4UI.SetActive(true);

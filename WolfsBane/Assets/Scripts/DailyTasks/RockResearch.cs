@@ -47,7 +47,7 @@ public class RockResearch : MonoBehaviour
     {
         foreach(MapArea ma in module.neighbours)
         {
-            if(PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column)
+            if(PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column && !GameManager.Instance.isNight)
             {
                 if (rockSample.activeSelf) buttonRockSample.SetActive(true);
                 return true;

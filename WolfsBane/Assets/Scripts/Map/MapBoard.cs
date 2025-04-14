@@ -43,11 +43,11 @@ public class MapBoard : MonoBehaviour
         moduleListResource.Clear();
         for (int i = 0; i < map.Length; i++)
         {
-            for(int j = 0; j < map.Length; j++)
+            for(int j = 0; j < map[i].moduleRow.Length; j++)
             {
                 map[i].moduleRow[j].row = i;
                 map[i].moduleRow[j].column = j;
-                if (map[i].moduleRow[j].type != 0 && map[i].moduleRow[j].type != 4)
+                if (map[i].moduleRow[j].type == 1)
                 {
                     mapRandomBlocked.Add(map[i].moduleRow[j]);
                     mapRandomResource.Add(map[i].moduleRow[j]);
@@ -62,6 +62,17 @@ public class MapBoard : MonoBehaviour
     }
     public void RandomMap()
     {
+        for (int i = 0; i < map.Length; i++)
+        {
+            for (int j = 0; j < map[i].moduleRow.Length; j++)
+            {
+                if (map[i].moduleRow[j].type != 1)
+                {
+                    map[i].moduleRow[j].AddEnviro(2);
+                    map[i].moduleRow[j].AreasAround();
+                }
+            }
+        }
         moduleListBlocked.Clear();
         while (blockedLakesAmount > 0)
         {

@@ -104,11 +104,11 @@ public class GameManager : MonoBehaviour
             currentAIActionPoints--;
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
             GameUI.Instance.MoveTime();
-            if (currentAIActionPoints == 0)
+            /*if (currentAIActionPoints == 0)
             {
                 //nextDayButton.SetActive(true);
                 return false;
-            }
+            }*/
             return true;
         }
         return false;
@@ -165,8 +165,10 @@ public class GameManager : MonoBehaviour
                 GetCurrentFillIndicator();
                 Destroy(turist);
                 turistCamps.Remove(turist);
+                //Debug.Log(area.neighbours.Count);
                 foreach (MapArea n in area.neighbours)
                 {
+                    //Debug.Log(n.AreThereTuristsAround());
                     if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
                     else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
@@ -185,6 +187,10 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 30, 0);
         PlayerControler.Instance.GetCurrentAIModule();
         Night();
+    }
+    public void Light()
+    {
+        mainLight.color = nightLightColor;
     }
     public void EndNightCheckIfWon()
     {

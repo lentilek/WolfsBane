@@ -144,7 +144,7 @@ public class MapArea : MonoBehaviour
             MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];
             neighbours.Add(module);
         }
-        if ((column + 1) < MapBoard.Instance.map.Length)
+        if ((column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
         {
             MapArea module = MapBoard.Instance.map[row].moduleRow[column + 1];
             neighbours.Add(module);
@@ -156,7 +156,7 @@ public class MapArea : MonoBehaviour
                 MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column];
                 neighbours.Add(module);
             }
-            if ((row - 1) >= 0 && (column + 1) < MapBoard.Instance.map.Length)
+            if ((row - 1) >= 0 && (column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
             {
                 MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column + 1];
                 neighbours.Add(module);
@@ -166,7 +166,7 @@ public class MapArea : MonoBehaviour
                 MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column];
                 neighbours.Add(module);
             }
-            if ((row + 1) < MapBoard.Instance.map.Length && (column + 1) < MapBoard.Instance.map.Length)
+            if ((row + 1) < MapBoard.Instance.map.Length && (column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
             {
                 MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column + 1];
                 neighbours.Add(module);
