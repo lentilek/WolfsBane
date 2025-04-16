@@ -582,10 +582,11 @@ MonoBehaviour:
     state: 0
   mapRandomBlocked: []
   mapRandomResource: []
-  resourceWoodAmount: 4
+  resourceWoodAmount: 8
   resourceStoneAmount: 3
   resourceRopeAmount: 3
-  blockedAmount: 8
+  blockedLakesAmount: 5
+  blockedRocksAmount: 4
 --- !u!1 &6599066658917534674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,6 +3016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: type
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794632490749764319, guid: e33efe0c64045f04a8f37e69db9c482b,
+        type: 3}
+      propertyPath: state
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6794632490749764319, guid: e33efe0c64045f04a8f37e69db9c482b,
         type: 3}
@@ -9984,6 +9990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Area
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649451612669581306, guid: e33efe0c64045f04a8f37e69db9c482b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

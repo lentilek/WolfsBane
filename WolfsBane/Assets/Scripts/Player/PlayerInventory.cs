@@ -139,6 +139,10 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+        else if(trapType == 5)
+        {
+            return;
+        }
         else if(ma.state == 2)
         {
             ma.state = 1;
@@ -157,6 +161,16 @@ public class PlayerInventory : MonoBehaviour
         Trap trapComp = ma.gameplayObject.GetComponentInChildren<Trap>();
         if (trapComp != null)
         {
+            if (trapComp.trapType == 3)
+            {
+                if (Random.Range(0, 100) < trapComp.chance) GameManager.Instance.UseActionPointAI();
+            }
+            else if (trapComp.trapType == 4) GameManager.Instance.UseActionPointAI();
+            else if(trapComp.trapType == 5)
+            {
+                GameManager.Instance.UseActionPointAI();
+                GameManager.Instance.UseActionPointAI();
+            }
             GameObject trap = trapComp.gameObject;
             if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())
             {
@@ -253,7 +267,8 @@ public class PlayerInventory : MonoBehaviour
 
     IEnumerator Waiting(float time)
     {
-        if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4)
+        if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4 && 
+            MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].state == 1)
         {
             if (doorTrap)
             {

@@ -19,9 +19,10 @@ public class MapArea : MonoBehaviour
     public GameObject buttonAction;
     public GameObject buttonGo;
     public GameObject buttonDiscover;
-    public GameObject buttonInteract;
-    public GameObject buttonSetTrap;
+    public GameObject interactionsBase, interactionsMap, interactionsImage;
+    public GameObject buttonSetTrap, buttonTalk, buttonResource, buttonTask;
     public GameObject buttonsTraps;
+    public GameObject buttonBarricade, buttonCollectMeat;
     [HideInInspector] public int row;
     [HideInInspector] public int column;
     [HideInInspector] public List<MapArea> neighbours;
@@ -43,6 +44,7 @@ public class MapArea : MonoBehaviour
         smellVFX.SetActive(false);
         noActionTip.SetActive(false);
         noAPTip.SetActive(false);
+        InteractionsButtonsOff();
     }
     private void Update()
     {
@@ -53,6 +55,19 @@ public class MapArea : MonoBehaviour
         {
             smellVFX.SetActive(false);
         }
+    }
+    public void InteractionsButtonsOff()
+    {
+        buttonBarricade.SetActive(false);
+        buttonCollectMeat.SetActive(false);
+        buttonSetTrap.SetActive(false);
+        buttonTalk.SetActive(false);
+        buttonTask.SetActive(false);
+        buttonsTraps.SetActive(false);
+        buttonResource.SetActive(false);
+        interactionsBase.SetActive(false);
+        interactionsMap.SetActive(false);
+        interactionsImage.SetActive(false);
     }
     public void AddEnviro(int blockedType)
     {
@@ -129,7 +144,7 @@ public class MapArea : MonoBehaviour
             MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];
             neighbours.Add(module);
         }
-        if ((column + 1) < MapBoard.Instance.map.Length)
+        if ((column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
         {
             MapArea module = MapBoard.Instance.map[row].moduleRow[column + 1];
             neighbours.Add(module);
@@ -141,7 +156,7 @@ public class MapArea : MonoBehaviour
                 MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column];
                 neighbours.Add(module);
             }
-            if ((row - 1) >= 0 && (column + 1) < MapBoard.Instance.map.Length)
+            if ((row - 1) >= 0 && (column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
             {
                 MapArea module = MapBoard.Instance.map[row - 1].moduleRow[column + 1];
                 neighbours.Add(module);
@@ -151,7 +166,7 @@ public class MapArea : MonoBehaviour
                 MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column];
                 neighbours.Add(module);
             }
-            if ((row + 1) < MapBoard.Instance.map.Length && (column + 1) < MapBoard.Instance.map.Length)
+            if ((row + 1) < MapBoard.Instance.map.Length && (column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
             {
                 MapArea module = MapBoard.Instance.map[row + 1].moduleRow[column + 1];
                 neighbours.Add(module);
@@ -210,7 +225,7 @@ public class MapArea : MonoBehaviour
         buttonAction.SetActive(false);
         if(PlayerControler.Instance.row == row && PlayerControler.Instance.column == column)
         {
-            if(((type == 2 || state == 5 || state == 6 || taskIndex != 0) && GameManager.Instance.currentActionPoints > 0) || resourceType == 4)
+            /*if(((type == 2 || state == 5 || state == 6 || taskIndex != 0) && GameManager.Instance.currentActionPoints > 0) || resourceType == 4)
             {
                 buttonInteract.SetActive(true);
             }
@@ -227,12 +242,21 @@ public class MapArea : MonoBehaviour
             else
             {
                 buttonSetTrap.SetActive(false);
+            }*/
+            if(type == 4)
+            {
+                interactionsBase.SetActive(true);
+                interactionsMap.SetActive(false);
+            }else if ((type == 1 || type == 2) && GameManager.Instance.currentActionPoints > 0)
+            {
+                interactionsBase.SetActive(false);
+                interactionsMap.SetActive(true);
             }
             if (GameManager.Instance.currentActionPoints == 0 && type != 4)
             {
                 noAPTip.SetActive(true);
             }
-            else if (!buttonInteract.activeSelf && !buttonSetTrap.activeSelf)
+            else if (!interactionsMap.activeSelf && !interactionsBase.activeSelf && !interactionsImage.activeSelf && !buttonsTraps.activeSelf)
             {
                 noAPTip.SetActive(false);
                 noActionTip.SetActive(true);
@@ -251,15 +275,82 @@ public class MapArea : MonoBehaviour
             buttonDiscover.SetActive(true);
         }
     }
-    public void InteractButton()
+    public void InteractionsBase()
     {
-        if(type == 2)
+        buttonBarricade.SetActive(true);
+        if (type == 4 && PlayerInventory.Instance.woodAmount > 0 && state == 1)
+        {
+            buttonBarricade.GetComponent<ActionButtonManager>().ActionPossible();
+        }
+        else
+        {
+            buttonBarricade.GetComponent<ActionButtonManager>().ActionNotPossible();
+        }
+        buttonCollectMeat.SetActive(true);
+        if (resourceType == 4 && PlayerInventory.Instance.chickensAmount > 0 && PlayerInventory.Instance.IsThereInventorySpace(4))
+        {
+            buttonCollectMeat.GetComponent<ActionButtonManager>().ActionPossible();
+        }
+        else
+        {
+            buttonCollectMeat.GetComponent<ActionButtonManager>().ActionNotPossible();
+        }        
+        interactionsBase.SetActive(false);
+        interactionsImage.SetActive(true);
+    }
+    public void InteractionsMap()
+    {
+        buttonResource.SetActive(true);
+        if (type == 2 && PlayerInventory.Instance.IsThereInventorySpace(resourceType) && 
+            gameplayObject.GetComponentInChildren<ResourceRegeneration>().roundsToRegenerateLeft == 0 )
+        {
+            buttonResource.GetComponent<ActionButtonManager>().ActionPossible();
+            buttonResource.GetComponent<MultiTooltipManager>().TipOn(resourceType);
+        }
+        else
+        {
+            buttonResource.GetComponent<ActionButtonManager>().ActionNotPossible();
+        }
+        buttonSetTrap.SetActive(true);
+        if ((type == 1 || type == 2) && (state == 2 || state == 4) && taskIndex != 3)
+        {
+            buttonSetTrap.GetComponent<ActionButtonManager>().ActionPossible();
+        }
+        else
+        {
+            buttonSetTrap.GetComponent<ActionButtonManager>().ActionNotPossible();
+        }
+        buttonTalk.SetActive(true);
+        if (state == 6 || state == 5)
+        {
+            buttonTalk.GetComponent<ActionButtonManager>().ActionPossible();
+        }
+        else
+        {
+            buttonTalk.GetComponent<ActionButtonManager>().ActionNotPossible();
+        }
+        buttonTask.SetActive(true);
+        if (taskIndex != 0)
+        {
+            buttonTask.GetComponent<ActionButtonManager>().ActionPossible();
+            buttonTask.GetComponent<MultiTooltipManager>().TipOn(taskIndex);
+        }
+        else
+        {
+            buttonTask.GetComponent<ActionButtonManager>().ActionNotPossible();
+        }
+        interactionsMap.SetActive(false);
+        interactionsImage.SetActive(true);
+    }
+    public void CollectResourceButton()
+    {
+        if (type == 2)
         {
             ResourceRegeneration rr = gameplayObject.GetComponentInChildren<ResourceRegeneration>();
             switch (resourceType)
             {
                 case 1:
-                    if(PlayerInventory.Instance.IsThereInventorySpace(1) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
+                    if (PlayerInventory.Instance.IsThereInventorySpace(1) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
                         AudioManager.Instance.PlaySound("collect");
                         PlayerInventory.Instance.CollectWood();
@@ -298,11 +389,22 @@ public class MapArea : MonoBehaviour
                     break;
             }
         }
-        else if((state == 6 || state == 5))
+        else if (resourceType == 4)
         {
-            Dialog.Instance.TuristInteract(this);
+            if (PlayerInventory.Instance.chickensAmount > 0 && PlayerInventory.Instance.IsThereInventorySpace(4))
+            {
+                AudioManager.Instance.PlaySound("collect");
+                PlayerInventory.Instance.CollectMeat();
+            }
         }
-        else if(taskIndex != 0)
+        InteractionsButtonsOff();
+        buttonAction.SetActive(true);
+        PlayerControler.Instance.ButtonsAroundOff();
+        PlayerControler.Instance.ButtonsAround();
+    }
+    public void TaskButton()
+    {
+        if(taskIndex != 0)
         {
             switch(taskIndex)
             {
@@ -310,10 +412,7 @@ public class MapArea : MonoBehaviour
                     gameplayObject.GetComponentInChildren<Leaves>().LeavesMiniGame(this);
                     break;
                 case 2:
-                    if(PlayerInventory.Instance.woodAmount > 0)
-                    {
-                        gameplayObject.GetComponentInChildren<SaltCubes>().SaltCubesMiniGame(this);
-                    }
+                    gameplayObject.GetComponentInChildren<SaltCubes>().SaltCubesMiniGame(this);
                     break;
                 case 3:
                     if(GameManager.Instance.UseActionPoint())
@@ -322,29 +421,30 @@ public class MapArea : MonoBehaviour
                     }
                     break;
                 case 7:
-                    if(PlayerInventory.Instance.ropeAmount > 0)
-                    {
-                        gameplayObject.GetComponentInChildren<TrailCam>().TrailCamMiniGame(this);
-                    }
+                    gameplayObject.GetComponentInChildren<TrailCam>().TrailCamMiniGame(this);
                     break;
                 default: break;
             }
         }
-        else if(resourceType == 4)
-        {
-            if(PlayerInventory.Instance.chickensAmount > 0)
-            {
-                PlayerInventory.Instance.CollectMeat();
-            }
-        }
-        buttonInteract.SetActive(false);
-        buttonSetTrap.SetActive(false);
+        InteractionsButtonsOff();
         buttonAction.SetActive(true);
         PlayerControler.Instance.ButtonsAroundOff();
         PlayerControler.Instance.ButtonsAround();
     }
+    public void TalkButton()
+    {
+        if((state == 6 || state == 5))
+        {
+            Dialog.Instance.TuristInteract(this);
+        }
+        InteractionsButtonsOff();
+        buttonAction.SetActive(false);
+        PlayerControler.Instance.ButtonsAroundOff();
+        //PlayerControler.Instance.ButtonsAround();
+    }
     public void SetTrapButton()
     {
+        InteractionsButtonsOff();
         buttonsTraps.SetActive(true);
         /*if((type == 1 || type == 2) && (state == 2 || state == 4 || state == 6) && 
             PlayerInventory.Instance.trapPrefab.GetComponent<Trap>().CanUBuild() && 
@@ -352,16 +452,18 @@ public class MapArea : MonoBehaviour
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
-        else */if(type == 4 && PlayerInventory.Instance.woodAmount > 0)
+        else */if(type == 4 && PlayerInventory.Instance.woodAmount > 0 && state == 1)
         {
             PlayerInventory.Instance.BuildHouseTrap();
             buttonsTraps.SetActive(false);
             buttonAction.SetActive(true);
             PlayerControler.Instance.ButtonsAroundOff();
             PlayerControler.Instance.ButtonsAround();
-        }    
-        buttonSetTrap.SetActive(false);            
-        buttonInteract.SetActive(false);
+        }
+        else
+        {
+            buttonsTraps.GetComponent<TrapsButtonsManager>().AllButtonsStates();
+        }
     }
     public void BuildTrapButtons(int trapType)
     {
@@ -369,9 +471,7 @@ public class MapArea : MonoBehaviour
         {
             PlayerInventory.Instance.BuildTrap(trapType, this);
         }
-        buttonsTraps.SetActive(false);
-        buttonInteract.SetActive(false);
-        buttonSetTrap.SetActive(false);
+        InteractionsButtonsOff();
         buttonAction.SetActive(true);
         PlayerControler.Instance.ButtonsAroundOff();
         PlayerControler.Instance.ButtonsAround();

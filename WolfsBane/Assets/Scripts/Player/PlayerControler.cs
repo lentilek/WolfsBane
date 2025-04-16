@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControler : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class PlayerControler : MonoBehaviour
     }
     private void Update()
     {
-        if (MapBoard.Instance.map[row].moduleRow[column].type == 4 && !GameManager.Instance.isNight)
+        if (MapBoard.Instance.map[row].moduleRow[column].type == 4 && !GameManager.Instance.isNight 
+            && SceneManager.GetActiveScene().buildIndex == 1)
         {
             GameManager.Instance.nightButton.SetActive(true);
         }
@@ -51,7 +53,7 @@ public class PlayerControler : MonoBehaviour
     public void ButtonsAround()
     {
         areasToGo.Clear();
-        if(GameManager.Instance.currentActionPoints > 0 || 
+        if (GameManager.Instance.currentActionPoints > 0 || 
             MapBoard.Instance.map[row].moduleRow[column].type == 4)
         {
             MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
@@ -224,6 +226,7 @@ public class PlayerControler : MonoBehaviour
     {
         for (int i = 0; i < areasToGo.Count; i++)
         {
+            areasToGo[i].InteractionsButtonsOff();
             areasToGo[i].buttonAction.SetActive(false);
             areasToGo[i].buttonDiscover.SetActive(false);
             areasToGo[i].buttonGo.SetActive(false);
@@ -244,8 +247,7 @@ public class PlayerControler : MonoBehaviour
     }
     public void ButtonHide()
     {
-        MapBoard.Instance.map[row].moduleRow[column].buttonInteract.SetActive(false);
-        MapBoard.Instance.map[row].moduleRow[column].buttonSetTrap.SetActive(false);
+        MapBoard.Instance.map[row].moduleRow[column].InteractionsButtonsOff();
         MapBoard.Instance.map[row].moduleRow[column].noActionTip.SetActive(false);
         MapBoard.Instance.map[row].moduleRow[column].noAPTip.SetActive(false);
     }

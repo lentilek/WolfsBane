@@ -44,8 +44,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db01543cbf3bb44b88d7c93c45c6f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    playerId: []
-    days: 
-    turistsEaten: 
-    panicMeter: []
+  saveData:
+    saveName: 
+    id1: 
+    days1: 0
+    turistseaten1: 0
+    panicmeter1: 0
+    id2: 
+    days2: 0
+    turistseaten2: 0
+    panicmeter2: 0
+    id3: 
+    days3: 0
+    turistseaten3: 0
+    panicmeter3: 0
+    id4: 
+    days4: 0
+    turistseaten4: 0
+    panicmeter4: 0
+    id5: 
+    days5: 0
+    turistseaten5: 0
+    panicmeter5: 0
+  data: {fileID: 11400000, guid: 7d1562ea898c6e7499bd6892ad7c5df8, type: 2}
+  saveName: Highscore

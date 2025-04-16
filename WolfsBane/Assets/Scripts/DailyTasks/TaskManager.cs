@@ -6,6 +6,8 @@ public class TaskManager : MonoBehaviour
 {
     public static TaskManager Instance;
 
+    [SerializeField] private bool tutorial = false;
+
     public List<DailyTaskSO> allTasksListResource = new List<DailyTaskSO>();
     public List<DailyTaskSO> allTasksListRegular = new List<DailyTaskSO>();
     private List<DailyTaskSO> randomTasksList = new List<DailyTaskSO>();
@@ -70,17 +72,24 @@ public class TaskManager : MonoBehaviour
         {
             randomTasksList.Add(task);
         }
-        int index = Random.Range(0, allTasksListResource.Count);
-        todayTasksList.Add(allTasksListResource[index]);
-        randomTasksList.Remove(allTasksListResource[index]);
+        if (tutorial)
+        {
+            todayTasksList.Add(allTasksListResource[0]);
+        }
+        else
+        {
+            int index = Random.Range(0, allTasksListResource.Count);
+            todayTasksList.Add(allTasksListResource[index]);
+            randomTasksList.Remove(allTasksListResource[index]);
 
-        index = Random.Range(0, allTasksListRegular.Count);
-        todayTasksList.Add(allTasksListRegular[index]);
-        randomTasksList.Remove(allTasksListRegular[index]);
+            index = Random.Range(0, allTasksListRegular.Count);
+            todayTasksList.Add(allTasksListRegular[index]);
+            randomTasksList.Remove(allTasksListRegular[index]);
 
-        index = Random.Range(0, randomTasksList.Count);
-        todayTasksList.Add(randomTasksList[index]);
+            index = Random.Range(0, randomTasksList.Count);
+            todayTasksList.Add(randomTasksList[index]);
 
+        }
         currentTaskRewards.Clear();
         currentTaskRewards.Add(regularTaskRewards[Random.Range(0, regularTaskRewards.Count)]);
         currentTaskRewards.Add(regularTaskRewards[Random.Range(0, regularTaskRewards.Count)]);

@@ -14,8 +14,8 @@ public class TrailCam : MonoBehaviour
     }
     public void TrailCamMiniGame(MapArea area)
     {
-        PlayerInventory.Instance.ropeAmount--;
-        PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+        //PlayerInventory.Instance.ropeAmount--;
+        //PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
         TrailCamFinish(area);
     }
     private void TrailCamFinish(MapArea area)

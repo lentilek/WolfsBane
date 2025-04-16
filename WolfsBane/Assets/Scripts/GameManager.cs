@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public float actionWaitTimeAI = 1f;
     [HideInInspector] public int currentAIActionPoints;
     [HideInInspector] public int currentActionPoints;
-    [SerializeField] private TextMeshProUGUI actionPointsTXT;
+    public TextMeshProUGUI actionPointsTXT;
     [SerializeField] private TextMeshProUGUI actionPointsAITXT;
     [SerializeField] public GameObject nightButton;
     [SerializeField] private GameObject nextDayButton;
@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         {
             currentActionPoints--;
             actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
+            GameUI.Instance.MoveTime();
             if (currentActionPoints == 0)
             {
                 nightButton.SetActive(true);
@@ -102,11 +103,12 @@ public class GameManager : MonoBehaviour
         {
             currentAIActionPoints--;
             actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
-            if (currentAIActionPoints == 0)
+            GameUI.Instance.MoveTime();
+            /*if (currentAIActionPoints == 0)
             {
                 //nextDayButton.SetActive(true);
                 return false;
-            }
+            }*/
             return true;
         }
         return false;
@@ -163,8 +165,10 @@ public class GameManager : MonoBehaviour
                 GetCurrentFillIndicator();
                 Destroy(turist);
                 turistCamps.Remove(turist);
+                //Debug.Log(area.neighbours.Count);
                 foreach (MapArea n in area.neighbours)
                 {
+                    //Debug.Log(n.AreThereTuristsAround());
                     if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
                     else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
@@ -184,6 +188,10 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.GetCurrentAIModule();
         Night();
     }
+    public void Light()
+    {
+        mainLight.color = nightLightColor;
+    }
     public void EndNightCheckIfWon()
     {
         if(daysCounter == daysToWin)
@@ -198,6 +206,7 @@ public class GameManager : MonoBehaviour
         GameUI.Instance.Day();
         isNight = false;
         daysCounter++;
+        GameUI.Instance.MoonPhase();
         daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();
         TaskManager.Instance.TasksDelete();
