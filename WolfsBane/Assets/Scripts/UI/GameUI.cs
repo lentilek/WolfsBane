@@ -20,7 +20,8 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private GameObject[] moonPhases;
 
-    [SerializeField] private GameObject apTime;
+    [SerializeField] private GameObject apTime, apTimeEnd;
+    private RectTransform apTimeTrans, apTimeEndTrans;
     private Vector3 startingPosition;
     private Vector3 nightPosition;
     [SerializeField] private float moveAmount;
@@ -40,15 +41,16 @@ public class GameUI : MonoBehaviour
         gameOverScreen.SetActive(false);
         winScreen.SetActive(false);
         pauseScreen.SetActive(false);
-        //Debug.Log(apTime.transform.position);
-        startingPosition = new Vector3(apTime.transform.position.x, apTime.transform.position.y, apTime.transform.position.z);
-        //Debug.Log(startingPosition);
+        apTimeTrans = apTime.GetComponent<RectTransform>();
+        apTimeEndTrans = apTimeEnd.GetComponent<RectTransform>();
+
     }
     private void Start()
-    {
+    {        
+        startingPosition = new Vector3(apTimeTrans.transform.position.x, apTimeTrans.transform.position.y, apTimeTrans.transform.position.z);
+        moveAmount = apTimeTrans.transform.position.x - apTimeEndTrans.transform.position.x;
         float all = GameManager.Instance.maxActionPoints + GameManager.Instance.maxAIActionPoints;
         nightPosition = new Vector3(startingPosition.x - (moveAmount / all * GameManager.Instance.maxActionPoints), startingPosition.y, startingPosition.z);
-        //Day();
     }
     private void Update()
     {
@@ -90,13 +92,18 @@ public class GameUI : MonoBehaviour
         timeNight.SetActive(false);
         apDay.SetActive(true);
         apNight.SetActive(false);
-        //Debug.Log(startingPosition);
-        apTime.transform.position = startingPosition;
+        StartCoroutine(SyncTime());
+    }
+    IEnumerator SyncTime()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        apTimeTrans.transform.position = startingPosition;
     }
     public void MoveTime()
     {
         float all = GameManager.Instance.maxActionPoints + GameManager.Instance.maxAIActionPoints;
-        apTime.transform.position = new Vector3(apTime.transform.position.x - (moveAmount / all), apTime.transform.position.y, apTime.transform.position.z);
+        apTimeTrans.transform.position = new Vector3(apTimeTrans.transform.position.x - (moveAmount / all), apTimeTrans.transform.position.y, apTimeTrans.transform.position.z);
     }
     public void Night()
     {        
@@ -108,7 +115,7 @@ public class GameUI : MonoBehaviour
     }
     public void NightAPImage()
     {
-        apTime.transform.position = new Vector3(nightPosition.x, apTime.transform.position.y, apTime.transform.position.z);
+        apTimeTrans.transform.position = new Vector3(nightPosition.x, apTimeTrans.transform.position.y, apTimeTrans.transform.position.z);
     }
     public void ReadStringInput(string name)
     {
