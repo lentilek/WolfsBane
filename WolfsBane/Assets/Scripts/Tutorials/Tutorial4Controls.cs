@@ -61,6 +61,7 @@ public class Tutorial4Controls : MonoBehaviour
         part3UI.SetActive(false);
         part4UI.SetActive(true);
         currentPart = 4;
+        PlayerPrefs.SetInt("Tutorials", 1);
     }
     public void GoToScene(int index)
     {
