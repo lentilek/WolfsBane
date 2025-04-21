@@ -24,6 +24,7 @@ public class GameUI : MonoBehaviour
     private Vector3 startingPosition;
     private Vector3 nightPosition;
     [SerializeField] private float moveAmount;
+    [HideInInspector] public string playerName;
 
     private void Awake()
     {
@@ -39,13 +40,15 @@ public class GameUI : MonoBehaviour
         gameOverScreen.SetActive(false);
         winScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        //Debug.Log(apTime.transform.position);
         startingPosition = new Vector3(apTime.transform.position.x, apTime.transform.position.y, apTime.transform.position.z);
+        //Debug.Log(startingPosition);
     }
     private void Start()
     {
         float all = GameManager.Instance.maxActionPoints + GameManager.Instance.maxAIActionPoints;
         nightPosition = new Vector3(startingPosition.x - (moveAmount / all * GameManager.Instance.maxActionPoints), startingPosition.y, startingPosition.z);
-        Day();
+        //Day();
     }
     private void Update()
     {
@@ -87,6 +90,7 @@ public class GameUI : MonoBehaviour
         timeNight.SetActive(false);
         apDay.SetActive(true);
         apNight.SetActive(false);
+        //Debug.Log(startingPosition);
         apTime.transform.position = startingPosition;
     }
     public void MoveTime()
@@ -105,6 +109,14 @@ public class GameUI : MonoBehaviour
     public void NightAPImage()
     {
         apTime.transform.position = new Vector3(nightPosition.x, apTime.transform.position.y, apTime.transform.position.z);
+    }
+    public void ReadStringInput(string name)
+    {
+        playerName = name;
+    }
+    public void SaveData()
+    {
+        HighscoreSystem.Instance.GetData();
     }
     public void UISound()
     {

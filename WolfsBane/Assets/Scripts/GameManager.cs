@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         if(gameIndicator >= maxGameIndicator)
         {
             Time.timeScale = 0f;
-            HighscoreSystem.Instance.GetData();
+            //HighscoreSystem.Instance.GetData();
             GameUI.Instance.gameOverScreen.SetActive(true);
             gameIndicator = 0;
         }
