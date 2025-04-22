@@ -266,7 +266,7 @@ public class MapArea : MonoBehaviour
                 noActionTip.SetActive(false);
             }
         }
-        else if (isAvailable && isVisible && !AreThereHiddenNeighbours())
+        else if (isAvailable && isVisible && (type == 4 || !AreThereHiddenNeighbours()))
         {
             buttonGo.SetActive(true);
         }
@@ -278,7 +278,7 @@ public class MapArea : MonoBehaviour
     public void InteractionsBase()
     {
         buttonBarricade.SetActive(true);
-        if (type == 4 && PlayerInventory.Instance.woodAmount > 0 && state == 1)
+        if (PlayerInventory.Instance.woodAmount > 0 && state == 1)
         {
             buttonBarricade.GetComponent<ActionButtonManager>().ActionPossible();
         }

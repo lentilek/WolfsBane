@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d57893ece334a499072a4381bf9b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   gameIndicatorWhenKilled: 25
   gameIndicatorWhenLived: 5
   gameIndicatorWhenScared: 10
+  talkChanceFriendly: 45
+  talkChanceAggresive: 100
   mapModule: {fileID: 0}
   fireVFX: {fileID: 5327726162944584774}
 --- !u!1 &2658165691878825725

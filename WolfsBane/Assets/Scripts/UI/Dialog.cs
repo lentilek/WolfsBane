@@ -6,7 +6,6 @@ public class Dialog : MonoBehaviour
 {
     public static Dialog Instance;
     [SerializeField] private GameObject dialogOptions;
-    [SerializeField] private int chance = 5;
     private MapArea area;
     private void Awake()
     {
@@ -42,7 +41,7 @@ public class Dialog : MonoBehaviour
                     break;
                 }
             }
-            if (turist != null)
+            if(turist != null && Random.Range(1, 101) <= turist.GetComponent<Turist>().talkChanceAggresive)
             {
                 if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
                 else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
@@ -69,31 +68,28 @@ public class Dialog : MonoBehaviour
         //
         if (GameManager.Instance.UseActionPoint())
         {
-            if(Random.Range(1,11) <= chance)
+            GameObject turist = null;
+            foreach (GameObject turistCamp in GameManager.Instance.turistCamps)
             {
-                GameObject turist = null;
-                foreach (GameObject turistCamp in GameManager.Instance.turistCamps)
+                if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
                 {
-                    if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
-                    {
-                        turist = turistCamp;
-                        break;
-                    }
+                    turist = turistCamp;
+                    break;
                 }
-                if (turist != null)
+            }
+            if (turist != null && Random.Range(1, 101) <= turist.GetComponent<Turist>().talkChanceFriendly)
+            {
+                if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
+                else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
+                else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
+                else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
+                GameManager.Instance.turistCamps.Remove(turist);
+                foreach (MapArea n in area.neighbours)
                 {
-                    if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
-                    else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
-                    else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
-                    else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
-                    GameManager.Instance.turistCamps.Remove(turist);
-                    foreach (MapArea n in area.neighbours)
-                    {
-                        if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
-                        else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
-                    }
-                    Destroy(turist);
+                    if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                    else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
+                Destroy(turist);
             }
         }
         dialogOptions.SetActive(false);

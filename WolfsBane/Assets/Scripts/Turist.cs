@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Turist : MonoBehaviour
 {
+    public int type; // 0 - regular, 1 - thrill hunter, 2 - police
     public float gameIndicatorWhenKilled;
     public float gameIndicatorWhenLived;
     public float gameIndicatorWhenScared;
+    public int talkChanceFriendly;
+    public int talkChanceAggresive;
     [HideInInspector] public MapArea mapModule;
     public GameObject fireVFX;
 

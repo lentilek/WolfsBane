@@ -64,7 +64,9 @@ MonoBehaviour:
   - {fileID: 2063772313683279405}
   - {fileID: 2518457915667435261}
   apTime: {fileID: 7579156239252290053}
+  apTimeEnd: {fileID: 3169397901097591755}
   moveAmount: 700
+  playerName: 
 --- !u!1 &7141265740337877878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1394,12 @@ GameObject:
 --- !u!1 &2518457915667435261 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6870792483174399944, guid: b455695114895894094ee118ee360fbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 9055236358341685557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3169397901097591755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6219857995629728510, guid: b455695114895894094ee118ee360fbf,
     type: 3}
   m_PrefabInstance: {fileID: 9055236358341685557}
   m_PrefabAsset: {fileID: 0}

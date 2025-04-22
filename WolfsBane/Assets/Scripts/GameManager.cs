@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public float gameIndicator; // 0-100 // hideInInspector public
+    [HideInInspector] public float gameIndicator; // 0-100
+    [SerializeField] private int thrillHuntersAppear, policemanAppear;
     private float maxGameIndicator;
     [SerializeField] private Image gameIndicatorFill;
 
@@ -24,8 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject nightButton;
     [SerializeField] private GameObject nextDayButton;
 
-    [SerializeField] private int turistPerDay;
-    [SerializeField] private GameObject[] turistCampModel;
+    [SerializeField] private int turistPerDay, thrillHunterPerDay, policemanPerDay;
+    private bool isPoliceHere;
+    [SerializeField] private GameObject[] turistCampModels, thrillHunterModels, policemanModels;
     [HideInInspector] public List<GameObject> turistCamps = new List<GameObject>();
     [HideInInspector] public bool isNight;
 
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
         Time.timeScale = 1f;
+        isPoliceHere = false;
         daysCounter = 0;
         turistEaten = 0;
         gameIndicator = 0;
@@ -74,7 +77,9 @@ public class GameManager : MonoBehaviour
             //HighscoreSystem.Instance.GetData();
             GameUI.Instance.gameOverScreen.SetActive(true);
             gameIndicator = 0;
+            isPoliceHere = false;
         }
+        if (isPoliceHere && gameIndicator < policemanAppear) gameIndicator = policemanAppear;
     }
     public void GetCurrentFillIndicator()
     {
@@ -135,6 +140,28 @@ public class GameManager : MonoBehaviour
             if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
             if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
         } while (currentAIActionPoints > 0);
+
+        MapArea area = MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column];
+
+        if (area.state == 5 || area.state == 6)
+        {
+            GameObject turist = null;
+            foreach (GameObject turistCamp in turistCamps)
+            {
+                if (turistCamp.GetComponent<Turist>().mapModule.row == area.row &&
+                    turistCamp.GetComponent<Turist>().mapModule.column == area.column)
+                {
+                    turist = turistCamp;
+                    break;
+                }
+            }
+            if (turist != null)
+            {
+                gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
+                if (gameIndicator > 100) gameIndicator = 100;
+                GetCurrentFillIndicator();
+            }
+        }
         EndNightCheckIfWon();
         nextDayButton.SetActive(true);
     }
@@ -240,10 +267,48 @@ public class GameManager : MonoBehaviour
         }
         turistCamps.Clear();
         MapBoard.Instance.RegularModuleList();
-        for (int i = 0; i < turistPerDay; i++)
+        int currentTuristCounter = turistPerDay;
+        if (gameIndicator >= policemanAppear)
+        {
+            isPoliceHere = true;
+            for (int i = 0; i < policemanPerDay; i++)
+            {
+                MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
+                turistCamps.Add(Instantiate(policemanModels[Random.Range(0, policemanModels.Length)],
+                    ma.gameplayObject.transform, worldPositionStays: false));
+                turistCamps[i].GetComponent<Turist>().mapModule = ma;
+                ma.state = 6;
+                foreach (MapArea n in ma.neighbours)
+                {
+                    if (n.state == 2) n.state = 4;
+                    else if (n.state == 1) n.state = 3;
+                }
+                MapBoard.Instance.moduleListRegular.Remove(ma);
+                currentTuristCounter--;
+            }
+        }
+        if (gameIndicator >= thrillHuntersAppear)
+        {
+            for (int i = 0; i < thrillHunterPerDay; i++)
+            {
+                MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
+                turistCamps.Add(Instantiate(thrillHunterModels[Random.Range(0, thrillHunterModels.Length)],
+                    ma.gameplayObject.transform, worldPositionStays: false));
+                turistCamps[i].GetComponent<Turist>().mapModule = ma;
+                ma.state = 6;
+                foreach (MapArea n in ma.neighbours)
+                {
+                    if (n.state == 2) n.state = 4;
+                    else if (n.state == 1) n.state = 3;
+                }
+                MapBoard.Instance.moduleListRegular.Remove(ma);
+                currentTuristCounter--;
+            }
+        }
+        for (int i = 0; i < currentTuristCounter; i++)
         {
             MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
-            turistCamps.Add(Instantiate(turistCampModel[Random.Range(0, turistCampModel.Length)], 
+            turistCamps.Add(Instantiate(turistCampModels[Random.Range(0, turistCampModels.Length)], 
                 ma.gameplayObject.transform, worldPositionStays: false));
             turistCamps[i].GetComponent<Turist>().mapModule = ma;
             ma.state = 6;

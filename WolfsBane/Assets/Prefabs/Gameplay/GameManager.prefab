@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameIndicator: 0
+  thrillHuntersAppear: 30
+  policemanAppear: 70
   gameIndicatorFill: {fileID: 0}
   maxActionPoints: 18
   maxAIActionPoints: 12
@@ -56,10 +58,16 @@ MonoBehaviour:
   nightButton: {fileID: 0}
   nextDayButton: {fileID: 0}
   turistPerDay: 5
-  turistCampModel:
+  thrillHunterPerDay: 2
+  policemanPerDay: 2
+  turistCampModels:
   - {fileID: 78779685244339640, guid: 9d484233bcff62b41a195951aedb1874, type: 3}
   - {fileID: 9165156879519245312, guid: 508008247853b3b46859b7c5ab42c96c, type: 3}
   - {fileID: 6518235961496688794, guid: ea6c622ef72d8b841910c889c3c4fa83, type: 3}
+  thrillHunterModels:
+  - {fileID: 6518235961496688794, guid: 8b3a922fb30f8eb44962c4af33956822, type: 3}
+  policemanModels:
+  - {fileID: 6518235961496688794, guid: fcf9653884dd7e74fa1687706318b6eb, type: 3}
   turistCamps: []
   isNight: 0
   daysCounterTXT: {fileID: 0}

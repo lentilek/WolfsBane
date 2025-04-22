@@ -159,7 +159,7 @@ public class PlayerInventory : MonoBehaviour
     public bool CheckTrap(MapArea ma)
     {
         Trap trapComp = ma.gameplayObject.GetComponentInChildren<Trap>();
-        if (trapComp != null)
+        if (trapComp != null && GameManager.Instance.UseActionPointAI())
         {
             if (trapComp.trapType == 3)
             {
@@ -172,25 +172,25 @@ public class PlayerInventory : MonoBehaviour
                 GameManager.Instance.UseActionPointAI();
             }
             GameObject trap = trapComp.gameObject;
-            if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())
+            if (trapComp.module.state == 1)
             {
                 trapComp.module.state = 2;
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
-            else if (trapComp.module.state == 3 && GameManager.Instance.UseActionPointAI())
+            else if (trapComp.module.state == 3)
             {
                 trapComp.module.state = 4;
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
-            else if (trapComp.module.state == 5 && GameManager.Instance.UseActionPointAI())
+            else if (trapComp.module.state == 5)
             {
                 trapComp.module.state = 6;
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
-            else if(trapComp.module.state == 7 && GameManager.Instance.UseActionPointAI())
+            else if(trapComp.module.state == 7)
             {
                 trapComp.module.state = 2;
                 if (trapComp.trapType == 2)
