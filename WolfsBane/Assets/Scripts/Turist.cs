@@ -8,8 +8,10 @@ public class Turist : MonoBehaviour
     public float gameIndicatorWhenKilled;
     public float gameIndicatorWhenLived;
     public float gameIndicatorWhenScared;
+    public int friendlyTalks, aggresiveTalks, regularTalks;
     public int talkChanceFriendly;
     public int talkChanceAggresive;
+    public int killChance;
     [HideInInspector] public MapArea mapModule;
     public GameObject fireVFX;
 

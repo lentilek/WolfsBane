@@ -181,6 +181,10 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
+            if (turist != null && turist.GetComponent<Turist>().type == 2 && Random.Range(1, 101) <= turist.GetComponent<Turist>().killChance)
+            {
+                gameIndicator = maxGameIndicator;
+            }
             if (turist != null && UseActionPointAI())
             {
                 if (area.AreThereTuristsAround()) area.state = 4;
