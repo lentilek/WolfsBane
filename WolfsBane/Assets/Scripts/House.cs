@@ -8,6 +8,8 @@ public class House : MonoBehaviour
 
     public GameObject doorTrap;
     public GameObject fenceTrap;
+    [SerializeField] private Material matDay, matNight;
+    [SerializeField] private MeshRenderer mr;
 
     private void Awake()
     {
@@ -22,5 +24,14 @@ public class House : MonoBehaviour
         }
         doorTrap.SetActive(false);
         fenceTrap.SetActive(false);
+        mr.material = matDay;
+    }
+    public void HouseDay()
+    {
+        mr.material = matDay;
+    }
+    public void HouseNight()
+    {
+        mr.material = matNight;
     }
 }

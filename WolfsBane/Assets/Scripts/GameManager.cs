@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.ButtonsAroundOff();
         nightButton.SetActive(false);
         GameUI.Instance.Night();
-        mainLight.color = nightLightColor;
+        Light();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 30, 0);
         PlayerControler.Instance.GetCurrentAIModule();
         Night();
@@ -222,6 +222,7 @@ public class GameManager : MonoBehaviour
     public void Light()
     {
         mainLight.color = nightLightColor;
+        House.Instance.HouseNight();
     }
     public void EndNightCheckIfWon()
     {
@@ -249,6 +250,7 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.PlayerGoHome();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 210, 0);
         mainLight.color = Color.white;
+        House.Instance.HouseDay();
         foreach (MapArea ma in MapBoard.Instance.moduleListResource)
         {
             ma.gameplayObject.GetComponentInChildren<ResourceRegeneration>().Regenerate();
