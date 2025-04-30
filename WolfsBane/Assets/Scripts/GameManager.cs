@@ -137,8 +137,8 @@ public class GameManager : MonoBehaviour
             PlayerControler.Instance.AreasToGoAI();
             UseActionPointAI();
             yield return new WaitForSeconds(actionWaitTimeAI);
-            if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
-            if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
+            //if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
+            //if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
         } while (currentAIActionPoints > 0);
 
         MapArea area = MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column];

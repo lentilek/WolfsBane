@@ -391,7 +391,7 @@ public class MapArea : MonoBehaviour
         }
         else if (resourceType == 4)
         {
-            if (PlayerInventory.Instance.chickensAmount > 0 && PlayerInventory.Instance.IsThereInventorySpace(4))
+            if (PlayerInventory.Instance.chickensAmount > 0 && PlayerInventory.Instance.IsThereInventorySpace(4) && GameManager.Instance.UseActionPoint())
             {
                 AudioManager.Instance.PlaySound("collect");
                 PlayerInventory.Instance.CollectMeat();
