@@ -7,8 +7,11 @@ public class ClearPath : MonoBehaviour
     [HideInInspector] public MapArea module;
     public void ClearPathMiniGame(MapArea area)
     {
-        PlayerInventory.Instance.woodAmount++;
-        PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+        if (PlayerInventory.Instance.woodAmount < PlayerInventory.Instance.maxWoodAmount)
+        {
+            PlayerInventory.Instance.woodAmount++;
+            PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+        }
         ClearPathFinish(area);
     }
     private void ClearPathFinish(MapArea area)

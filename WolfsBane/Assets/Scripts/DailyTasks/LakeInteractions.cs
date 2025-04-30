@@ -56,8 +56,11 @@ public class LakeInteractions : MonoBehaviour
         AudioManager.Instance.PlaySound("uiSound");
         if (IsPlayerNear() && GameManager.Instance.UseActionPoint())
         {
-            PlayerInventory.Instance.ropeAmount++;
-            PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+            if (PlayerInventory.Instance.ropeAmount < PlayerInventory.Instance.maxRopeAmount)
+            {
+                PlayerInventory.Instance.ropeAmount++;
+                PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+            }
             TakeTrashDone();
         }
     }

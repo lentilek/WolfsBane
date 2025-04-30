@@ -26,8 +26,11 @@ public class RockResearch : MonoBehaviour
         AudioManager.Instance.PlaySound("uiSound");
         if (IsPlayerNear() && GameManager.Instance.UseActionPoint())
         {
-            PlayerInventory.Instance.stoneAmount++;
-            PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+            if (PlayerInventory.Instance.stoneAmount < PlayerInventory.Instance.maxStoneAmount)
+            {
+                PlayerInventory.Instance.stoneAmount++;
+                PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+            }
             Done();
         }
     }
