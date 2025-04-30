@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using static UnityEngine.ParticleSystem;
 
 public class Dialog : MonoBehaviour
 {
@@ -8,6 +11,15 @@ public class Dialog : MonoBehaviour
     [SerializeField] private GameObject dialogOptions, optionAggresive, optionFriendly, optionTalk;
     [SerializeField] private GameObject optionAggresiveCant, optionFriendlyCant, optionTalkCant;
     private MapArea area;
+    // Dialog
+    [SerializeField] private GameObject dialogueBox, continueButton;
+    [SerializeField] private float textSpeed;
+    [SerializeField] private TextMeshProUGUI dialogTXT, nameTXT;
+    [SerializeField] private Image portrait;
+    [SerializeField] private DialogueSO[] turistAggresive, turistFriendly, turistTalk; 
+    [SerializeField] private DialogueSO[] thrillHunterAggresive, thrillHunterFriendly, thrillHunterTalk;
+    [SerializeField] private DialogueSO[] policemanAggresive, policemanFriendly, policemanTalk;
+    [SerializeField] private int firstFail;
     private void Awake()
     {
         if (Instance == null)
@@ -21,12 +33,25 @@ public class Dialog : MonoBehaviour
         }
         dialogOptions.SetActive(false);
     }
+    private void Update()
+    {
+        if (dialogueBox.activeSelf && Input.GetMouseButtonDown(0))
+        {
+            if(dialogTXT.text != dialogue.lines[index].text)
+            {
+                StopAllCoroutines();
+                dialogTXT.text = dialogue.lines[index].text;
+                continueButton.SetActive(true);
+            }
+        }
+    }
     public void TuristInteract(MapArea areaNew)
     {        
         PlayerControler.Instance.ButtonsAroundOff();
         areaNew.buttonAction.SetActive(false);
         area = areaNew;
         dialogOptions.SetActive(true);
+        dialogueBox.SetActive(false);
         AvaiableOptions();
     }
     private void AvaiableOptions()
@@ -82,11 +107,13 @@ public class Dialog : MonoBehaviour
         if (GameManager.Instance.UseActionPoint())
         {
             GameObject turist = null;
+            int type = 0;
             foreach (GameObject turistCamp in GameManager.Instance.turistCamps)
             {
                 if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
                 {
                     turist = turistCamp;
+                    type = turist.GetComponent<Turist>().type;
                     break;
                 }
             }
@@ -106,8 +133,13 @@ public class Dialog : MonoBehaviour
                     if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
                     else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
+                DialogueStart(1, true, type);
             }
-            else if (turist != null) turist.GetComponent<Turist>().aggresiveTalks--;
+            else if (turist != null)
+            {
+                turist.GetComponent<Turist>().aggresiveTalks--;
+                DialogueStart(1, false, type);
+            }
         }
         dialogOptions.SetActive(false);
         area = null;
@@ -119,11 +151,13 @@ public class Dialog : MonoBehaviour
         if (GameManager.Instance.UseActionPoint())
         {
             GameObject turist = null;
+            int type = 0;
             foreach (GameObject turistCamp in GameManager.Instance.turistCamps)
             {
                 if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
                 {
                     turist = turistCamp;
+                    type = turist.GetComponent<Turist>().type;
                     break;
                 }
             }
@@ -140,12 +174,16 @@ public class Dialog : MonoBehaviour
                     else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
                 }
                 Destroy(turist);
+                DialogueStart(2, true, type);
             }
-            else if (turist != null) turist.GetComponent<Turist>().friendlyTalks--;
+            else if (turist != null)
+            {
+                turist.GetComponent<Turist>().friendlyTalks--; 
+                DialogueStart(2, false, type);
+            }
         }
         dialogOptions.SetActive(false);
         area = null;
-        PlayerControler.Instance.ButtonsAround();
     }
     public void TuristLeaveButton()
     {
@@ -153,5 +191,108 @@ public class Dialog : MonoBehaviour
         dialogOptions.SetActive(false);
         area = null;
         PlayerControler.Instance.ButtonsAround();
+    }
+    private DialogueSO dialogue;
+    private int index;
+    public void TuristAction3Button(int type)
+    {
+        DialogueStart(type, false, 0);
+    }
+    public void DialogueStart(int type, bool success, int turistType) // 1 - agrresive, 2 - friendly, 3 - talk;
+    {
+        dialogOptions.SetActive(false);
+        dialogueBox.SetActive(true);
+        continueButton.SetActive(false);
+        dialogTXT.text = string.Empty;
+        index = 0;
+        if (type == 3)
+        {
+            foreach (GameObject turistCamp in GameManager.Instance.turistCamps)
+            {
+                if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
+                {
+                    turistType = turistCamp.GetComponent<Turist>().type;
+                    break;
+                }
+            }
+        }
+        switch (turistType)
+        {
+            case 0:
+                if(type == 1)
+                {
+                    if (success) dialogue = turistAggresive[Random.Range(0, firstFail)];
+                    else dialogue = turistAggresive[Random.Range(firstFail, turistAggresive.Length)];
+                }
+                else if (type == 2)
+                {
+                    if (success) dialogue = turistFriendly[Random.Range(0, firstFail)];
+                    else dialogue = turistFriendly[Random.Range(firstFail, turistFriendly.Length)];
+                }else if(type == 3)
+                {
+                    dialogue = turistTalk[Random.Range(0, turistTalk.Length)];
+                }
+                break;
+            case 1:
+                if (type == 1)
+                {
+                    if(success) dialogue = thrillHunterAggresive[Random.Range(0, firstFail)];
+                    dialogue = thrillHunterAggresive[Random.Range(firstFail, thrillHunterAggresive.Length)];
+                }
+                else if (type == 2)
+                {
+                    if (success) dialogue = thrillHunterFriendly[Random.Range(0, firstFail)];
+                    dialogue = thrillHunterFriendly[Random.Range(firstFail, thrillHunterFriendly.Length)];
+                }
+                else if (type == 3)
+                {
+                    dialogue = thrillHunterTalk[Random.Range(0, thrillHunterTalk.Length)];
+                }
+                break;
+            case 2:
+                if (type == 1)
+                {
+                    if (success) dialogue = policemanAggresive[Random.Range(0, firstFail)];
+                    dialogue = policemanAggresive[Random.Range(firstFail, policemanAggresive.Length)];
+                }
+                else if (type == 2)
+                {
+                    if (success) dialogue = policemanFriendly[Random.Range(0, firstFail)];
+                    dialogue = policemanFriendly[Random.Range(firstFail, policemanFriendly.Length)];
+                }
+                else if (type == 3)
+                {
+                    dialogue = policemanTalk[Random.Range(0, policemanTalk.Length)];
+                }
+                break;
+            default: break;
+        }
+        StartCoroutine(TypeLine());
+    }
+    IEnumerator TypeLine()
+    {
+        nameTXT.text = dialogue.lines[index].name;
+        portrait.sprite = dialogue.lines[index].portrait;
+        foreach (char c in dialogue.lines[index].text.ToCharArray())
+        {
+            dialogTXT.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+        continueButton.SetActive(true);
+    }
+    public void NextLine()
+    {
+        index++;
+        if (index < dialogue.lines.Count)
+        {
+            continueButton.SetActive(false);
+            dialogTXT.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
+        else
+        {
+            dialogueBox.SetActive(false);
+            PlayerControler.Instance.ButtonsAround();
+        }
     }
 }
