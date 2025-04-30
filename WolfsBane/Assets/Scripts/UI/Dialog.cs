@@ -212,6 +212,7 @@ public class Dialog : MonoBehaviour
                 if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
                 {
                     turistType = turistCamp.GetComponent<Turist>().type;
+                    turistCamp.GetComponent<Turist>().regularTalks--;
                     break;
                 }
             }
@@ -237,12 +238,12 @@ public class Dialog : MonoBehaviour
                 if (type == 1)
                 {
                     if(success) dialogue = thrillHunterAggresive[Random.Range(0, firstFail)];
-                    dialogue = thrillHunterAggresive[Random.Range(firstFail, thrillHunterAggresive.Length)];
+                    else dialogue = thrillHunterAggresive[Random.Range(firstFail, thrillHunterAggresive.Length)];
                 }
                 else if (type == 2)
                 {
                     if (success) dialogue = thrillHunterFriendly[Random.Range(0, firstFail)];
-                    dialogue = thrillHunterFriendly[Random.Range(firstFail, thrillHunterFriendly.Length)];
+                    else dialogue = thrillHunterFriendly[Random.Range(firstFail, thrillHunterFriendly.Length)];
                 }
                 else if (type == 3)
                 {
@@ -253,12 +254,12 @@ public class Dialog : MonoBehaviour
                 if (type == 1)
                 {
                     if (success) dialogue = policemanAggresive[Random.Range(0, firstFail)];
-                    dialogue = policemanAggresive[Random.Range(firstFail, policemanAggresive.Length)];
+                    else dialogue = policemanAggresive[Random.Range(firstFail, policemanAggresive.Length)];
                 }
                 else if (type == 2)
                 {
                     if (success) dialogue = policemanFriendly[Random.Range(0, firstFail)];
-                    dialogue = policemanFriendly[Random.Range(firstFail, policemanFriendly.Length)];
+                    else dialogue = policemanFriendly[Random.Range(firstFail, policemanFriendly.Length)];
                 }
                 else if (type == 3)
                 {

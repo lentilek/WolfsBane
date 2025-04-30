@@ -212,7 +212,7 @@ public class MapArea : MonoBehaviour
         foreach(MapArea n in neighbours)
         {
             //Debug.Log(n.state);
-            if(n.state == 5 || n.state == 6 || n.state == 7)
+            if(n.state == 5 || n.state == 6 || (n.state == 7 && n.GetComponentInChildren<Trap>().trapType == 2))
             {
                 return true;
             }

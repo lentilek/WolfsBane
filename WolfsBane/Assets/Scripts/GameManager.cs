@@ -274,10 +274,11 @@ public class GameManager : MonoBehaviour
         turistCamps.Clear();
         MapBoard.Instance.RegularModuleList();
         int currentTuristCounter = turistPerDay;
+        int i = 0;
         if (gameIndicator >= policemanAppear)
         {
             isPoliceHere = true;
-            for (int i = 0; i < policemanPerDay; i++)
+            while (i < policemanPerDay)
             {
                 MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
                 turistCamps.Add(Instantiate(policemanModels[Random.Range(0, policemanModels.Length)],
@@ -291,11 +292,12 @@ public class GameManager : MonoBehaviour
                 }
                 MapBoard.Instance.moduleListRegular.Remove(ma);
                 currentTuristCounter--;
+                i++;
             }
         }
         if (gameIndicator >= thrillHuntersAppear)
         {
-            for (int i = 0; i < thrillHunterPerDay; i++)
+            while (i < (thrillHunterPerDay + policemanPerDay))
             {
                 MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
                 turistCamps.Add(Instantiate(thrillHunterModels[Random.Range(0, thrillHunterModels.Length)],
@@ -309,9 +311,10 @@ public class GameManager : MonoBehaviour
                 }
                 MapBoard.Instance.moduleListRegular.Remove(ma);
                 currentTuristCounter--;
+                i++;
             }
         }
-        for (int i = 0; i < currentTuristCounter; i++)
+        while (i < turistPerDay)
         {
             MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
             turistCamps.Add(Instantiate(turistCampModels[Random.Range(0, turistCampModels.Length)], 
@@ -324,6 +327,7 @@ public class GameManager : MonoBehaviour
                 else if (n.state == 1) n.state = 3;
             }
             MapBoard.Instance.moduleListRegular.Remove(ma);
+            i++;
         }
         TaskManager.Instance.RandomTasks();
         PlayerControler.Instance.ButtonsAround();
