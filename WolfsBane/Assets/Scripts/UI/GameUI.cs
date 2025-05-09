@@ -27,6 +27,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] private float moveAmount;
     [HideInInspector] public string playerName;
 
+    [SerializeField] private GameObject day1Paper;
+    [SerializeField] private GameObject[] noKillsPaper, killPaper;
+
     private void Awake()
     {
         if (Instance == null)
@@ -112,6 +115,35 @@ public class GameUI : MonoBehaviour
         apDay.SetActive(false);
         apNight.SetActive(true);
         NightAPImage();
+    }
+    public void Paper(int paperType) // 1 - first day,  2 - no kill,   3 - kill
+    {
+        PaperTextOff();
+        switch (paperType)
+        {
+            case 1:
+                day1Paper.SetActive(true);
+                break;
+            case 2:
+                noKillsPaper[Random.Range(0, noKillsPaper.Length)].SetActive(true);
+                break;
+            case 3:
+                killPaper[Random.Range(0, killPaper.Length)].SetActive(true);
+                break;
+            default: break;
+        }
+    }
+    private void PaperTextOff()
+    {
+        day1Paper.SetActive(false);
+        foreach(GameObject go in killPaper)
+        {
+            go.SetActive(false);
+        }
+        foreach(GameObject go in noKillsPaper)
+        {
+            go.SetActive(false);
+        }
     }
     public void NightAPImage()
     {

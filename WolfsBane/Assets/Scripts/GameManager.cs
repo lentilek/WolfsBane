@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Light mainLight;
     [SerializeField] private Color nightLightColor;
+    private bool wasThereKill;
     private void Awake()
     {
         if (Instance == null)
@@ -163,7 +164,6 @@ public class GameManager : MonoBehaviour
             }
         }
         EndNightCheckIfWon();
-        nextDayButton.SetActive(true);
     }
     public bool CheckIfTurist()
     {
@@ -192,6 +192,7 @@ public class GameManager : MonoBehaviour
                 else if (area.state == 5) area.state = 1;
                 gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenKilled;
                 turistEaten++;
+                wasThereKill = true;
                 if (gameIndicator > 100) gameIndicator = 100;
                 GetCurrentFillIndicator();
                 Destroy(turist);
@@ -210,6 +211,7 @@ public class GameManager : MonoBehaviour
     }
     public void FinishDayStartNight()
     {
+        wasThereKill = false;
         MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].noAPTip.SetActive(false);
         PlayerControler.Instance.ButtonsAroundOff();
         nightButton.SetActive(false);
@@ -231,6 +233,13 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             HighscoreSystem.Instance.GetData();
             GameUI.Instance.winScreen.SetActive(true);
+        }
+        else
+        {
+            nextDayButton.SetActive(true);
+            if (daysCounter == 1) GameUI.Instance.Paper(1);
+            else if (!wasThereKill) GameUI.Instance.Paper(2);
+            else GameUI.Instance.Paper(3);
         }
     }
     public void NewDay()
