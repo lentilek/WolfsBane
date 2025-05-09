@@ -20,6 +20,8 @@ public class Dialog : MonoBehaviour
     [SerializeField] private DialogueSO[] thrillHunterAggresive, thrillHunterFriendly, thrillHunterTalk;
     [SerializeField] private DialogueSO[] policemanAggresive, policemanFriendly, policemanTalk;
     [SerializeField] private int firstFail;
+
+    [HideInInspector] public int talkBonusChance;
     private void Awake()
     {
         if (Instance == null)
@@ -117,7 +119,7 @@ public class Dialog : MonoBehaviour
                     break;
                 }
             }
-            if (turist != null && Random.Range(1, 101) <= turist.GetComponent<Turist>().talkChanceAggresive)
+            if (turist != null && Random.Range(1, 101) <= (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance))
             {
                 if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
                 else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
@@ -161,7 +163,7 @@ public class Dialog : MonoBehaviour
                     break;
                 }
             }
-            if (turist != null && Random.Range(1, 101) <= turist.GetComponent<Turist>().talkChanceFriendly)
+            if (turist != null && Random.Range(1, 101) <= (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance))
             {
                 if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
                 else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;

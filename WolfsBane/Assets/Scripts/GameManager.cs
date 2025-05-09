@@ -262,6 +262,8 @@ public class GameManager : MonoBehaviour
         PlayerControler.Instance.PlayerGoHome();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 210, 0);
         mainLight.color = Color.white;
+        Dialog.Instance.talkBonusChance = 0;
+        TaskManager.Instance.moreResources = false;
         if (House.Instance != null) House.Instance.HouseDay();
         foreach (MapArea ma in MapBoard.Instance.moduleListResource)
         {

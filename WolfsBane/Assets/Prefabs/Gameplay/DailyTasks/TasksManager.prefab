@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c92b50b57d718409cca665416e8e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorial: 0
   allTasksListResource:
   - {fileID: 11400000, guid: 5c892b286be6cd54c949e5d195eb2c97, type: 2}
   - {fileID: 11400000, guid: ef372850d6fea3a42bc45ceb6bfed5cd, type: 2}
@@ -67,10 +68,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 66d5e959a0061b5488eb216f25a1e474, type: 2}
   - {fileID: 11400000, guid: 0f39a2a439400664ba355b58ef5c5040, type: 2}
   - {fileID: 11400000, guid: 0a1dba5b0530bf645b1ffb49cb044f92, type: 2}
+  - {fileID: 11400000, guid: e54e4afdb49f38c49a283ba36424c5f3, type: 2}
   specialTaskRewards:
   - {fileID: 11400000, guid: 520e8f09b5f307d49975d0c5b5b02e0e, type: 2}
+  - {fileID: 11400000, guid: 98853e8161125374da894a15b627e962, type: 2}
+  - {fileID: 11400000, guid: 5276ba4dcd1865f4db3b036ab611bfc9, type: 2}
+  - {fileID: 11400000, guid: 7382c0ea3b28c3d498013719d36a81b0, type: 2}
   resourceRewardAmount: 2
   indicatorRewardAmount: 5
+  talkChanceRewardAmount: 10
+  additionalResourcesAmount: 2
+  moreResources: 0
+  bigTalkChanceRewardAmount: 30
   completeTasksCount: 0
   leavesToClean: 3
   leavesCleaned: 0

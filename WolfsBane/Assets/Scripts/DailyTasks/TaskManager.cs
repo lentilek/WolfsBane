@@ -20,6 +20,10 @@ public class TaskManager : MonoBehaviour
     private List<DailyTaskSO> currentTaskRewards = new List<DailyTaskSO>();
     [SerializeField] private int resourceRewardAmount;
     [SerializeField] private int indicatorRewardAmount;
+    [SerializeField] private int talkChanceRewardAmount;
+    public int additionalResourcesAmount;
+    [HideInInspector] public bool moreResources;
+    [SerializeField] private int bigTalkChanceRewardAmount;
 
     [HideInInspector] public int completeTasksCount;
 
@@ -425,6 +429,17 @@ public class TaskManager : MonoBehaviour
                 break;
             case 5:
                 RewardResource(4);
+                break;
+            case 6:
+                Dialog.Instance.talkBonusChance += talkChanceRewardAmount;
+                break;
+            case 7:
+                moreResources = true;
+                break;
+            case 8:
+                break;
+            case 9:
+                Dialog.Instance.talkBonusChance += bigTalkChanceRewardAmount;
                 break;
             default: break;
         }

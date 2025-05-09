@@ -61,18 +61,21 @@ public class PlayerInventory : MonoBehaviour
     public void CollectWood()
     {
         woodAmount += woodCollect;
+        if (TaskManager.Instance.moreResources) woodAmount += TaskManager.Instance.additionalResourcesAmount;
         if (woodAmount > maxWoodAmount) woodAmount = maxWoodAmount;
         woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
     }
     public void CollectStone()
     {
         stoneAmount += stoneCollect;
+        if (TaskManager.Instance.moreResources) stoneAmount += TaskManager.Instance.additionalResourcesAmount;
         if (stoneAmount > maxStoneAmount) stoneAmount = maxStoneAmount;
         stoneAmountTXT.text = $"{stoneAmount}/{maxStoneAmount}";
     }
     public void CollectRope()
     {
         ropeAmount += ropeCollect;
+        if (TaskManager.Instance.moreResources) ropeAmount += TaskManager.Instance.additionalResourcesAmount;
         if (ropeAmount > maxRopeAmount) ropeAmount = maxRopeAmount;
         ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
     }
@@ -80,6 +83,7 @@ public class PlayerInventory : MonoBehaviour
     {
         chickensAmount--;
         meatAmount += meatCollect;
+        if (TaskManager.Instance.moreResources) meatAmount += TaskManager.Instance.additionalResourcesAmount;
         if (meatAmount > maxMeatAmount) meatAmount = maxMeatAmount;
         meatAmountTXT.text = $"{meatAmount}/{maxMeatAmount}";
     }
