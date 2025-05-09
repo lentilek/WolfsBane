@@ -127,7 +127,7 @@ public class PlayerControler : MonoBehaviour
             MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];
             if (module.isAvailable) areasToGo.Add(module);
         }
-        if ((column + 1) < MapBoard.Instance.map.Length)
+        if ((column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
         {
             MapArea module = MapBoard.Instance.map[row].moduleRow[column + 1];
             if (module.isAvailable) areasToGo.Add(module);
@@ -207,7 +207,9 @@ public class PlayerControler : MonoBehaviour
                 topState = module.state;
             }
         }
-        MapArea area = areasToChoose[Random.Range(0, areasToChoose.Count)];
+        MapArea area;
+        if (areasToChoose.Count > 1) area = areasToChoose[Random.Range(0, areasToChoose.Count)];
+        else area = areasToChoose[0];
         MovePlayer(area.row, area.column, area.gameObject.transform.position);
         area.isVisible = true;
         area.cloud.SetActive(false);

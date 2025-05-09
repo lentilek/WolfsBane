@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         {
             if(PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
             if (CheckIfTurist()) yield return new WaitForSeconds(actionWaitTimeAI);
-            PlayerControler.Instance.AreasToGoAI();
+            if (currentAIActionPoints > 0) PlayerControler.Instance.AreasToGoAI();
             UseActionPointAI();
             yield return new WaitForSeconds(actionWaitTimeAI);
             //if (PlayerInventory.Instance.CheckTrap(MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column])) yield return new WaitForSeconds(actionWaitTimeAI);
@@ -237,9 +237,12 @@ public class GameManager : MonoBehaviour
         else
         {
             nextDayButton.SetActive(true);
-            if (daysCounter == 1) GameUI.Instance.Paper(1);
-            else if (!wasThereKill) GameUI.Instance.Paper(2);
-            else GameUI.Instance.Paper(3);
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                if (daysCounter == 1) GameUI.Instance.Paper(1);
+                else if (!wasThereKill) GameUI.Instance.Paper(2);
+                else GameUI.Instance.Paper(3);
+            }
         }
     }
     public void NewDay()
