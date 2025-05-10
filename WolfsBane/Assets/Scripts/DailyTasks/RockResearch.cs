@@ -24,7 +24,7 @@ public class RockResearch : MonoBehaviour
     public void MiniGame()
     {
         AudioManager.Instance.PlaySound("uiSound");
-        if (IsPlayerNear() && GameManager.Instance.UseActionPoint())
+        if (IsPlayerNear())
         {
             if (PlayerInventory.Instance.stoneAmount < PlayerInventory.Instance.maxStoneAmount)
             {

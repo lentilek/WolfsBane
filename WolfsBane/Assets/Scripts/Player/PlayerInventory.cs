@@ -278,6 +278,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 yield return new WaitForSeconds(time);
                 GameManager.Instance.UseActionPointAI();
+                if (TaskManager.Instance.doubleBarricades) GameManager.Instance.UseActionPointAI();
                 doorTrap = false;
                 House.Instance.doorTrap.SetActive(false);
             }
@@ -285,6 +286,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 yield return new WaitForSeconds(time);
                 GameManager.Instance.UseActionPointAI();
+                if (TaskManager.Instance.doubleBarricades) GameManager.Instance.UseActionPointAI();
                 fenceTrap = false;
                 House.Instance.fenceTrap.SetActive(false);
             }
