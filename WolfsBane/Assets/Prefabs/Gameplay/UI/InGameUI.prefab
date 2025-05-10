@@ -4225,9 +4225,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 03e86a015702aea479893418437cde32, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -14337,6 +14337,7 @@ MonoBehaviour:
   policemanTalk:
   - {fileID: 11400000, guid: dcd2e3f8999f48b4592013462df2839b, type: 2}
   firstFail: 2
+  talkBonusChance: 0
 --- !u!1 &4526338980297325175
 GameObject:
   m_ObjectHideFlags: 0

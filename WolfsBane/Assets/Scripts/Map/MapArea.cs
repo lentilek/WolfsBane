@@ -6,7 +6,7 @@ using UnityEngine;
 public class MapArea : MonoBehaviour
 {
     public int type; // 0 - out of map, 1 - regular, 2 - resource, 3 - blocked, 4 - house
-    public int resourceType = 0; // 0 - nothing, 1 - wood, 2 - stone, 3 - rope, 4 - meat
+    public int resourceType = 0; // 0 - nothing, 1 - wood, 2 - stone, 3 - rope, 4 - meat, 5 - house
     public int state = 2; // 0 - not avaiable, 1 - empty and trap, 2 - empty, 3 - smell&trap,
                           // 4 - smell, 5 - turist&trap, 6 - turist, 7 - meat
     public int taskIndex = 0; // 0 - nothing, 1-7 tasks
@@ -278,7 +278,7 @@ public class MapArea : MonoBehaviour
     public void InteractionsBase()
     {
         buttonBarricade.SetActive(true);
-        if (PlayerInventory.Instance.woodAmount > 0 && state == 1)
+        if (PlayerInventory.Instance.woodAmount > 0 && resourceType == 5)
         {
             buttonBarricade.GetComponent<ActionButtonManager>().ActionPossible();
         }
@@ -415,10 +415,7 @@ public class MapArea : MonoBehaviour
                     gameplayObject.GetComponentInChildren<SaltCubes>().SaltCubesMiniGame(this);
                     break;
                 case 3:
-                    if(GameManager.Instance.UseActionPoint())
-                    {
-                        gameplayObject.GetComponentInChildren<ClearPath>().ClearPathMiniGame(this);
-                    }
+                    gameplayObject.GetComponentInChildren<ClearPath>().ClearPathMiniGame(this);
                     break;
                 case 7:
                     gameplayObject.GetComponentInChildren<TrailCam>().TrailCamMiniGame(this);

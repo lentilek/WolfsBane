@@ -24,6 +24,7 @@ public class TaskManager : MonoBehaviour
     public int additionalResourcesAmount;
     [HideInInspector] public bool moreResources;
     [SerializeField] private int bigTalkChanceRewardAmount;
+    [HideInInspector] public bool doubleBarricades;
 
     [HideInInspector] public int completeTasksCount;
 
@@ -61,6 +62,7 @@ public class TaskManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        doubleBarricades = false;
     }
 
     public void RandomTasks()
@@ -437,6 +439,7 @@ public class TaskManager : MonoBehaviour
                 moreResources = true;
                 break;
             case 8:
+                doubleBarricades = true;
                 break;
             case 9:
                 Dialog.Instance.talkBonusChance += bigTalkChanceRewardAmount;

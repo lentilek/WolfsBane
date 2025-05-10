@@ -54,7 +54,7 @@ public class LakeInteractions : MonoBehaviour
     public void TakeTrashMiniGame()
     {
         AudioManager.Instance.PlaySound("uiSound");
-        if (IsPlayerNear() && GameManager.Instance.UseActionPoint())
+        if (IsPlayerNear())
         {
             if (PlayerInventory.Instance.ropeAmount < PlayerInventory.Instance.maxRopeAmount)
             {
