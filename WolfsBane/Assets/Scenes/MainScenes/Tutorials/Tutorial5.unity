@@ -14533,6 +14533,12 @@ PrefabInstance:
       addedObject: {fileID: 1614871765}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20b87f7ad46dbf04b8fe2957bc650b58, type: 3}
+--- !u!1 &46669937633655471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7450439168167572091, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
+    type: 3}
+  m_PrefabInstance: {fileID: 46669937633655470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273888987364241192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14728,12 +14734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1772559182158350455 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8020960147594182337, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
-    type: 3}
-  m_PrefabInstance: {fileID: 46669937633655470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1772559182158350456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3450903199882140394, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
@@ -15250,7 +15250,7 @@ PrefabInstance:
     - target: {fileID: 3361162818913930519, guid: c6329ee7a93a9f04eb68327b64dfcd35,
         type: 3}
       propertyPath: resourceType
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4738346484566391393, guid: c6329ee7a93a9f04eb68327b64dfcd35,
         type: 3}
@@ -15655,7 +15655,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nextDayButton
       value: 
-      objectReference: {fileID: 1772559182158350455}
+      objectReference: {fileID: 46669937633655471}
     - target: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
         type: 3}
       propertyPath: daysCounterTXT

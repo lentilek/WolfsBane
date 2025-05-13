@@ -8,7 +8,7 @@ public class Tutorial3Controler : MonoBehaviour
     private int currentPart;
     [SerializeField] private MapArea area1, area2;
     [SerializeField] private GameObject pm, part1UI, part2UI, part3UI, part4UI, part5UI, part6UI;
-    [SerializeField] private GameObject options, talk;
+    [SerializeField] private GameObject options, talk, dialogueBox;
     private void Awake()
     {
         currentPart = 1;
@@ -35,6 +35,10 @@ public class Tutorial3Controler : MonoBehaviour
         if(currentPart != 3)
         {
             area2.buttonAction.SetActive(false);
+        }
+        if (currentPart == 4 && !talk.activeSelf && !dialogueBox.activeSelf)
+        {
+            Part4Button();
         }
     }
     public void Part1Button()

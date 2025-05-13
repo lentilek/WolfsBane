@@ -67,6 +67,9 @@ MonoBehaviour:
   apTimeEnd: {fileID: 3169397901097591755}
   moveAmount: 700
   playerName: 
+  day1Paper: {fileID: 0}
+  noKillsPaper: []
+  killPaper: []
 --- !u!1 &7141265740337877878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,7 +1307,7 @@ PrefabInstance:
     - target: {fileID: 4522790694805946866, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5164976253162525726, guid: b455695114895894094ee118ee360fbf,
         type: 3}

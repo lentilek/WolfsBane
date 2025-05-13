@@ -720,6 +720,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 691769857}
+    - target: {fileID: 6742084660606118165, guid: c82a8181755877a4d842d2b5d468eda8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6749643607787577518, guid: c82a8181755877a4d842d2b5d468eda8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -750,6 +755,11 @@ PrefabInstance:
       propertyPath: options
       value: 
       objectReference: {fileID: 751138135}
+    - target: {fileID: 7097372974926955170, guid: c82a8181755877a4d842d2b5d468eda8,
+        type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 1469626586}
     - target: {fileID: 8211492380318801477, guid: c82a8181755877a4d842d2b5d468eda8,
         type: 3}
       propertyPath: m_Name
@@ -1617,10 +1627,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 37218982}
-        m_TargetAssemblyTypeName: Tutorial3Controler, Assembly-CSharp
-        m_MethodName: Part4Button
-        m_Mode: 1
+      - m_Target: {fileID: 945936528}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1633,6 +1643,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
         m_MethodName: TuristAction1Button
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 160583207}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2391,7 +2413,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.5
+  orthographic size: 1.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6356,6 +6378,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941117291}
   m_CullTransparentMesh: 1
+--- !u!1 &945936528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6742084660606118165, guid: c82a8181755877a4d842d2b5d468eda8,
+    type: 3}
+  m_PrefabInstance: {fileID: 37218980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947420537
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,7 +7668,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1500302651}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 1.5
+    OrthographicSize: 1.8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -10131,6 +10159,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467626093}
   m_CullTransparentMesh: 1
+--- !u!1 &1469626586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2505665908345870686, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
+    type: 3}
+  m_PrefabInstance: {fileID: 46669937633655470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1500302651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5549892051423380159, guid: 2b37c4969cd82bb45a57a7283a760f82,
@@ -13219,7 +13253,7 @@ PrefabInstance:
     - target: {fileID: 1130954908895953720, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1587353895946666217, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
@@ -13249,6 +13283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -13256,7 +13295,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 37218982}
+      objectReference: {fileID: 945936528}
     - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -13270,7 +13309,7 @@ PrefabInstance:
     - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Part4Button
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
@@ -13280,7 +13319,7 @@ PrefabInstance:
     - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Tutorial3Controler, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2964702857144297042, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
         type: 3}
@@ -13486,6 +13525,12 @@ PrefabInstance:
       addedObject: {fileID: 160583208}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20b87f7ad46dbf04b8fe2957bc650b58, type: 3}
+--- !u!1 &46669937633655471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7450439168167572091, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
+    type: 3}
+  m_PrefabInstance: {fileID: 46669937633655470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273888987364241192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13681,12 +13726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1772559182158350455 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8020960147594182337, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
-    type: 3}
-  m_PrefabInstance: {fileID: 46669937633655470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1772559182158350456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3450903199882140394, guid: 20b87f7ad46dbf04b8fe2957bc650b58,
@@ -14076,7 +14115,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nextDayButton
       value: 
-      objectReference: {fileID: 1772559182158350455}
+      objectReference: {fileID: 46669937633655471}
     - target: {fileID: 5129852777363940201, guid: b76d2fbdbceeb9d4c9f35e5a428d5db3,
         type: 3}
       propertyPath: daysCounterTXT

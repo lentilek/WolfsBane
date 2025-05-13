@@ -2381,7 +2381,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "There\u2019s also a friendly approach - however this option only has a
-    certain chance of working dpending on the type of camper. This option doesn't
+    certain chance of working depending on the type of camper. This option doesn't
     rise Panic."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
@@ -4232,7 +4232,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Aggressive approach will guarantee their departure at the cost of rising
-    the Panic meter.
+    the Panic Meter.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
@@ -4503,7 +4503,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Go to the tile to interact. Talk with the tourists and choose your approach.
-    You can use each of them twice,
+    You can use each of them twice.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
@@ -5576,7 +5576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tourist no longer can be eaten by the werewolf at night! PM won't incease
+  m_text: Tourist no longer can be eaten by the Werewolf at night! PM won't incease
     tonight.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
@@ -5713,6 +5713,7 @@ MonoBehaviour:
   part6UI: {fileID: 1890186748222114077}
   options: {fileID: 0}
   talk: {fileID: 0}
+  dialogueBox: {fileID: 0}
 --- !u!1 &8217251952692606040
 GameObject:
   m_ObjectHideFlags: 0

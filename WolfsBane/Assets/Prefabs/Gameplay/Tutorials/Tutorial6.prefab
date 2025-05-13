@@ -330,7 +330,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -309.5}
-  m_SizeDelta: {x: 800, y: 150}
+  m_SizeDelta: {x: 800, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6338821055429573686
 CanvasRenderer:
@@ -578,7 +578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -233.2}
+  m_AnchoredPosition: {x: 0, y: -233}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3087494259512634669
@@ -684,9 +684,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Werewolf destroyd the barricade and the trap at the cost of 1AP each. Normally
-    it would go around it, wasting AP - unless it woke up on the tile with a placed
-    trap.
+  m_text: Werewolf destroyed the barricade and the trap at the cost of 1AP each.
+    Normally it would go around it, wasting AP - unless it woke up on the tile with
+    a placed trap.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
@@ -1061,7 +1061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -233.2}
+  m_AnchoredPosition: {x: 0, y: -216}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1128416540643090264
@@ -1444,7 +1444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.4, y: -32.9}
+  m_AnchoredPosition: {x: 5.4, y: -31}
   m_SizeDelta: {x: 707.0151, y: 129.4425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7602551289717459422
@@ -1475,9 +1475,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Each tourist that stays in the forest and doesn\u2019t get eaten throughout
-    the night lowers the panic meter at the start of next day. When panic meter rises
-    new types of tourists appear - thrill hunters and police officers."
+  m_text: When Panic Meter rises new types of tourists appear - thrill hunters and
+    police officers. It's harder to make them leave. Meeting police at night won't
+    rise PM but may cause instant death.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Surivive all 7 nights while keeping an eye on the Panic Level to win. Use
+  m_text: Surivive all 7 nights while keeping an eye on the Panic Meter to win. Use
     different tactics and have fun!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
@@ -3247,7 +3247,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -309.5}
+  m_AnchoredPosition: {x: 0, y: -312}
   m_SizeDelta: {x: 800, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5161692290592567765
@@ -4943,7 +4943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.6, y: -38.7}
+  m_AnchoredPosition: {x: -1.6, y: -11}
   m_SizeDelta: {x: 707.0151, y: 129.4425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8252840661670066345
@@ -4974,8 +4974,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: With each eaten tourist, the Panic Level rises. If the bar fills up completely,
-    you'll lose.
+  m_text: "With each eaten tourist, the Panic Meter rises. If the bar fills up completely,
+    you'll lose. Each tourist that stays in the forest and doesn\u2019t get eaten
+    throughout the night lowers the panic meter at the start of next day. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
@@ -5615,9 +5616,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Oh no! The werewolf ate the tourist. The panic meter rose by a lot. You
-    can avoid this scenario by attemtping to exhaust the werewolf's AP by making
-    him avoid traps.
+  m_text: Oh no! Werewolf ate the tourist. The Panic Meter rose by a lot. You can
+    avoid this scenario by attempting to exhaust the werewolf's AP by making him
+    avoid tourists, placing traps etc.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
