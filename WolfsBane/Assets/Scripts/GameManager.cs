@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
         mainLight.color = Color.white;
     }
 
-    // update chyba bêdzie mo¿na usun¹æ i zostawiæ tylko GetCurrentFill po akcjach
     private void Update()
     {
         //GetCurrentFillIndicator();
@@ -231,7 +230,7 @@ public class GameManager : MonoBehaviour
         if(daysCounter == daysToWin)
         {
             Time.timeScale = 0f;
-            HighscoreSystem.Instance.GetData();
+            //HighscoreSystem.Instance.GetData();
             GameUI.Instance.winScreen.SetActive(true);
         }
         else
