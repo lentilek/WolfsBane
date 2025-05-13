@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class MapArea : MonoBehaviour
 {
@@ -18,8 +19,9 @@ public class MapArea : MonoBehaviour
     public GameObject decorations;
     public GameObject buttonAction;
     public GameObject buttonGo;
+    [SerializeField] private TextMeshProUGUI tooltipGO;
     public GameObject buttonDiscover;
-    public GameObject interactionsBase, interactionsMap, interactionsImage;
+    public GameObject interactionsBase, interactionsMap;
     public GameObject buttonSetTrap, buttonTalk, buttonResource, buttonTask;
     public GameObject buttonsTraps;
     public GameObject buttonBarricade, buttonCollectMeat;
@@ -67,7 +69,6 @@ public class MapArea : MonoBehaviour
         buttonResource.SetActive(false);
         interactionsBase.SetActive(false);
         interactionsMap.SetActive(false);
-        interactionsImage.SetActive(false);
     }
     public void AddEnviro(int blockedType)
     {
@@ -256,7 +257,7 @@ public class MapArea : MonoBehaviour
             {
                 noAPTip.SetActive(true);
             }
-            else if (!interactionsMap.activeSelf && !interactionsBase.activeSelf && !interactionsImage.activeSelf && !buttonsTraps.activeSelf)
+            else if (!interactionsMap.activeSelf && !interactionsBase.activeSelf && !buttonsTraps.activeSelf)
             {
                 noAPTip.SetActive(false);
                 noActionTip.SetActive(true);
@@ -269,6 +270,8 @@ public class MapArea : MonoBehaviour
         else if (isAvailable && isVisible && (type == 4 || !AreThereHiddenNeighbours()))
         {
             buttonGo.SetActive(true);
+            if (type == 4) tooltipGO.text = "0AP";
+            else tooltipGO.text = "1AP";
         }
         else if (isAvailable)
         {
@@ -296,7 +299,6 @@ public class MapArea : MonoBehaviour
             buttonCollectMeat.GetComponent<ActionButtonManager>().ActionNotPossible();
         }        
         interactionsBase.SetActive(false);
-        interactionsImage.SetActive(true);
     }
     public void InteractionsMap()
     {
@@ -340,7 +342,6 @@ public class MapArea : MonoBehaviour
             buttonTask.GetComponent<ActionButtonManager>().ActionNotPossible();
         }
         interactionsMap.SetActive(false);
-        interactionsImage.SetActive(true);
     }
     public void CollectResourceButton()
     {
