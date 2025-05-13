@@ -2701,7 +2701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6495001501313173332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4248,8 +4248,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Barricade in the cabin to waste werewolf''s AP. One barricade = 1AP lost
-    at the begining of night.
+  m_text: 'Barricade the cabin to waste werewolf''s AP. One barricade = 2AP lost
+    at the begining of the night.
 
 '
   m_isRightToLeft: 0
@@ -7144,7 +7144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0174, y: -0.34699965}
+  m_AnchoredPosition: {x: 0.063, y: -0.34699965}
   m_SizeDelta: {x: 1.0929, y: 0.3349}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2616658770568936765

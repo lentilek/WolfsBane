@@ -264,7 +264,7 @@ public class GameManager : MonoBehaviour
         mainLight.color = Color.white;
         Dialog.Instance.talkBonusChance = 0;
         TaskManager.Instance.moreResources = false;
-        TaskManager.Instance.doubleBarricades = false;
+        TaskManager.Instance.strongerBarricades = false;
         if (House.Instance != null) House.Instance.HouseDay();
         foreach (MapArea ma in MapBoard.Instance.moduleListResource)
         {

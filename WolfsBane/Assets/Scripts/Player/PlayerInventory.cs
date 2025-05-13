@@ -272,13 +272,14 @@ public class PlayerInventory : MonoBehaviour
     IEnumerator Waiting(float time)
     {
         if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4 && 
-            MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].state == 1)
+            MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].resourceType == 5)
         {
             if (doorTrap)
             {
                 yield return new WaitForSeconds(time);
                 GameManager.Instance.UseActionPointAI();
-                if (TaskManager.Instance.doubleBarricades) GameManager.Instance.UseActionPointAI();
+                GameManager.Instance.UseActionPointAI();
+                if (TaskManager.Instance.strongerBarricades) GameManager.Instance.UseActionPointAI();
                 doorTrap = false;
                 House.Instance.doorTrap.SetActive(false);
             }
@@ -286,7 +287,8 @@ public class PlayerInventory : MonoBehaviour
             {
                 yield return new WaitForSeconds(time);
                 GameManager.Instance.UseActionPointAI();
-                if (TaskManager.Instance.doubleBarricades) GameManager.Instance.UseActionPointAI();
+                GameManager.Instance.UseActionPointAI();
+                if (TaskManager.Instance.strongerBarricades) GameManager.Instance.UseActionPointAI();
                 fenceTrap = false;
                 House.Instance.fenceTrap.SetActive(false);
             }

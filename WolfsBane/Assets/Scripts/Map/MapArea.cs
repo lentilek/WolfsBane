@@ -278,7 +278,7 @@ public class MapArea : MonoBehaviour
     public void InteractionsBase()
     {
         buttonBarricade.SetActive(true);
-        if (PlayerInventory.Instance.woodAmount > 0 && resourceType == 5)
+        if (PlayerInventory.Instance.woodAmount > 0 && resourceType == 5 && (!PlayerInventory.Instance.doorTrap || !PlayerInventory.Instance.fenceTrap))
         {
             buttonBarricade.GetComponent<ActionButtonManager>().ActionPossible();
         }
@@ -449,7 +449,7 @@ public class MapArea : MonoBehaviour
         {
             PlayerInventory.Instance.BuildTrap(MapBoard.Instance.map[row].moduleRow[column]);
         }
-        else */if(type == 4 && PlayerInventory.Instance.woodAmount > 0 && state == 1)
+        else */if(type == 4 && PlayerInventory.Instance.woodAmount > 0 && resourceType == 5)
         {
             PlayerInventory.Instance.BuildHouseTrap();
             buttonsTraps.SetActive(false);
