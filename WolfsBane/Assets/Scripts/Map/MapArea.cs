@@ -312,7 +312,7 @@ public class MapArea : MonoBehaviour
             buttonResource.GetComponent<ActionButtonManager>().ActionNotPossible();
         }
         buttonSetTrap.SetActive(true);
-        if ((type == 1 || type == 2) && (state == 2 || state == 4) && taskIndex != 3)
+        if ((type == 1 || type == 2) && (state == 2 || state == 4) && taskIndex != 3 && !GetComponentInChildren<Trap>())
         {
             buttonSetTrap.GetComponent<ActionButtonManager>().ActionPossible();
         }
