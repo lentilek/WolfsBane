@@ -312,7 +312,10 @@ public class GameManager : MonoBehaviour
         }
         if (gameIndicator >= thrillHuntersAppear)
         {
-            while (i < (thrillHunterPerDay + policemanPerDay))
+            int thrillHunterCounter = 0;
+            if (gameIndicator >= policemanAppear) thrillHunterCounter = thrillHunterPerDay + policemanPerDay;
+            else thrillHunterCounter = thrillHunterPerDay;
+            while (i < thrillHunterCounter)
             {
                 MapArea ma = MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)];
                 turistCamps.Add(Instantiate(thrillHunterModels[Random.Range(0, thrillHunterModels.Length)],
