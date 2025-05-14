@@ -14376,7 +14376,7 @@ MonoBehaviour:
   dialogTXT: {fileID: 8244596022447248154}
   nameTXT: {fileID: 5026803990269937586}
   portrait: {fileID: 5445881412629468326}
-  turistAggresive:
+  turistAggresiveS:
   - {fileID: 11400000, guid: 8787c594176559148a11b960911de245, type: 2}
   - {fileID: 11400000, guid: c331716a43eb69d478325e325c6f2a0a, type: 2}
   - {fileID: 11400000, guid: 71a38d875d334db428aec5e24cbbf183, type: 2}
@@ -14398,28 +14398,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2356e838e7efd640a14f9dae64e2594, type: 2}
   - {fileID: 11400000, guid: d445541a170e1c2448f105f61c898198, type: 2}
   - {fileID: 11400000, guid: b4a74161ef9b4a0479fee5ba450ba81c, type: 2}
-  - {fileID: 11400000, guid: 8787c594176559148a11b960911de245, type: 2}
-  - {fileID: 11400000, guid: c331716a43eb69d478325e325c6f2a0a, type: 2}
-  - {fileID: 11400000, guid: 71a38d875d334db428aec5e24cbbf183, type: 2}
-  - {fileID: 11400000, guid: 0305e9eb470045a4a9c8e1ad6568acbf, type: 2}
-  - {fileID: 11400000, guid: c7ab00497717e0e40a958c57c90ea8db, type: 2}
-  - {fileID: 11400000, guid: 109490226d15d1d408c1a160b7523535, type: 2}
-  - {fileID: 11400000, guid: 6c9d37206d56b0e45a52885f8c24042f, type: 2}
-  - {fileID: 11400000, guid: 7d774332379a5644c9b3fa0a5674bf86, type: 2}
-  - {fileID: 11400000, guid: a51eb6a631f5e114f855125805387638, type: 2}
-  - {fileID: 11400000, guid: cdaeb6cce5b8d7c4e80026f7e0704257, type: 2}
-  - {fileID: 11400000, guid: 27a7ee5688416894db68658302e262a0, type: 2}
-  - {fileID: 11400000, guid: f064e7823dc097f41847e39f55f94ffa, type: 2}
-  - {fileID: 11400000, guid: 472a9d93d0eb0584f95d234c73ceff8d, type: 2}
-  - {fileID: 11400000, guid: 85332255739d1ba4490ddf65aac58e9b, type: 2}
-  - {fileID: 11400000, guid: f30e49bffc1c3af46ac3e7255f3c568b, type: 2}
-  - {fileID: 11400000, guid: d14a237b1e94f3545b2a4fca60fa30ae, type: 2}
-  - {fileID: 11400000, guid: 745759737460c9e4b823a2116d0eed94, type: 2}
-  - {fileID: 11400000, guid: cc0e842445ebe434495b851852ae92b9, type: 2}
-  - {fileID: 11400000, guid: c2356e838e7efd640a14f9dae64e2594, type: 2}
-  - {fileID: 11400000, guid: d445541a170e1c2448f105f61c898198, type: 2}
-  - {fileID: 11400000, guid: b4a74161ef9b4a0479fee5ba450ba81c, type: 2}
-  turistFriendly:
+  turistAggresiveF: []
+  turistFriendlyS:
   - {fileID: 11400000, guid: 685a77fe2e281524f8b70ada9629acd6, type: 2}
   - {fileID: 11400000, guid: 3efb6ef69970c044993f6864d5511780, type: 2}
   - {fileID: 11400000, guid: c921e2a023c57b1489b61ba1ab1eccf6, type: 2}
@@ -14440,6 +14420,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5260c4e150d836e4283fd7af040f8b12, type: 2}
   - {fileID: 11400000, guid: 1c027c0f72093f644a5b28cbe0e88d3e, type: 2}
   - {fileID: 11400000, guid: aa866915b99d98e47938c5ab62a276f6, type: 2}
+  turistFriendlyF:
   - {fileID: 11400000, guid: 340a0e6ecb403c44990a9017c843a724, type: 2}
   - {fileID: 11400000, guid: b4a480b56ca023e42935a44b5681abb3, type: 2}
   - {fileID: 11400000, guid: a36c96d65ed35244aa8b652615abd984, type: 2}
@@ -14474,31 +14455,142 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cbd4aa5dfde54743b048df8af115f87, type: 2}
   - {fileID: 11400000, guid: 1320958de88c0d14eb57574909bad222, type: 2}
   - {fileID: 11400000, guid: 8e606c60858578644a70de4a31ca1921, type: 2}
-  thrillHunterAggresive:
+  thrillHunterAggresiveS:
   - {fileID: 11400000, guid: f0ff67c000f760b44a5bab1c2e9a599f, type: 2}
   - {fileID: 11400000, guid: 0c7232d46c3499f458edca389732fcb8, type: 2}
+  - {fileID: 11400000, guid: e4abdd006513648418d4acd2f9c43e3c, type: 2}
+  - {fileID: 11400000, guid: 35b58bbf2013ce346aba96b959a87eaf, type: 2}
+  - {fileID: 11400000, guid: 8872cd5e9e016544c842ab67bf152d73, type: 2}
+  - {fileID: 11400000, guid: 6ca7b957d4d9a50438e730241e326390, type: 2}
+  - {fileID: 11400000, guid: f832e57fe87bb1d45bd6e27e1624c030, type: 2}
+  - {fileID: 11400000, guid: 547e33d4bb2d8e24282444a3c1450ac8, type: 2}
+  - {fileID: 11400000, guid: 3008724e1aaad594b87097ae8e04a6d3, type: 2}
+  - {fileID: 11400000, guid: cc2378bae3eeec646a3f023fcf80362c, type: 2}
+  - {fileID: 11400000, guid: 15470585bfc49744ebc3dcb2d10f8109, type: 2}
+  - {fileID: 11400000, guid: fe2e02e32d49b6845aacd7a2f41d3fff, type: 2}
+  - {fileID: 11400000, guid: 1a66ff285712b8d47bc82f48bacdc09c, type: 2}
+  - {fileID: 11400000, guid: 9a54299accbc9dc47ba514456337e8ad, type: 2}
+  - {fileID: 11400000, guid: 75bce0b564b999b4bb96cfc41d69d862, type: 2}
+  - {fileID: 11400000, guid: 198d5b153aab7df429b398505606db74, type: 2}
+  - {fileID: 11400000, guid: 251fd09ead1744c47a9a3390e6abaee1, type: 2}
+  - {fileID: 11400000, guid: 6de92f56113bda44e9064d1a9ecba8de, type: 2}
+  - {fileID: 11400000, guid: 3e30d55e687d6a94594c6c90cd69a989, type: 2}
+  - {fileID: 11400000, guid: a6e0e339e262a6941a0266a5ffdf3dd7, type: 2}
+  thrillHunterAggresiveF:
   - {fileID: 11400000, guid: 4669bd2c14cb5804e93159bc7d1644ea, type: 2}
   - {fileID: 11400000, guid: 094dc16489434144ba8b44804f491e39, type: 2}
-  thrillHunterFriendly:
+  - {fileID: 11400000, guid: 33f9f219db35d9644b17ad0c6c92a7a2, type: 2}
+  - {fileID: 11400000, guid: e036cfa445b8a7e498e6c229053c7658, type: 2}
+  - {fileID: 11400000, guid: cf2c8a99ea8b28a4f924b6b92951f9b0, type: 2}
+  - {fileID: 11400000, guid: 983a599dfa956aa46a7f37fc886feae5, type: 2}
+  - {fileID: 11400000, guid: 3f0ded9abc9d0c64981be180a1d0326b, type: 2}
+  - {fileID: 11400000, guid: 096ff01c9225c2a48ba6254a89932b07, type: 2}
+  - {fileID: 11400000, guid: 77f9d6c71f8985145a36f9482ced095d, type: 2}
+  - {fileID: 11400000, guid: 47fe0d9eb2fcd2341af192ecc6c04a3d, type: 2}
+  - {fileID: 11400000, guid: e366e821a2218ab47b6accebd8da0304, type: 2}
+  - {fileID: 11400000, guid: 75e51d933076cad4abbbf7a28a8ed086, type: 2}
+  - {fileID: 11400000, guid: 32a012427ad08e34f923bc6fca34ee51, type: 2}
+  - {fileID: 11400000, guid: f271784138a160741b0aab02998c5853, type: 2}
+  - {fileID: 11400000, guid: b5ea5ff8f09ebd849aa29f20072418a4, type: 2}
+  - {fileID: 11400000, guid: a7e3f99768cdc8745ae599d75a930bf8, type: 2}
+  - {fileID: 11400000, guid: c1500e63ac72e4447ab751c0a896a954, type: 2}
+  - {fileID: 11400000, guid: 47c010ff8fa4d76409fa578bc9669c63, type: 2}
+  - {fileID: 11400000, guid: 969b5ef61ad6f8841b5c02e68954e3b2, type: 2}
+  - {fileID: 11400000, guid: f9f5693e55d3c5044b4364c55957d530, type: 2}
+  thrillHunterFriendlyS:
   - {fileID: 11400000, guid: e49d8e1941b63704bb7cb5d42d7624f3, type: 2}
   - {fileID: 11400000, guid: 23f5b11fbfd5f4d41a9951f933289eba, type: 2}
+  - {fileID: 11400000, guid: adddea05d169da1469b90c166ae9c398, type: 2}
+  - {fileID: 11400000, guid: 94e8498024c262343a6b3f0df03121e8, type: 2}
+  - {fileID: 11400000, guid: 588538a2c6e18a643ab704792927ffc4, type: 2}
+  - {fileID: 11400000, guid: 7b80856b4495dd040801fc5a652b8a7d, type: 2}
+  - {fileID: 11400000, guid: 8e95422567e89cb44bd24bb7702deac5, type: 2}
+  - {fileID: 11400000, guid: 41dc5dabd1388e2448ada221793e781d, type: 2}
+  - {fileID: 11400000, guid: 020df0d27e9c85d468f3dccb5a9decb2, type: 2}
+  - {fileID: 11400000, guid: 9bb1bcb3c2c00e94aba822c90f4fd8b6, type: 2}
+  - {fileID: 11400000, guid: 27637132e8af5ac4499b08299b4c1402, type: 2}
+  - {fileID: 11400000, guid: 96abddd999a39954bb5e83652571b3a6, type: 2}
+  - {fileID: 11400000, guid: 41ad20efda8606b4c97f1c429f0d4152, type: 2}
+  - {fileID: 11400000, guid: 24cca3efad77f4549b4cffe8c11ca896, type: 2}
+  - {fileID: 11400000, guid: 7fa4d51c89c36c546b497bcb9acb3fa6, type: 2}
+  - {fileID: 11400000, guid: bcf462fb19a9b9d44bb9e7ecdd1ca44e, type: 2}
+  - {fileID: 11400000, guid: 48bab1a37ababce4bb1a6a0557f93390, type: 2}
+  - {fileID: 11400000, guid: 1a2fae6da5596fc479e420af1ca34e30, type: 2}
+  - {fileID: 11400000, guid: 44e8200c13feb2c44948daab638afa69, type: 2}
+  - {fileID: 11400000, guid: d03ad67af4a1bdc4bb1f291390a770f0, type: 2}
+  thrillHunterFriendlyF:
   - {fileID: 11400000, guid: fc74f87e268527a4cb47305751a70ab7, type: 2}
   - {fileID: 11400000, guid: 135f60dc8265f154db6d83aefb2e7af7, type: 2}
+  - {fileID: 11400000, guid: de9f5cab825ef4d4c8553ce2202bc562, type: 2}
+  - {fileID: 11400000, guid: bbc2b78025c02604dafc171cc83c3772, type: 2}
+  - {fileID: 11400000, guid: c4a4a48ea8462dc40ac2ccc232a7d04e, type: 2}
+  - {fileID: 11400000, guid: 9fa84a5a12b91f349b31d0f95d4e80bd, type: 2}
+  - {fileID: 11400000, guid: f6434ed27c52a7c499f362237aabbca4, type: 2}
+  - {fileID: 11400000, guid: 55ba48aafd65dde49aa36bc23a933a09, type: 2}
+  - {fileID: 11400000, guid: 617e9bf9f5b42614aa75b91fa4d5d599, type: 2}
+  - {fileID: 11400000, guid: 8f612c4f8a55967468426bc41d2ca6a3, type: 2}
+  - {fileID: 11400000, guid: 7004cfaad32856c45adb10e65f8d2eb1, type: 2}
+  - {fileID: 11400000, guid: eab943ff92e8d124e9dbcd9388bc46b4, type: 2}
+  - {fileID: 11400000, guid: 05279ef75eb01504ab7e514dd8678084, type: 2}
+  - {fileID: 11400000, guid: 0efc2107fd40a754ca0b1446c236910f, type: 2}
+  - {fileID: 11400000, guid: 1d82b7ee0b226e44da9044260fc04041, type: 2}
+  - {fileID: 11400000, guid: 4ecde241140e17542ac5abf440378ee1, type: 2}
+  - {fileID: 11400000, guid: c91bcff99fe6e42448ddce9d4ac129f2, type: 2}
+  - {fileID: 11400000, guid: 22b0770d263f4f640955e749933a9bd7, type: 2}
+  - {fileID: 11400000, guid: 1b2a5b86372db114d9ce6af3ee1f422f, type: 2}
+  - {fileID: 11400000, guid: d2449d9b2d5d7bd48aa4f851d020a917, type: 2}
   thrillHunterTalk:
   - {fileID: 11400000, guid: ea35db6d602c6264290f12cc749f027d, type: 2}
-  policemanAggresive:
+  policemanAggresiveS:
   - {fileID: 11400000, guid: 8ec5db24038b88741bc0ef69182f9980, type: 2}
   - {fileID: 11400000, guid: d0865b3dcf1ed024296d0d777d0b788f, type: 2}
+  policemanAggresiveF:
   - {fileID: 11400000, guid: 087ddf68eebf3c24283f7df458849a94, type: 2}
   - {fileID: 11400000, guid: 542450ce32b7ced4bbf2c24fd94a7678, type: 2}
-  policemanFriendly:
+  policemanFriendlyS:
   - {fileID: 11400000, guid: 505f10a5db850cf409bc3548d843c2c5, type: 2}
   - {fileID: 11400000, guid: 560ccd70e78b61b4cbb4681b026b68e9, type: 2}
+  - {fileID: 11400000, guid: d34319eb48f1e0643af32952f1007ead, type: 2}
+  - {fileID: 11400000, guid: 120a41c5f9010d14c9b840bb16e3a991, type: 2}
+  - {fileID: 11400000, guid: d045379d11fba67488db8bd70698d766, type: 2}
+  - {fileID: 11400000, guid: 161a3a090083c434ca832991ef89c99a, type: 2}
+  - {fileID: 11400000, guid: a632c0b77f555e24683ea5baea267b5e, type: 2}
+  - {fileID: 11400000, guid: 67227d366f21964469e4c86af73a1c35, type: 2}
+  - {fileID: 11400000, guid: 65b060ed3eb850b42a5a81b9a7b2a92c, type: 2}
+  - {fileID: 11400000, guid: e8d3f05be381f5e499e051e86c226236, type: 2}
+  - {fileID: 11400000, guid: 849e7721e3f66f042b8343c4eb3e7eb1, type: 2}
+  - {fileID: 11400000, guid: 03207eac36052f34eb6882aff2402b37, type: 2}
+  - {fileID: 11400000, guid: ff6319bf4f4f98b4099a678cc661afc1, type: 2}
+  - {fileID: 11400000, guid: 011a2c9817ea14c4aa5e2e180293b343, type: 2}
+  - {fileID: 11400000, guid: 6565cd07cb17e28449950a7c15cb8d41, type: 2}
+  - {fileID: 11400000, guid: 7300839ada6abb946a009c5a31c457b4, type: 2}
+  - {fileID: 11400000, guid: c3abac8db6fe80045845f48146283cf8, type: 2}
+  - {fileID: 11400000, guid: fe5e8dac7b167ab4ca05cea33368f002, type: 2}
+  - {fileID: 11400000, guid: 4500beb55bb98ff45b8ee4d8c3f8b5e2, type: 2}
+  - {fileID: 11400000, guid: 78e3639054404824885af7caa48f28e0, type: 2}
+  policemanFriendlyF:
   - {fileID: 11400000, guid: f9cded4b993540a41b855db27b3b9c16, type: 2}
   - {fileID: 11400000, guid: acdcb02d017703545a07e94f3e8652f2, type: 2}
+  - {fileID: 11400000, guid: f27348453c2bd6242925c097678f2b6c, type: 2}
+  - {fileID: 11400000, guid: d9a9a88568132df46ad82888c58f9a27, type: 2}
+  - {fileID: 11400000, guid: 4f7819726774029449c177ba96e00304, type: 2}
+  - {fileID: 11400000, guid: 9fc8f5859a125684286fbbe3f2099dc3, type: 2}
+  - {fileID: 11400000, guid: ee4a79fa381abcc46a2526f5557b82fa, type: 2}
+  - {fileID: 11400000, guid: 5811cc943d23c014ca3e2cea92f7683a, type: 2}
+  - {fileID: 11400000, guid: 260584fcb57afd247bbc48e3becfcc0f, type: 2}
+  - {fileID: 11400000, guid: 91da6a32a9aae514aa70eb7a5b68507b, type: 2}
+  - {fileID: 11400000, guid: ff3d988926e86b843aca8df23a948241, type: 2}
+  - {fileID: 11400000, guid: 4447cb7057acdf94086d6144303f5abc, type: 2}
+  - {fileID: 11400000, guid: 1dc3dcde0ba49b949956eb5af9f25d2c, type: 2}
+  - {fileID: 11400000, guid: 8e291f7df1031cc4c8c262890fa6d986, type: 2}
+  - {fileID: 11400000, guid: b38ba78fcd5e3404b84e16e44420fe95, type: 2}
+  - {fileID: 11400000, guid: 4d0dc82e4291f444883a9b33f72ea44f, type: 2}
+  - {fileID: 11400000, guid: 428d4b832704d9444a5fe62227f77d57, type: 2}
+  - {fileID: 11400000, guid: 15938247ba8b0904db2e14e03095a273, type: 2}
+  - {fileID: 11400000, guid: ca838cbdba7e6654eb9c9e1d41424671, type: 2}
+  - {fileID: 11400000, guid: 5b957129911d1364fb531a7c910d1916, type: 2}
   policemanTalk:
   - {fileID: 11400000, guid: dcd2e3f8999f48b4592013462df2839b, type: 2}
-  firstFail: 2
   talkBonusChance: 0
 --- !u!1 &4526338980297325175
 GameObject:

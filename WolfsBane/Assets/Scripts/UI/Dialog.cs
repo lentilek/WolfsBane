@@ -17,10 +17,9 @@ public class Dialog : MonoBehaviour
     [SerializeField] private float textSpeed;
     [SerializeField] private TextMeshProUGUI dialogTXT, nameTXT;
     [SerializeField] private Image portrait;
-    [SerializeField] private DialogueSO[] turistAggresive, turistFriendly, turistTalk; 
-    [SerializeField] private DialogueSO[] thrillHunterAggresive, thrillHunterFriendly, thrillHunterTalk;
-    [SerializeField] private DialogueSO[] policemanAggresive, policemanFriendly, policemanTalk;
-    [SerializeField] private int firstFail;
+    [SerializeField] private DialogueSO[] turistAggresiveS, turistAggresiveF, turistFriendlyS, turistFriendlyF, turistTalk; 
+    [SerializeField] private DialogueSO[] thrillHunterAggresiveS, thrillHunterAggresiveF, thrillHunterFriendlyS, thrillHunterFriendlyF, thrillHunterTalk;
+    [SerializeField] private DialogueSO[] policemanAggresiveS, policemanAggresiveF, policemanFriendlyS, policemanFriendlyF, policemanTalk;
 
     [HideInInspector] public int talkBonusChance;
     private void Awake()
@@ -225,13 +224,13 @@ public class Dialog : MonoBehaviour
             case 0:
                 if(type == 1)
                 {
-                    if (success) dialogue = turistAggresive[Random.Range(0, firstFail)];
-                    else dialogue = turistAggresive[Random.Range(firstFail, turistAggresive.Length)];
+                    if (success) dialogue = turistAggresiveS[Random.Range(0, turistAggresiveS.Length)];
+                    else dialogue = turistAggresiveF[Random.Range(0, turistAggresiveF.Length)];
                 }
                 else if (type == 2)
                 {
-                    if (success) dialogue = turistFriendly[Random.Range(0, firstFail)];
-                    else dialogue = turistFriendly[Random.Range(firstFail, turistFriendly.Length)];
+                    if (success) dialogue = turistFriendlyS[Random.Range(0, turistFriendlyS.Length)];
+                    else dialogue = turistFriendlyF[Random.Range(0, turistFriendlyF.Length)];
                 }else if(type == 3)
                 {
                     dialogue = turistTalk[Random.Range(0, turistTalk.Length)];
@@ -240,13 +239,13 @@ public class Dialog : MonoBehaviour
             case 1:
                 if (type == 1)
                 {
-                    if(success) dialogue = thrillHunterAggresive[Random.Range(0, firstFail)];
-                    else dialogue = thrillHunterAggresive[Random.Range(firstFail, thrillHunterAggresive.Length)];
+                    if(success) dialogue = thrillHunterAggresiveS[Random.Range(0, thrillHunterAggresiveS.Length)];
+                    else dialogue = thrillHunterAggresiveF[Random.Range(0, thrillHunterAggresiveF.Length)];
                 }
                 else if (type == 2)
                 {
-                    if (success) dialogue = thrillHunterFriendly[Random.Range(0, firstFail)];
-                    else dialogue = thrillHunterFriendly[Random.Range(firstFail, thrillHunterFriendly.Length)];
+                    if (success) dialogue = thrillHunterFriendlyS[Random.Range(0, thrillHunterFriendlyS.Length)];
+                    else dialogue = thrillHunterFriendlyF[Random.Range(0, thrillHunterFriendlyF.Length)];
                 }
                 else if (type == 3)
                 {
@@ -256,13 +255,13 @@ public class Dialog : MonoBehaviour
             case 2:
                 if (type == 1)
                 {
-                    if (success) dialogue = policemanAggresive[Random.Range(0, firstFail)];
-                    else dialogue = policemanAggresive[Random.Range(firstFail, policemanAggresive.Length)];
+                    if (success) dialogue = policemanAggresiveS[Random.Range(0, policemanAggresiveS.Length)];
+                    else dialogue = policemanAggresiveF[Random.Range(0, policemanAggresiveF.Length)];
                 }
                 else if (type == 2)
                 {
-                    if (success) dialogue = policemanFriendly[Random.Range(0, firstFail)];
-                    else dialogue = policemanFriendly[Random.Range(firstFail, policemanFriendly.Length)];
+                    if (success) dialogue = policemanFriendlyS[Random.Range(0, policemanFriendlyS.Length)];
+                    else dialogue = policemanFriendlyF[Random.Range(0, policemanFriendlyF.Length)];
                 }
                 else if (type == 3)
                 {
