@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
     public void Night()
     {
         isNight = true;
+        currentAIActionPoints -= TaskManager.Instance.lessWerewolfActions;
         PlayerInventory.Instance.CheckHouseForTrap();
     }
     public void StartNightWait()
@@ -264,6 +265,7 @@ public class GameManager : MonoBehaviour
         Dialog.Instance.talkBonusChance = 0;
         TaskManager.Instance.moreResources = false;
         TaskManager.Instance.strongerBarricades = false;
+        TaskManager.Instance.lessWerewolfActions = 0;
         if (House.Instance != null) House.Instance.HouseDay();
         foreach (MapArea ma in MapBoard.Instance.moduleListResource)
         {

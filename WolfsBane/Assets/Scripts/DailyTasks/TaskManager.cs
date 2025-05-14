@@ -25,6 +25,7 @@ public class TaskManager : MonoBehaviour
     [HideInInspector] public bool moreResources;
     [SerializeField] private int bigTalkChanceRewardAmount;
     [HideInInspector] public bool strongerBarricades;
+    [HideInInspector] public int lessWerewolfActions;
 
     [HideInInspector] public int completeTasksCount;
 
@@ -443,6 +444,12 @@ public class TaskManager : MonoBehaviour
                 break;
             case 9:
                 Dialog.Instance.talkBonusChance += bigTalkChanceRewardAmount;
+                break;
+            case 10:
+                lessWerewolfActions += 1;
+                break;
+            case 11:
+                lessWerewolfActions += 3;
                 break;
             default: break;
         }
