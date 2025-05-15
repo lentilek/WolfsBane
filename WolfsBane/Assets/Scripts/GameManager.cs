@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             //HighscoreSystem.Instance.GetData();
+            daysCounter++;
             GameUI.Instance.winScreen.SetActive(true);
         }
         else

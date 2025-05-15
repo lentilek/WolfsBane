@@ -21,11 +21,11 @@ public class HighscoreUI : MonoBehaviour
         playerId[3].text = $"ID: {score.id4}";
         playerId[4].text = $"ID: {score.id5}";
 
-        days[0].text = $"Days survived: {score.days1}";
-        days[1].text = $"Days survived: {score.days2}";
-        days[2].text = $"Days survived: {score.days3}";
-        days[3].text = $"Days survived: {score.days4}";
-        days[4].text = $"Days survived: {score.days5}";
+        days[0].text = $"Nights survived: {score.days1}";
+        days[1].text = $"Nights survived: {score.days2}";
+        days[2].text = $"Nights survived: {score.days3}";
+        days[3].text = $"Nights survived: {score.days4}";
+        days[4].text = $"Nights survived: {score.days5}";
 
         turistsEaten[0].text = $"Turists eaten: {score.turistseaten1}";
         turistsEaten[1].text = $"Turists eaten: {score.turistseaten2}";
