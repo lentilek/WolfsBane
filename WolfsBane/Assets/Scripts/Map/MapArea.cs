@@ -29,6 +29,7 @@ public class MapArea : MonoBehaviour
     [HideInInspector] public int column;
     [HideInInspector] public List<MapArea> neighbours;
 
+    [SerializeField] private GameObject[] clouds;
     [SerializeField] private GameObject[] blockedModels;
     [SerializeField] private GameObject[] emptyModels;
     [SerializeField] private GameObject[] resourceModelsWood;
@@ -95,7 +96,11 @@ public class MapArea : MonoBehaviour
             cloud.SetActive(false);
             models.SetActive(true);
         }
-        
+        if (cloud.activeSelf)
+        {
+            Instantiate(clouds[Random.Range(0, clouds.Length)], cloud.transform, worldPositionStays: false);
+        }
+
         switch (type)
         {
             case 1:
