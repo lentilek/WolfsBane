@@ -21883,6 +21883,7 @@ GameObject:
   - component: {fileID: 7014883382547986416}
   - component: {fileID: 9152991370239508321}
   - component: {fileID: 4096913613571798629}
+  - component: {fileID: 1098994565293125880}
   m_Layer: 0
   m_Name: Tooltip
   m_TagString: Untagged
@@ -21949,6 +21950,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1098994565293125880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496034612918488854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 632070f0ab4da2c49bfe6b3d23ab9a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ma: {fileID: 6794632490749764319}
+  colorHidden: {r: 0.8862745, g: 0.7411765, b: 0.7137255, a: 1}
+  colorEmpty: {r: 0.8862745, g: 0.7411765, b: 0.7137255, a: 1}
+  colorResource: {r: 0.1768868, g: 0.7075472, b: 0.20598446, a: 1}
+  colorBase: {r: 0.8207547, g: 0.7012373, b: 0.18970275, a: 1}
+  colorTurist: {r: 0.8679245, g: 0.38779473, b: 0.3725525, a: 1}
+  colorTask: {r: 0.2956123, g: 0.488599, b: 0.8584906, a: 1}
 --- !u!1 &5513213570270001629
 GameObject:
   m_ObjectHideFlags: 0
