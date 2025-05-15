@@ -79,7 +79,11 @@ public class GameManager : MonoBehaviour
             gameIndicator = 0;
             isPoliceHere = false;
         }
-        if (isPoliceHere && gameIndicator < policemanAppear) gameIndicator = policemanAppear;
+        if (isPoliceHere && gameIndicator < policemanAppear)
+        {
+            gameIndicator = policemanAppear;
+            GetCurrentFillIndicator();
+        }
     }
     public void GetCurrentFillIndicator()
     {

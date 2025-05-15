@@ -21,7 +21,7 @@ public class MapArea : MonoBehaviour
     public GameObject buttonGo;
     [SerializeField] private TextMeshProUGUI tooltipGO;
     public GameObject buttonDiscover;
-    public GameObject interactionsBase, interactionsMap;
+    //public GameObject interactionsBase, interactionsMap;
     public GameObject buttonSetTrap, buttonTalk, buttonResource, buttonTask;
     public GameObject buttonsTraps;
     public GameObject buttonBarricade, buttonCollectMeat;
@@ -67,8 +67,8 @@ public class MapArea : MonoBehaviour
         buttonTask.SetActive(false);
         buttonsTraps.SetActive(false);
         buttonResource.SetActive(false);
-        interactionsBase.SetActive(false);
-        interactionsMap.SetActive(false);
+        //interactionsBase.SetActive(false);
+        //interactionsMap.SetActive(false);
     }
     public void AddEnviro(int blockedType)
     {
@@ -246,22 +246,24 @@ public class MapArea : MonoBehaviour
             }*/
             if(type == 4)
             {
-                interactionsBase.SetActive(true);
-                interactionsMap.SetActive(false);
+                //interactionsBase.SetActive(true);
+                //interactionsMap.SetActive(false);
+                InteractionsBase();
             }else if ((type == 1 || type == 2) && GameManager.Instance.currentActionPoints > 0)
             {
-                interactionsBase.SetActive(false);
-                interactionsMap.SetActive(true);
+                //interactionsBase.SetActive(false);
+                //interactionsMap.SetActive(true);
+                InteractionsMap();
             }
             if (GameManager.Instance.currentActionPoints == 0 && type != 4)
             {
                 noAPTip.SetActive(true);
             }
-            else if (!interactionsMap.activeSelf && !interactionsBase.activeSelf && !buttonsTraps.activeSelf)
+            /*else if (!interactionsMap.activeSelf && !interactionsBase.activeSelf && !buttonsTraps.activeSelf)
             {
                 noAPTip.SetActive(false);
                 noActionTip.SetActive(true);
-            }
+            }*/
             else
             {
                 noActionTip.SetActive(false);
@@ -298,7 +300,7 @@ public class MapArea : MonoBehaviour
         {
             buttonCollectMeat.GetComponent<ActionButtonManager>().ActionNotPossible();
         }        
-        interactionsBase.SetActive(false);
+        //interactionsBase.SetActive(false);
     }
     public void InteractionsMap()
     {
@@ -341,7 +343,7 @@ public class MapArea : MonoBehaviour
         {
             buttonTask.GetComponent<ActionButtonManager>().ActionNotPossible();
         }
-        interactionsMap.SetActive(false);
+        //interactionsMap.SetActive(false);
     }
     public void CollectResourceButton()
     {
