@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameUI : MonoBehaviour
     public GameObject apNight;
 
     [SerializeField] private GameObject[] moonPhases;
+    [SerializeField] private Sprite[] moonPhasesSprite;
+    [SerializeField] private Image nightIcon;
 
     [SerializeField] private GameObject apTime, apTimeEnd;
     private RectTransform apTimeTrans, apTimeEndTrans;
@@ -109,7 +112,8 @@ public class GameUI : MonoBehaviour
         apTimeTrans.transform.position = new Vector3(apTimeTrans.transform.position.x - (moveAmount / all), apTimeTrans.transform.position.y, apTimeTrans.transform.position.z);
     }
     public void Night()
-    {        
+    {
+        nightIcon.sprite = moonPhasesSprite[GameManager.Instance.daysCounter - 1];
         timeDay.SetActive(false);
         timeNight.SetActive(true);
         apDay.SetActive(false);

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI.Table;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -188,6 +189,11 @@ public class GameManager : MonoBehaviour
             if (turist != null && turist.GetComponent<Turist>().type == 2 && Random.Range(1, 101) <= turist.GetComponent<Turist>().killChance)
             {
                 gameIndicator = maxGameIndicator;
+                GetCurrentFillIndicator();
+                Time.timeScale = 0f;
+                GameUI.Instance.gameOverScreen.SetActive(true);
+                gameIndicator = 0;
+                isPoliceHere = false;
             }
             if (turist != null && UseActionPointAI())
             {
@@ -227,7 +233,8 @@ public class GameManager : MonoBehaviour
     }
     public void Light()
     {
-        mainLight.color = nightLightColor;
+        mainLight.DOColor(nightLightColor, 1f);
+        //mainLight.color = nightLightColor;
         if (House.Instance != null) House.Instance.HouseNight();
     }
     public void EndNightCheckIfWon()
@@ -266,7 +273,8 @@ public class GameManager : MonoBehaviour
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         PlayerControler.Instance.PlayerGoHome();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 210, 0);
-        mainLight.color = Color.white;
+        //mainLight.color = Color.white;
+        mainLight.DOColor(Color.white, 1f);
         Dialog.Instance.talkBonusChance = 0;
         TaskManager.Instance.moreResources = false;
         TaskManager.Instance.strongerBarricades = false;
@@ -294,6 +302,11 @@ public class GameManager : MonoBehaviour
         }
         turistCamps.Clear();
         MapBoard.Instance.RegularModuleList();
+        if (isPoliceHere && gameIndicator < policemanAppear)
+        {
+            gameIndicator = policemanAppear;
+            GetCurrentFillIndicator();
+        }
         int currentTuristCounter = turistPerDay;
         int i = 0;
         if (gameIndicator >= policemanAppear)
