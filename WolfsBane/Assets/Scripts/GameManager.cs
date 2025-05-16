@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //GetCurrentFillIndicator();
         if(gameIndicator >= maxGameIndicator)
         {
             Time.timeScale = 0f;
@@ -88,6 +87,7 @@ public class GameManager : MonoBehaviour
     }
     public void GetCurrentFillIndicator()
     {
+        GameUI.Instance.IndicatorPulse();
         float fill = gameIndicator / maxGameIndicator;
         gameIndicatorFill.fillAmount = fill;
         if (gameIndicator > highestPM) highestPM = gameIndicator;

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameUI : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameUI : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject winScreen;
     public GameObject pauseScreen;
+
+    [SerializeField] private GameObject gameIndicator;
 
     public GameObject timeDay;
     public GameObject timeNight;
@@ -83,6 +86,20 @@ public class GameUI : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+    public void IndicatorPulse()
+    {
+        StopCoroutine(GameIndicatorPulse());
+        gameIndicator.transform.localScale = Vector3.one;
+        StartCoroutine(GameIndicatorPulse());
+    }
+    private IEnumerator GameIndicatorPulse()
+    {
+        gameIndicator.transform.DOScale(1.1f, .15f);
+        yield return new WaitForSeconds(.15f);
+        gameIndicator.transform.DOScale(.9f, .3f);
+        yield return new WaitForSeconds(.3f);
+        gameIndicator.transform.DOScale(1f, .15f);
     }
     public void MoonPhase()
     {
