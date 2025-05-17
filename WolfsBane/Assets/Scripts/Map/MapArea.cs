@@ -68,6 +68,8 @@ public class MapArea : MonoBehaviour
         buttonTask.SetActive(false);
         buttonsTraps.SetActive(false);
         buttonResource.SetActive(false);
+        buttonGo.SetActive(false);
+        buttonDiscover.SetActive(false);
         //interactionsBase.SetActive(false);
         //interactionsMap.SetActive(false);
     }
@@ -279,10 +281,34 @@ public class MapArea : MonoBehaviour
             buttonGo.SetActive(true);
             if (type == 4) tooltipGO.text = "0AP";
             else tooltipGO.text = "1AP";
+            if (type == 1 || type == 2)
+            {
+                buttonSetTrap.SetActive(true);
+                if ((state == 2 || state == 4) && taskIndex != 3 && !GetComponentInChildren<Trap>())
+                {
+                    buttonSetTrap.GetComponent<ActionButtonManager>().ActionPossible();
+                }
+                else
+                {
+                    buttonSetTrap.GetComponent<ActionButtonManager>().ActionNotPossible();
+                }
+            }
         }
         else if (isAvailable)
         {
             buttonDiscover.SetActive(true);
+            if (type == 1 || type == 2)
+            {
+                buttonSetTrap.SetActive(true);
+                if ((state == 2 || state == 4) && taskIndex != 3 && !GetComponentInChildren<Trap>())
+                {
+                    buttonSetTrap.GetComponent<ActionButtonManager>().ActionPossible();
+                }
+                else
+                {
+                    buttonSetTrap.GetComponent<ActionButtonManager>().ActionNotPossible();
+                }
+            }
         }
     }
     public void InteractionsBase()
@@ -489,7 +515,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
-        buttonGo.SetActive(false);
+        InteractionsButtonsOff();
     }
     public void DiscoverLeftButton()
     {
@@ -517,7 +543,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
-        buttonDiscover.SetActive(false);
+        InteractionsButtonsOff();
     }
     public void DiscoverRightButton()
     {
@@ -545,7 +571,7 @@ public class MapArea : MonoBehaviour
             PlayerControler.Instance.MovePlayer(row, column, this.transform.position);
             PlayerControler.Instance.ButtonsAround();
         }
-        buttonDiscover.SetActive(false);
+        InteractionsButtonsOff();
     }
     public void UISound()
     {

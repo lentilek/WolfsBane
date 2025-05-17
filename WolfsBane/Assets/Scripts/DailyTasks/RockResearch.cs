@@ -61,6 +61,7 @@ public class RockResearch : MonoBehaviour
             }
         }
         if (rockSample.activeSelf) rockIcon.SetActive(true);
+        else rockIcon.SetActive(false);
         buttonRockSample.SetActive(false);
         return false;
     }

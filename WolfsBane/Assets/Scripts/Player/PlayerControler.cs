@@ -241,8 +241,7 @@ public class PlayerControler : MonoBehaviour
         for (int i = 0; i < areasToGo.Count; i++)
         {
             areasToGo[i].buttonAction.SetActive(true);
-            areasToGo[i].buttonDiscover.SetActive(false);
-            areasToGo[i].buttonGo.SetActive(false);
+            areasToGo[i].InteractionsButtonsOff();
         }
         MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
         ButtonHide();

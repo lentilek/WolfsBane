@@ -95,7 +95,9 @@ public class LakeInteractions : MonoBehaviour
             }
         }
         if (measureWater.activeSelf) measureIcon.SetActive(true);
+        else measureIcon.SetActive(false);
         if (takeTrash.activeSelf) trashIcon.SetActive(true);
+        else trashIcon.SetActive(false);
         buttonTakeTrash.SetActive(false);
         buttonMeasureWater.SetActive(false);
         return false;
