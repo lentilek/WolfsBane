@@ -8,11 +8,14 @@ public class LakeInteractions : MonoBehaviour
     [SerializeField] private GameObject takeTrash, buttonTakeTrash;
     [SerializeField] private GameObject trashModels;
     [HideInInspector] public MapArea module;
+    [SerializeField] private GameObject measureIcon, trashIcon;
     private void Awake()
     {
         measureWater.SetActive(false);
         takeTrash.SetActive(false);
         trashModels.SetActive(false);
+        measureIcon.SetActive(false);
+        trashIcon.SetActive(false);
     }
     private void Update()
     {
@@ -84,11 +87,15 @@ public class LakeInteractions : MonoBehaviour
         {
             if (PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column && !GameManager.Instance.isNight)
             {
+                measureIcon.SetActive(false);
+                trashIcon.SetActive(false);
                 if(measureWater.activeSelf) buttonMeasureWater.SetActive(true);
                 if(takeTrash.activeSelf) buttonTakeTrash.SetActive(true);
                 return true;
             }
         }
+        if (measureWater.activeSelf) measureIcon.SetActive(true);
+        if (takeTrash.activeSelf) trashIcon.SetActive(true);
         buttonTakeTrash.SetActive(false);
         buttonMeasureWater.SetActive(false);
         return false;
