@@ -165,7 +165,11 @@ public class Dialog : MonoBehaviour
             if (turist != null)//&& Random.Range(1, 100) <= (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance))
             {
                 difficultyTXT.text = (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance).ToString();
-                // animate drawing numbers
+                for (int i = 0; i < 20; i++)
+                {
+                    checkTXT.text = Random.Range(0, 100).ToString();
+                    yield return new WaitForSeconds(.05f);
+                }
                 int check = Random.Range(1, 100);
                 checkTXT.text = check.ToString();
                 if (check <= (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance))
@@ -245,6 +249,11 @@ public class Dialog : MonoBehaviour
             if (turist != null)
             {
                 difficultyTXT.text = (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance).ToString();
+                for (int i = 0; i < 20; i++)
+                {
+                    checkTXT.text = Random.Range(0, 100).ToString();
+                    yield return new WaitForSeconds(.05f);
+                }
                 int check = Random.Range(1, 100);
                 checkTXT.text = check.ToString();
                 if (check <= (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance))
