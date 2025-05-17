@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using static UnityEngine.ParticleSystem;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class Dialog : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class Dialog : MonoBehaviour
     [SerializeField] private DialogueSO[] policemanAggresiveS, policemanAggresiveF, policemanFriendlyS, policemanFriendlyF, policemanTalk;
 
     [HideInInspector] public int talkBonusChance;
+
+    // charisma check
+    [SerializeField] private GameObject diceRoll, checkFail, checkSuccess, dialogueButton;
+    [SerializeField] private TextMeshProUGUI difficultyTXT, checkTXT;
     private void Awake()
     {
         if (Instance == null)
@@ -34,6 +39,7 @@ public class Dialog : MonoBehaviour
             Instance = this;
         }
         dialogOptions.SetActive(false);
+        diceRoll.SetActive(false);
     }
     private void Update()
     {
@@ -52,6 +58,12 @@ public class Dialog : MonoBehaviour
         PlayerControler.Instance.ButtonsAroundOff();
         areaNew.buttonAction.SetActive(false);
         area = areaNew;
+        checkFail.SetActive(false);
+        checkSuccess.SetActive(false);
+        checkTXT.text = "00";
+        difficultyTXT.text = "00";
+        dialogueButton.SetActive(false);
+        diceRoll.SetActive(true);
         dialogOptions.SetActive(true);
         dialogueBox.SetActive(false);
         AvaiableOptions();
@@ -103,9 +115,39 @@ public class Dialog : MonoBehaviour
             }
         }
     }
+    public void SetDifficultyTXT(int number)
+    {
+        GameObject turist = null;
+        foreach (GameObject turistCamp in GameManager.Instance.turistCamps)
+        {
+            if (turistCamp.GetComponent<Turist>().mapModule.row == area.row && turistCamp.GetComponent<Turist>().mapModule.column == area.column)
+            {
+                turist = turistCamp;
+                break;
+            }
+        }
+        switch (number)
+        {
+            case 0:
+                difficultyTXT.text = "00";
+                break;
+            case 1:
+                difficultyTXT.text = (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance).ToString();
+                break;
+            case 2:
+                difficultyTXT.text = (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance).ToString();
+                break;
+            default: break;
+        }
+    }
     public void TuristAction1Button()
     {
-        //
+        StartCoroutine(TuristAction1());
+    }
+    private IEnumerator TuristAction1()
+    {
+        dialogOptions.SetActive(false);
+
         if (GameManager.Instance.UseActionPoint())
         {
             GameObject turist = null;
@@ -116,40 +158,77 @@ public class Dialog : MonoBehaviour
                 {
                     turist = turistCamp;
                     type = turist.GetComponent<Turist>().type;
+                    turistType = type;
                     break;
                 }
             }
-            if (turist != null && Random.Range(1, 101) <= (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance))
+            if (turist != null)//&& Random.Range(1, 100) <= (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance))
             {
-                if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
-                else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
-                else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
-                else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
-                GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
-                if (GameManager.Instance.gameIndicator > 100) GameManager.Instance.gameIndicator = 100;
-                GameManager.Instance.GetCurrentFillIndicator();
-                Destroy(turist);
-                GameManager.Instance.turistCamps.Remove(turist);
-                foreach (MapArea n in area.neighbours)
+                difficultyTXT.text = (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance).ToString();
+                // animate drawing numbers
+                int check = Random.Range(1, 100);
+                checkTXT.text = check.ToString();
+                if (check <= (turist.GetComponent<Turist>().talkChanceAggresive + talkBonusChance))
                 {
-                    if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
-                    else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
+                    checkSuccess.GetComponent<TextMeshProUGUI>().alpha = 0f;
+                    checkSuccess.SetActive(true);
+                    checkSuccess.GetComponent<TextMeshProUGUI>().DOFade(1f, .6f);
+                    yield return new WaitForSeconds(.6f);
+
+                    if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
+                    else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
+                    else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
+                    else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
+                    GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
+                    if (GameManager.Instance.gameIndicator > 100) GameManager.Instance.gameIndicator = 100;
+                    GameManager.Instance.GetCurrentFillIndicator();
+                    GameManager.Instance.turistCamps.Remove(turist);
+                    foreach (MapArea n in area.neighbours)
+                    {
+                        if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                        else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
+                    }
+                    Destroy(turist);
+                    dialogueType = 1;
+                    dialogueButton.SetActive(true);
                 }
-                DialogueStart(1, true, type);
-            }
-            else if (turist != null)
-            {
-                turist.GetComponent<Turist>().aggresiveTalks--;
-                DialogueStart(1, false, type);
+                else
+                {
+                    checkFail.GetComponent<TextMeshProUGUI>().alpha = 0f;
+                    checkFail.SetActive(true);
+                    checkFail.GetComponent<TextMeshProUGUI>().DOFade(1f, .6f);
+                    yield return new WaitForSeconds(.6f);
+
+                    turist.GetComponent<Turist>().aggresiveTalks--;
+                    dialogueType = 1;
+                    dialogueButton.SetActive(true);
+                }
             }
         }
-        dialogOptions.SetActive(false);
+        //dialogOptions.SetActive(false);
         area = null;
         PlayerControler.Instance.ButtonsAround();
     }
+    private int turistType, dialogueType;
+    public void DialogueTrigger()
+    {
+        if (checkSuccess.activeSelf)
+        {
+            DialogueStart(dialogueType, true, turistType);
+        }
+        else
+        {
+            DialogueStart(dialogueType, false, turistType);
+        }
+    }
     public void TuristAction2Button()
     {
-        //
+        StartCoroutine(TuristAction2());
+    }
+    IEnumerator TuristAction2()
+    {
+        dialogOptions.SetActive(false);
+
         if (GameManager.Instance.UseActionPoint())
         {
             GameObject turist = null;
@@ -163,29 +242,49 @@ public class Dialog : MonoBehaviour
                     break;
                 }
             }
-            if (turist != null && Random.Range(1, 101) <= (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance))
+            if (turist != null)
             {
-                if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
-                else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
-                else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
-                else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
-                GameManager.Instance.turistCamps.Remove(turist);
-                foreach (MapArea n in area.neighbours)
+                difficultyTXT.text = (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance).ToString();
+                int check = Random.Range(1, 100);
+                checkTXT.text = check.ToString();
+                if (check <= (turist.GetComponent<Turist>().talkChanceFriendly + talkBonusChance))
                 {
-                    if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
-                    else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
+                    checkSuccess.GetComponent<TextMeshProUGUI>().alpha = 0f;
+                    checkSuccess.SetActive(true);
+                    checkSuccess.GetComponent<TextMeshProUGUI>().DOFade(1f, .6f);
+                    yield return new WaitForSeconds(.6f);
+
+                    if (area.state == 6 && !area.AreThereTuristsAround()) area.state = 2;
+                    else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
+                    else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
+                    else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
+                    GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
+                    GameManager.Instance.turistCamps.Remove(turist);
+                    foreach (MapArea n in area.neighbours)
+                    {
+                        if (n.state == 4 && !n.AreThereTuristsAround()) n.state = 2;
+                        else if (n.state == 3 && !n.AreThereTuristsAround()) n.state = 1;
+                    }
+                    Destroy(turist);
+                    dialogueType = 2;
+                    dialogueButton.SetActive(true);
                 }
-                Destroy(turist);
-                DialogueStart(2, true, type);
-            }
-            else if (turist != null)
-            {
-                turist.GetComponent<Turist>().friendlyTalks--; 
-                DialogueStart(2, false, type);
+                else
+                {
+                    checkFail.GetComponent<TextMeshProUGUI>().alpha = 0f;
+                    checkFail.SetActive(true);
+                    checkFail.GetComponent<TextMeshProUGUI>().DOFade(1f, .6f);
+                    yield return new WaitForSeconds(.6f);
+
+                    turist.GetComponent<Turist>().friendlyTalks--;
+                    dialogueType = 2;
+                    dialogueButton.SetActive(true);
+                }
             }
         }
-        dialogOptions.SetActive(false);
+        //dialogOptions.SetActive(false);
         area = null;
+        PlayerControler.Instance.ButtonsAround();
     }
     public void TuristLeaveButton()
     {

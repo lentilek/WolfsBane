@@ -1548,6 +1548,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 432347169380303151}
         m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+        m_MethodName: SetDifficultyTXT
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 432347169380303151}
+        m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
         m_MethodName: TuristAction2Button
         m_Mode: 1
         m_Arguments:
@@ -1587,6 +1599,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 432347169380303151}
+          m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+          m_MethodName: SetDifficultyTXT
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1595,6 +1619,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 432347169380303151}
+          m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+          m_MethodName: SetDifficultyTXT
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14297,6 +14333,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 432347169380303151}
         m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+        m_MethodName: SetDifficultyTXT
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 432347169380303151}
+        m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
         m_MethodName: TuristAction1Button
         m_Mode: 1
         m_Arguments:
@@ -14336,6 +14384,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 432347169380303151}
+          m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+          m_MethodName: SetDifficultyTXT
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -14344,6 +14404,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 432347169380303151}
+          m_TargetAssemblyTypeName: Dialog, Assembly-CSharp
+          m_MethodName: SetDifficultyTXT
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14864,6 +14936,12 @@ MonoBehaviour:
   policemanTalk:
   - {fileID: 11400000, guid: dcd2e3f8999f48b4592013462df2839b, type: 2}
   talkBonusChance: 0
+  diceRoll: {fileID: 3829372462179228581}
+  checkFail: {fileID: 8572007566001179319}
+  checkSuccess: {fileID: 1181590375845857434}
+  dialogueButton: {fileID: 8121762458511278591}
+  difficultyTXT: {fileID: 5275077288240932613}
+  checkTXT: {fileID: 1570261512234540514}
 --- !u!1 &4526338980297325175
 GameObject:
   m_ObjectHideFlags: 0
@@ -16286,6 +16364,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8583320283744324163}
   - {fileID: 4849587725392453428}
   - {fileID: 8992729083037098500}
   - {fileID: 891195898356729332}
@@ -16295,7 +16374,6 @@ RectTransform:
   - {fileID: 2324586723357058706}
   - {fileID: 2029327810295882533}
   - {fileID: 1723175218809165041}
-  - {fileID: 8583320283744324163}
   - {fileID: 5766154443424790563}
   - {fileID: 7709337750021614642}
   - {fileID: 1535530437321644975}
@@ -27635,7 +27713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8966027004347270226
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30615,15 +30693,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8583320283744324163}
     m_Modifications:
+    - target: {fileID: 3004553871487287616, guid: b80a7e4aef77033438dfc1e398f1856f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 432347169380303151}
     - target: {fileID: 3642937740050034811, guid: b80a7e4aef77033438dfc1e398f1856f,
         type: 3}
       propertyPath: m_Name
       value: Dice
-      objectReference: {fileID: 0}
-    - target: {fileID: 3642937740050034811, guid: b80a7e4aef77033438dfc1e398f1856f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6468714980610849690, guid: b80a7e4aef77033438dfc1e398f1856f,
         type: 3}
@@ -30688,17 +30766,17 @@ PrefabInstance:
     - target: {fileID: 6468714980610849690, guid: b80a7e4aef77033438dfc1e398f1856f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6468714980610849690, guid: b80a7e4aef77033438dfc1e398f1856f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6468714980610849690, guid: b80a7e4aef77033438dfc1e398f1856f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6468714980610849690, guid: b80a7e4aef77033438dfc1e398f1856f,
         type: 3}
@@ -30725,14 +30803,67 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8582931292280842785, guid: b80a7e4aef77033438dfc1e398f1856f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b80a7e4aef77033438dfc1e398f1856f, type: 3}
+--- !u!1 &1181590375845857434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1715628785262453572, guid: b80a7e4aef77033438dfc1e398f1856f,
+    type: 3}
+  m_PrefabInstance: {fileID: 552528120357383134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570261512234540514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1324139531890718268, guid: b80a7e4aef77033438dfc1e398f1856f,
+    type: 3}
+  m_PrefabInstance: {fileID: 552528120357383134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3829372462179228581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3642937740050034811, guid: b80a7e4aef77033438dfc1e398f1856f,
+    type: 3}
+  m_PrefabInstance: {fileID: 552528120357383134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5275077288240932613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5665017873261923547, guid: b80a7e4aef77033438dfc1e398f1856f,
+    type: 3}
+  m_PrefabInstance: {fileID: 552528120357383134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6804806431634509892 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6468714980610849690, guid: b80a7e4aef77033438dfc1e398f1856f,
+    type: 3}
+  m_PrefabInstance: {fileID: 552528120357383134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8121762458511278591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8582931292280842785, guid: b80a7e4aef77033438dfc1e398f1856f,
+    type: 3}
+  m_PrefabInstance: {fileID: 552528120357383134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8572007566001179319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169276918402048361, guid: b80a7e4aef77033438dfc1e398f1856f,
     type: 3}
   m_PrefabInstance: {fileID: 552528120357383134}
   m_PrefabAsset: {fileID: 0}
