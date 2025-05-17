@@ -30,6 +30,7 @@ public class RockResearch : MonoBehaviour
             {
                 PlayerInventory.Instance.stoneAmount++;
                 PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+                GameUI.Instance.InventoryAnimation(2, $"+1");
             }
             Done();
         }

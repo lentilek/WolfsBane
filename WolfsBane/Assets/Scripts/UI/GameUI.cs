@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 
+[System.Serializable]
+public class InventoryObject
+{
+    public Image invImage;
+    public TextMeshProUGUI invTXT;
+    public TextMeshProUGUI invCollectTXT;
+}
 public class GameUI : MonoBehaviour
 {
     public static GameUI Instance;
@@ -35,6 +42,11 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private GameObject day1Paper;
     [SerializeField] private GameObject[] noKillsPaper, killPaper;
+
+    // inventory animation
+    [SerializeField] private Color invAnimColor, invAnimTXTColor, invAnimImageColor;
+    [SerializeField] private InventoryObject wood, stone, rope, meat;
+    [SerializeField] private float invAnimLenght, invAnimScale;
 
     private void Awake()
     {
@@ -86,6 +98,60 @@ public class GameUI : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+    public void InventoryAnimation(int resourceType, string amount)
+    {
+        switch (resourceType)
+        {
+            case 1:
+                StopCoroutine(InvAnim(wood, amount));
+                wood.invImage.gameObject.transform.localScale = Vector3.one;
+                wood.invTXT.gameObject.transform.localScale = Vector3.one;
+                wood.invCollectTXT.gameObject.transform.localScale = Vector3.one;
+                StartCoroutine(InvAnim(wood, amount));
+                break;
+            case 2:
+                StopCoroutine(InvAnim(stone, amount));
+                stone.invImage.gameObject.transform.localScale = Vector3.one;
+                stone.invTXT.gameObject.transform.localScale = Vector3.one;
+                stone.invCollectTXT.gameObject.transform.localScale = Vector3.one;
+                StartCoroutine(InvAnim(stone, amount));
+                break;
+            case 3:
+                StopCoroutine(InvAnim(rope, amount));
+                rope.invImage.gameObject.transform.localScale = Vector3.one;
+                rope.invTXT.gameObject.transform.localScale = Vector3.one;
+                rope.invCollectTXT.gameObject.transform.localScale = Vector3.one;
+                StartCoroutine(InvAnim(rope, amount));
+                break;
+            case 4:
+                StopCoroutine(InvAnim(meat, amount));
+                meat.invImage.gameObject.transform.localScale = Vector3.one;
+                meat.invTXT.gameObject.transform.localScale = Vector3.one;
+                meat.invCollectTXT.gameObject.transform.localScale = Vector3.one;
+                StartCoroutine(InvAnim(meat, amount));
+                break;
+            default: break;
+        }
+    }
+    private IEnumerator InvAnim(InventoryObject invObj, string amount)
+    {
+        invObj.invImage.color = invAnimColor;
+        invObj.invImage.gameObject.transform.DOScale(invAnimScale, invAnimLenght);
+        invObj.invTXT.color = invAnimColor;
+        invObj.invTXT.gameObject.transform.DOScale(invAnimScale, invAnimLenght);
+        invObj.invCollectTXT.text = amount;
+        invObj.invCollectTXT.gameObject.SetActive(true);
+        invObj.invCollectTXT.gameObject.transform.DOScale(invAnimScale, invAnimLenght);
+        yield return new WaitForSeconds(invAnimLenght);
+        invObj.invImage.gameObject.transform.DOScale(1f, invAnimLenght);
+        invObj.invTXT.gameObject.transform.DOScale(1f, invAnimLenght);
+        invObj.invCollectTXT.gameObject.transform.DOScale(1f, invAnimLenght);
+        yield return new WaitForSeconds(invAnimLenght);
+        if (invObj != wood) invObj.invImage.color = invAnimImageColor;
+        else invObj.invImage.color = Color.white;
+        invObj.invTXT.color = invAnimTXTColor;
+        invObj.invCollectTXT.gameObject.SetActive(false);
     }
     public void IndicatorPulse()
     {

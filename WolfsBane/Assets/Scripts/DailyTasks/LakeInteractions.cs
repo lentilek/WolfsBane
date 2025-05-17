@@ -60,6 +60,7 @@ public class LakeInteractions : MonoBehaviour
             {
                 PlayerInventory.Instance.ropeAmount++;
                 PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+                GameUI.Instance.InventoryAnimation(3, $"+1");
             }
             TakeTrashDone();
         }

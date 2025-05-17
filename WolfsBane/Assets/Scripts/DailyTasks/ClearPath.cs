@@ -11,6 +11,7 @@ public class ClearPath : MonoBehaviour
         {
             PlayerInventory.Instance.woodAmount++;
             PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+            GameUI.Instance.InventoryAnimation(1, $"+1");
         }
         ClearPathFinish(area);
     }

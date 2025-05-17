@@ -64,6 +64,7 @@ public class PlayerInventory : MonoBehaviour
         if (TaskManager.Instance.moreResources) woodAmount += TaskManager.Instance.additionalResourcesAmount;
         if (woodAmount > maxWoodAmount) woodAmount = maxWoodAmount;
         woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
+        GameUI.Instance.InventoryAnimation(1, $"+{woodCollect}");
     }
     public void CollectStone()
     {
@@ -71,6 +72,7 @@ public class PlayerInventory : MonoBehaviour
         if (TaskManager.Instance.moreResources) stoneAmount += TaskManager.Instance.additionalResourcesAmount;
         if (stoneAmount > maxStoneAmount) stoneAmount = maxStoneAmount;
         stoneAmountTXT.text = $"{stoneAmount}/{maxStoneAmount}";
+        GameUI.Instance.InventoryAnimation(2, $"+{stoneCollect}");
     }
     public void CollectRope()
     {
@@ -78,6 +80,7 @@ public class PlayerInventory : MonoBehaviour
         if (TaskManager.Instance.moreResources) ropeAmount += TaskManager.Instance.additionalResourcesAmount;
         if (ropeAmount > maxRopeAmount) ropeAmount = maxRopeAmount;
         ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
+        GameUI.Instance.InventoryAnimation(3, $"+{ropeCollect}");
     }
     public void CollectMeat()
     {
@@ -86,6 +89,7 @@ public class PlayerInventory : MonoBehaviour
         if (TaskManager.Instance.moreResources) meatAmount += TaskManager.Instance.additionalResourcesAmount;
         if (meatAmount > maxMeatAmount) meatAmount = maxMeatAmount;
         meatAmountTXT.text = $"{meatAmount}/{maxMeatAmount}";
+        GameUI.Instance.InventoryAnimation(4, $"+{meatCollect}");
     }
     public bool IsThereInventorySpace(int resourceIndex)
     {

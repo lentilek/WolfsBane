@@ -16,15 +16,19 @@ public class Trap : MonoBehaviour
     {
         PlayerInventory.Instance.woodAmount -= buildCostWood;
         PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+        if (buildCostWood != 0) GameUI.Instance.InventoryAnimation(1, $"-{buildCostWood}");
 
         PlayerInventory.Instance.stoneAmount -= buildCostStone;
         PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+        if (buildCostStone != 0) GameUI.Instance.InventoryAnimation(2, $"-{buildCostStone}");
 
         PlayerInventory.Instance.ropeAmount -= buildCostRope;
         PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+        if (buildCostRope != 0) GameUI.Instance.InventoryAnimation(3, $"-{buildCostRope}");
 
         PlayerInventory.Instance.meatAmount -= buildCostMeat;
         PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
+        if (buildCostMeat != 0) GameUI.Instance.InventoryAnimation(4, $"-{buildCostMeat}");
     }
     public bool CanUBuild()
     {

@@ -464,6 +464,7 @@ public class TaskManager : MonoBehaviour
                     PlayerInventory.Instance.woodAmount += resourceRewardAmount;
                     PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
                     if (PlayerInventory.Instance.woodAmount > PlayerInventory.Instance.maxWoodAmount) PlayerInventory.Instance.woodAmount = PlayerInventory.Instance.maxWoodAmount;
+                    GameUI.Instance.InventoryAnimation(1, $"+{resourceRewardAmount}");
                 }
                 break;
             case 2:
@@ -472,6 +473,7 @@ public class TaskManager : MonoBehaviour
                     PlayerInventory.Instance.stoneAmount += resourceRewardAmount;
                     PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
                     if (PlayerInventory.Instance.stoneAmount > PlayerInventory.Instance.maxStoneAmount) PlayerInventory.Instance.stoneAmount = PlayerInventory.Instance.maxStoneAmount;
+                    GameUI.Instance.InventoryAnimation(2, $"+{resourceRewardAmount}");
                 }
                 break;
             case 3:
@@ -480,6 +482,7 @@ public class TaskManager : MonoBehaviour
                     PlayerInventory.Instance.ropeAmount += resourceRewardAmount;
                     PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
                     if (PlayerInventory.Instance.ropeAmount > PlayerInventory.Instance.maxRopeAmount) PlayerInventory.Instance.ropeAmount = PlayerInventory.Instance.maxRopeAmount;
+                    GameUI.Instance.InventoryAnimation(3, $"+{resourceRewardAmount}");
                 }
                 break;
             case 4:
@@ -488,6 +491,7 @@ public class TaskManager : MonoBehaviour
                     PlayerInventory.Instance.meatAmount += resourceRewardAmount;
                     PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
                     if (PlayerInventory.Instance.meatAmount > PlayerInventory.Instance.maxMeatAmount) PlayerInventory.Instance.meatAmount = PlayerInventory.Instance.maxMeatAmount;
+                    GameUI.Instance.InventoryAnimation(4, $"+{resourceRewardAmount}");
                 }
                 break;
             default: break;

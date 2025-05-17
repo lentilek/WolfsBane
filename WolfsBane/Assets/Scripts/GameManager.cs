@@ -64,7 +64,8 @@ public class GameManager : MonoBehaviour
         actionPointsAITXT.text = $"{currentAIActionPoints}/{maxAIActionPoints}";
         daysCounterTXT.text = $"Day: {daysCounter}";
         nextDayButton.SetActive(false);
-        GetCurrentFillIndicator();
+        float fill = gameIndicator / maxGameIndicator;
+        gameIndicatorFill.fillAmount = fill;
         isNight = false;
         mainLight.color = Color.white;
     }
