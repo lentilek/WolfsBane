@@ -15,9 +15,13 @@ public class Turist : MonoBehaviour
     [HideInInspector] public MapArea mapModule;
     public GameObject fireVFX;
 
+    [SerializeField] private Sprite[] turistsSprites;
+    [HideInInspector] public Sprite turistSprite;
+
     private void Awake()
     {
         fireVFX.SetActive(false);
+        turistSprite = turistsSprites[Random.Range(0, turistsSprites.Length)];
     }
     private void Update()
     {

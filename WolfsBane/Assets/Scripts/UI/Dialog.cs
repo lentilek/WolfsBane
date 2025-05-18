@@ -23,6 +23,7 @@ public class Dialog : MonoBehaviour
     [SerializeField] private DialogueSO[] policemanAggresiveS, policemanAggresiveF, policemanFriendlyS, policemanFriendlyF, policemanTalk;
 
     [HideInInspector] public int talkBonusChance;
+    [SerializeField] private Sprite colinSprite;
 
     // charisma check
     [SerializeField] private GameObject diceRoll, checkFail, checkSuccess, dialogueButton;
@@ -159,6 +160,7 @@ public class Dialog : MonoBehaviour
                     turist = turistCamp;
                     type = turist.GetComponent<Turist>().type;
                     turistType = type;
+                    turistSprite = turistCamp.GetComponent<Turist>().turistSprite;
                     break;
                 }
             }
@@ -214,6 +216,7 @@ public class Dialog : MonoBehaviour
         PlayerControler.Instance.ButtonsAround();
     }
     private int turistType, dialogueType;
+    private Sprite turistSprite;
     public void DialogueTrigger()
     {
         if (checkSuccess.activeSelf)
@@ -243,6 +246,8 @@ public class Dialog : MonoBehaviour
                 {
                     turist = turistCamp;
                     type = turist.GetComponent<Turist>().type;
+                    turistType = type;
+                    turistSprite = turistCamp.GetComponent<Turist>().turistSprite;
                     break;
                 }
             }
@@ -267,7 +272,6 @@ public class Dialog : MonoBehaviour
                     else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
                     else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
                     else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
-                    GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
                     GameManager.Instance.turistCamps.Remove(turist);
                     foreach (MapArea n in area.neighbours)
                     {
@@ -299,6 +303,7 @@ public class Dialog : MonoBehaviour
     {
         //
         dialogOptions.SetActive(false);
+        diceRoll.SetActive(false);
         area = null;
         PlayerControler.Instance.ButtonsAround();
     }
@@ -311,6 +316,7 @@ public class Dialog : MonoBehaviour
     public void DialogueStart(int type, bool success, int turistType) // 1 - agrresive, 2 - friendly, 3 - talk;
     {
         dialogOptions.SetActive(false);
+        diceRoll.SetActive(false);
         dialogueBox.SetActive(true);
         continueButton.SetActive(false);
         dialogTXT.text = string.Empty;
@@ -323,6 +329,7 @@ public class Dialog : MonoBehaviour
                 {
                     turistType = turistCamp.GetComponent<Turist>().type;
                     turistCamp.GetComponent<Turist>().regularTalks--;
+                    turistSprite = turistCamp.GetComponent<Turist>().turistSprite;
                     break;
                 }
             }
@@ -383,7 +390,8 @@ public class Dialog : MonoBehaviour
     IEnumerator TypeLine()
     {
         nameTXT.text = dialogue.lines[index].name;
-        portrait.sprite = dialogue.lines[index].portrait;
+        if (dialogue.lines[index].portrait == colinSprite) portrait.sprite = dialogue.lines[index].portrait;
+        else portrait.sprite = turistSprite;
         foreach (char c in dialogue.lines[index].text.ToCharArray())
         {
             dialogTXT.text += c;
