@@ -189,8 +189,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279848015
-  m_fontColor: {r: 0.30980393, g: 0.29803923, b: 0.098039225, a: 1}
+    rgba: 4284265185
+  m_fontColor: {r: 0.882353, g: 0.69803923, b: 0.36078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -257,6 +257,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23201760}
   m_CullTransparentMesh: 1
+--- !u!1 &167797195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2375185551567176200, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6346851196045203408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &239202430 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4105543277386982915, guid: 6a0ccd86bdb5f56449ed455764fd716a,
@@ -418,7 +424,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 916853452}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: UISound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 916853452}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Credits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -441,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3233802, g: 0.4056604, b: 0.3331145, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1072,6 +1090,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialsAsk: {fileID: 1095759839}
+  settings: {fileID: 167797195}
+  credits: {fileID: 1745148389}
 --- !u!4 &916853453
 Transform:
   m_ObjectHideFlags: 0
@@ -2129,8 +2149,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279848015
-  m_fontColor: {r: 0.30980393, g: 0.29803923, b: 0.098039225, a: 1}
+    rgba: 4284465396
+  m_fontColor: {r: 0.9568628, g: 0.75294125, b: 0.37254903, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2511,7 +2531,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 916853452}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: UISound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 916853452}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: SettingsOpen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2534,7 +2566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3233802, g: 0.4056604, b: 0.3331145, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2706,6 +2738,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685263739}
   m_CullTransparentMesh: 1
+--- !u!1 &1745148389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4187246879496680686, guid: d14e222a20734794097d96ccc5bba5ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 6896833014732258237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829733872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3240,6 +3278,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 916853452}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: CloseUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1132423101}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3601,10 +3651,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2104710622}
     m_Modifications:
+    - target: {fileID: 1027172688656017814, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 916853452}
+    - target: {fileID: 1027172688656017814, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 916853452}
+    - target: {fileID: 1027172688656017814, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094638445123557948, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1094638445123557948, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2375185551567176200, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
@@ -3614,11 +3684,6 @@ PrefabInstance:
     - target: {fileID: 2375185551567176200, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2817657976157589878, guid: 6a0ccd86bdb5f56449ed455764fd716a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4105543277386982915, guid: 6a0ccd86bdb5f56449ed455764fd716a,
@@ -3723,23 +3788,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6925359815286133192, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+      propertyPath: m_AnchorMax.x
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7480018686499619174, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+    - target: {fileID: 6925359815286133192, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6925359815286133192, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958191226794785171, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8958191226794785171, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997864856243185597, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8997864856243185597, guid: 6a0ccd86bdb5f56449ed455764fd716a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8997864856243185597, guid: 6a0ccd86bdb5f56449ed455764fd716a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3754,6 +3839,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2104710622}
     m_Modifications:
+    - target: {fileID: 1976315293735459925, guid: d14e222a20734794097d96ccc5bba5ac,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 916853452}
+    - target: {fileID: 1976315293735459925, guid: d14e222a20734794097d96ccc5bba5ac,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 916853452}
+    - target: {fileID: 1976315293735459925, guid: d14e222a20734794097d96ccc5bba5ac,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseUI
+      objectReference: {fileID: 0}
     - target: {fileID: 4187246879496680686, guid: d14e222a20734794097d96ccc5bba5ac,
         type: 3}
       propertyPath: m_Name

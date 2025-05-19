@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviour
     }
     public void FinishDayStartNight()
     {
+        MusicPlayer.Instance.ChangeMusic(2);
         wasThereKill = false;
         MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].noAPTip.SetActive(false);
         PlayerControler.Instance.ButtonsAroundOff();
@@ -262,6 +263,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        MusicPlayer.Instance.ChangeMusic(1);
         daysCounter++;
         maxAIActionPoints = maxAIAPDaily[daysCounter - 1];
         GameUI.Instance.Day();

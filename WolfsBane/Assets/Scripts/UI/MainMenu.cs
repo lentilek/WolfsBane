@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject tutorialsAsk;
+    [SerializeField] private GameObject tutorialsAsk, settings, credits;
     private void Start()
     {
+        Time.timeScale = 1f;
+        MusicPlayer.Instance.ChangeMusic(0);
         tutorialsAsk.SetActive(false);
+        CloseUI();
         HighscoreSystem.Instance.CreateSave();
         if(!PlayerPrefs.HasKey("Tutorials"))
         {
@@ -34,6 +37,22 @@ public class MainMenu : MonoBehaviour
     public void LoadTutorial(int index)
     {
         SceneManager.LoadScene(index);
+    }
+    public void SettingsOpen()
+    {
+        CloseUI();
+        settings.SetActive(true);
+        Settings.Instance.Open();
+    }
+    public void Credits()
+    {
+        CloseUI();
+        credits.SetActive(true);
+    }
+    public void CloseUI()
+    {
+        settings.SetActive(false);
+        credits.SetActive(false);
     }
     public void QuitGame()
     {

@@ -25,6 +25,10 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(string clip)
     {
+        if (PlayerPrefs.HasKey("sfxVolume"))
+        {
+            audioSrc.volume = PlayerPrefs.GetFloat("sfxVolume");
+        }
         switch (clip)
         {
             case "collect":
