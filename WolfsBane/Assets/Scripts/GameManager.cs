@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     private float maxGameIndicator;
     [SerializeField] private Image gameIndicatorFill;
 
-    public int maxActionPoints = 14;
-    public int maxAIActionPoints = 12;
+    public int maxActionPoints;
+    public int[] maxAIAPDaily;
+    [HideInInspector] public int maxAIActionPoints;
     public float actionWaitTimeAI = 1f;
     [HideInInspector] public int currentAIActionPoints;
     [HideInInspector] public int currentActionPoints;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
         turistEaten = 0;
         gameIndicator = 0;
         maxGameIndicator = 100f;
+        maxAIActionPoints = maxAIAPDaily[0];
         currentActionPoints = maxActionPoints;
         currentAIActionPoints = maxAIActionPoints;
         actionPointsTXT.text = $"{currentActionPoints}/{maxActionPoints}";
@@ -260,9 +262,10 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        daysCounter++;
+        maxAIActionPoints = maxAIAPDaily[daysCounter - 1];
         GameUI.Instance.Day();
         isNight = false;
-        daysCounter++;
         GameUI.Instance.MoonPhase();
         daysCounterTXT.text = $"Day: {daysCounter}";     
         PlayerInventory.Instance.DestroyAllTraps();

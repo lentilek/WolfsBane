@@ -177,6 +177,8 @@ public class GameUI : MonoBehaviour
     }
     public void Day()
     {
+        float all = GameManager.Instance.maxActionPoints + GameManager.Instance.maxAIActionPoints;
+        nightPosition = new Vector3(startingPosition.x - (moveAmount / all * GameManager.Instance.maxActionPoints), startingPosition.y, startingPosition.z);
         timeDay.SetActive(true);
         timeNight.SetActive(false);
         apDay.SetActive(true);
