@@ -93,7 +93,7 @@ MonoBehaviour:
   - {fileID: 6299625040908421000}
   - {fileID: 6340693344980635367}
   dailyTXT: {fileID: 5125362913280301271}
-  dayTextTime: 6
+  dayTextTime: 4
   dailyTextVariant:
   - Prepare for the night to protect tourists from the Beast.
   - Today thrill hunters will appear.
@@ -625,6 +625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4591455284970328653}
@@ -640,7 +645,17 @@ PrefabInstance:
       objectReference: {fileID: 1009215883436875320}
     - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1009215883436875320}
+    - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
@@ -651,6 +666,11 @@ PrefabInstance:
     - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6237821831808000456, guid: b455695114895894094ee118ee360fbf,

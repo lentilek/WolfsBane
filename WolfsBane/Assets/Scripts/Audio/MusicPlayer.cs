@@ -18,7 +18,7 @@ public class MusicPlayer : MonoBehaviour
             Instance = this;
             return;
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
     public void ChangeMusic(int musicVariant)
     {
@@ -33,7 +33,6 @@ public class MusicPlayer : MonoBehaviour
             {
                 case 0:
                     StartCoroutine(FadeOut(audioSrc, fadeTime, musicMenu));
-                    Debug.Log("huh");
                     break;
                 case 1:
                     StartCoroutine(FadeOut(audioSrc, fadeTime, musicDay));

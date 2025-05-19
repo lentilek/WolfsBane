@@ -8,7 +8,7 @@ public class Tutorial3Controler : MonoBehaviour
     private int currentPart;
     [SerializeField] private MapArea area1, area2;
     [SerializeField] private GameObject pm, part1UI, part2UI, part3UI, part4UI, part5UI, part6UI;
-    [SerializeField] private GameObject options, talk, dialogueBox;
+    [SerializeField] private GameObject options, talk, dialogueBox, diceBox;
     private void Awake()
     {
         currentPart = 1;
@@ -36,7 +36,7 @@ public class Tutorial3Controler : MonoBehaviour
         {
             area2.buttonAction.SetActive(false);
         }
-        if (currentPart == 4 && !talk.activeSelf && !dialogueBox.activeSelf)
+        if (currentPart == 4 && !talk.activeSelf && !dialogueBox.activeSelf && !diceBox.activeSelf)
         {
             Part4Button();
         }
@@ -63,6 +63,7 @@ public class Tutorial3Controler : MonoBehaviour
         currentPart = 4;
         options.SetActive(false);
         talk.SetActive(true);
+        diceBox.SetActive(false);
     }
     public void Part4Button()
     {
