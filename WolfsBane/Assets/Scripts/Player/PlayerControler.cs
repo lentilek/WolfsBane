@@ -259,6 +259,7 @@ public class PlayerControler : MonoBehaviour
         playerPosition.x = position.x;
         playerPosition.z = position.z;
 
+        AudioManager.Instance.PlaySound("move");
         PlayerMoveAnimation.Instance.MoveAnimation(playerPosition);
         //this.transform.position = playerPosition;
     }

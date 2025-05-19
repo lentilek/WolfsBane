@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
             GameUI.Instance.gameOverScreen.SetActive(true);
             gameIndicator = 0;
             isPoliceHere = false;
+            AudioManager.Instance.PlaySound("night");
         }
         if (isPoliceHere && gameIndicator < policemanAppear)
         {
@@ -209,7 +210,9 @@ public class GameManager : MonoBehaviour
                 if (gameIndicator > 100) gameIndicator = 100;
                 GetCurrentFillIndicator();
                 Destroy(turist);
+                AudioManager.Instance.PlaySound("kill");
                 turistCamps.Remove(turist);
+                AudioManager.Instance.PlaySound("fireOff");
                 //Debug.Log(area.neighbours.Count);
                 foreach (MapArea n in area.neighbours)
                 {
@@ -225,6 +228,8 @@ public class GameManager : MonoBehaviour
     public void FinishDayStartNight()
     {
         MusicPlayer.Instance.ChangeMusic(2);
+        AudioManager.Instance.PlayAmbient(false);
+        AudioManager.Instance.PlaySound("night");
         wasThereKill = false;
         MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].noAPTip.SetActive(false);
         PlayerControler.Instance.ButtonsAroundOff();
@@ -248,6 +253,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             //HighscoreSystem.Instance.GetData();
             daysCounter++;
+            AudioManager.Instance.PlaySound("day");
             GameUI.Instance.winScreen.SetActive(true);
         }
         else
@@ -264,6 +270,8 @@ public class GameManager : MonoBehaviour
     public void NewDay()
     {
         MusicPlayer.Instance.ChangeMusic(1);
+        AudioManager.Instance.PlayAmbient(true);
+        if (daysCounter != 0) AudioManager.Instance.PlaySound("day");
         daysCounter++;
         maxAIActionPoints = maxAIAPDaily[daysCounter - 1];
         GameUI.Instance.Day();

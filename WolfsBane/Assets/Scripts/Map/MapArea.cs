@@ -386,37 +386,25 @@ public class MapArea : MonoBehaviour
                 case 1:
                     if (PlayerInventory.Instance.IsThereInventorySpace(1) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
-                        AudioManager.Instance.PlaySound("collect");
+                        AudioManager.Instance.PlaySound("collectWood");
                         PlayerInventory.Instance.CollectWood();
                         rr.StartRegeneration();
-                    }
-                    else
-                    {
-                        Debug.Log("No inventory space");
                     }
                     break;
                 case 2:
                     if (PlayerInventory.Instance.IsThereInventorySpace(2) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
-                        AudioManager.Instance.PlaySound("collect");
+                        AudioManager.Instance.PlaySound("collectStone");
                         PlayerInventory.Instance.CollectStone();
                         rr.StartRegeneration();
-                    }
-                    else
-                    {
-                        Debug.Log("No inventory space");
                     }
                     break;
                 case 3:
                     if (PlayerInventory.Instance.IsThereInventorySpace(3) && rr.roundsToRegenerateLeft == 0 && GameManager.Instance.UseActionPoint())
                     {
-                        AudioManager.Instance.PlaySound("collect");
+                        AudioManager.Instance.PlaySound("collectRope");
                         PlayerInventory.Instance.CollectRope();
                         rr.StartRegeneration();
-                    }
-                    else
-                    {
-                        Debug.Log("No inventory space");
                     }
                     break;
                 default:
@@ -427,7 +415,7 @@ public class MapArea : MonoBehaviour
         {
             if (PlayerInventory.Instance.chickensAmount > 0 && PlayerInventory.Instance.IsThereInventorySpace(4) && GameManager.Instance.UseActionPoint())
             {
-                AudioManager.Instance.PlaySound("collect");
+                AudioManager.Instance.PlaySound("chicken");
                 PlayerInventory.Instance.CollectMeat();
             }
         }
@@ -576,5 +564,13 @@ public class MapArea : MonoBehaviour
     public void UISound()
     {
         AudioManager.Instance.PlaySound("uiSound");
+    }
+    public void UIHover()
+    {
+        //AudioManager.Instance.PlaySound("uiHover");
+    }
+    public void UIClose()
+    {
+        AudioManager.Instance.PlaySound("uiClose");
     }
 }

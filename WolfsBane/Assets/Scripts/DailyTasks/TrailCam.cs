@@ -16,6 +16,7 @@ public class TrailCam : MonoBehaviour
     {
         //PlayerInventory.Instance.ropeAmount--;
         //PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+        AudioManager.Instance.PlaySound("taskCamera");
         TrailCamFinish(area);
     }
     private void TrailCamFinish(MapArea area)

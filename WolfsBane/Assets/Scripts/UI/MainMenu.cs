@@ -62,4 +62,12 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.Instance.PlaySound("uiSound");
     }
+    public void UIHover()
+    {
+        AudioManager.Instance.PlaySound("uiHover");
+    }
+    public void UIClose()
+    {
+        AudioManager.Instance.PlaySound("uiClose");
+    }
 }

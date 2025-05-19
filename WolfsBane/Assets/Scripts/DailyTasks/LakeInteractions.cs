@@ -32,6 +32,7 @@ public class LakeInteractions : MonoBehaviour
         AudioManager.Instance.PlaySound("uiSound");
         if (IsPlayerNear())
         {
+            AudioManager.Instance.PlaySound("taskMeasure");
             MeasureWaterDone();
         }
     }
@@ -65,6 +66,7 @@ public class LakeInteractions : MonoBehaviour
                 PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
                 GameUI.Instance.InventoryAnimation(3, $"+1");
             }
+            AudioManager.Instance.PlaySound("taskTrash");
             TakeTrashDone();
         }
     }
@@ -101,5 +103,13 @@ public class LakeInteractions : MonoBehaviour
         buttonTakeTrash.SetActive(false);
         buttonMeasureWater.SetActive(false);
         return false;
+    }
+    public void UISound()
+    {
+        AudioManager.Instance.PlaySound("uiSound");
+    }
+    public void UIHover()
+    {
+        //AudioManager.Instance.PlaySound("uiHover");
     }
 }

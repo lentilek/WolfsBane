@@ -9,6 +9,7 @@ public class Leaves : MonoBehaviour
     // mini game
     public void LeavesMiniGame(MapArea area)
     {
+        AudioManager.Instance.PlaySound("taskLeaves");
         FinishGame(area);
     }
     private void FinishGame(MapArea area)

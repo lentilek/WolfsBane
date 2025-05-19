@@ -34,6 +34,7 @@ public class RockResearch : MonoBehaviour
                 PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
                 GameUI.Instance.InventoryAnimation(2, $"+1");
             }
+            AudioManager.Instance.PlaySound("taskRockResearch");
             Done();
         }
     }
@@ -64,5 +65,13 @@ public class RockResearch : MonoBehaviour
         else rockIcon.SetActive(false);
         buttonRockSample.SetActive(false);
         return false;
+    }
+    public void UISound()
+    {
+        AudioManager.Instance.PlaySound("uiSound");
+    }
+    public void UIHover()
+    {
+        //AudioManager.Instance.PlaySound("uiHover");
     }
 }

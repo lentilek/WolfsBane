@@ -48,6 +48,7 @@ public class Dialog : MonoBehaviour
         {
             if(dialogTXT.text != dialogue.lines[index].text)
             {
+                AudioManager.Instance.audioDialogue.Stop();
                 StopAllCoroutines();
                 dialogTXT.text = dialogue.lines[index].text;
                 continueButton.SetActive(true);
@@ -389,6 +390,7 @@ public class Dialog : MonoBehaviour
     }
     IEnumerator TypeLine()
     {
+        AudioManager.Instance.DialogueSound();
         nameTXT.text = dialogue.lines[index].name;
         if (dialogue.lines[index].portrait == colinSprite) portrait.sprite = dialogue.lines[index].portrait;
         else portrait.sprite = turistSprite;
@@ -397,6 +399,7 @@ public class Dialog : MonoBehaviour
             dialogTXT.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        AudioManager.Instance.audioDialogue.Stop();
         continueButton.SetActive(true);
     }
     public void NextLine()
@@ -404,12 +407,14 @@ public class Dialog : MonoBehaviour
         index++;
         if (index < dialogue.lines.Count)
         {
+            AudioManager.Instance.audioDialogue.Stop();
             continueButton.SetActive(false);
             dialogTXT.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else
         {
+            AudioManager.Instance.audioDialogue.Stop();
             dialogueBox.SetActive(false);
             PlayerControler.Instance.ButtonsAround();
         }

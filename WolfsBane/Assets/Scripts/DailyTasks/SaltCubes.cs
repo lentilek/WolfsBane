@@ -14,6 +14,7 @@ public class SaltCubes : MonoBehaviour
     {
         //PlayerInventory.Instance.woodAmount--;
         //PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+        AudioManager.Instance.PlaySound("taskSalt");
         SaltCubesFinish(area);
     }
     private void SaltCubesFinish(MapArea area)

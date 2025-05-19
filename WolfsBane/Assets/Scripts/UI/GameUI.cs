@@ -166,6 +166,7 @@ public class GameUI : MonoBehaviour
     }
     private IEnumerator GameIndicatorPulse()
     {
+        AudioManager.Instance.PlaySound("pm");
         gameIndicator.transform.DOScale(1.1f, .15f);
         yield return new WaitForSeconds(.15f);
         gameIndicator.transform.DOScale(.9f, .3f);
@@ -275,6 +276,18 @@ public class GameUI : MonoBehaviour
     public void UISound()
     {
         AudioManager.Instance.PlaySound("uiSound");
+    }
+    public void UIHover()
+    {
+        AudioManager.Instance.PlaySound("uiHover");
+    }
+    public void UIClose()
+    {
+        AudioManager.Instance.PlaySound("uiClose");
+    }
+    public void TaskUISound()
+    {
+        AudioManager.Instance.PlaySound("taskMenu");
     }
     public void QuitGame()
     {

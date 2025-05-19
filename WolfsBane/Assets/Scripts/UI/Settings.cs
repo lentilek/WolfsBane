@@ -52,6 +52,8 @@ public class Settings : MonoBehaviour
             xSFX.SetActive(true);
         }
         AudioManager.Instance.audioSrc.volume = sfxVolume;
+        AudioManager.Instance.audioAmbient.volume = sfxVolume;
+        AudioManager.Instance.audioDialogue.volume = sfxVolume;
         PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
     }
     public void MusicVolume()
@@ -100,6 +102,8 @@ public class Settings : MonoBehaviour
             xSFX.SetActive(false);
         }
         AudioManager.Instance.audioSrc.volume = sfxVolume;
+        AudioManager.Instance.audioAmbient.volume = sfxVolume;
+        AudioManager.Instance.audioDialogue.volume = sfxVolume;
         PlayerPrefs.SetFloat("sfxVolume", sfxVolume);
     }
     public void LoadMusic()
@@ -115,5 +119,13 @@ public class Settings : MonoBehaviour
     public void UISound()
     {
         AudioManager.Instance.PlaySound("uiSound");
+    }
+    public void UIHover()
+    {
+        AudioManager.Instance.PlaySound("uiHover");
+    }
+    public void UIClose()
+    {
+        AudioManager.Instance.PlaySound("uiClose");
     }
 }
