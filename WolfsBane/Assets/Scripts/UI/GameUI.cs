@@ -43,6 +43,11 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject day1Paper;
     [SerializeField] private GameObject[] noKillsPaper, killPaper;
 
+    // text at the begining of the day
+    [SerializeField] private TextMeshProUGUI dailyTXT;
+    [SerializeField] private float dayTextTime;
+    [SerializeField] private string[] dailyTextVariant;
+
     // inventory animation
     [SerializeField] private Color invAnimColor, invAnimTXTColor, invAnimImageColor;
     [SerializeField] private InventoryObject wood, stone, rope, meat;
@@ -184,12 +189,30 @@ public class GameUI : MonoBehaviour
         apDay.SetActive(true);
         apNight.SetActive(false);
         StartCoroutine(SyncTime());
+        if (GameManager.Instance.daysCounter != 1) StartDayTXT();
+    }
+    public void StartDayTXT()
+    {
+        StartCoroutine(DayTXT());
     }
     IEnumerator SyncTime()
     {
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         apTimeTrans.transform.position = startingPosition;
+    }
+    IEnumerator DayTXT()
+    {
+        if (GameManager.Instance.daysCounter == 1) dailyTXT.text = dailyTextVariant[0];
+        else if (GameManager.Instance.gameIndicator >= GameManager.Instance.policemanAppear) dailyTXT.text = $"{dailyTextVariant[2]}\n{dailyTextVariant[3]}";
+        else if (GameManager.Instance.gameIndicator >= GameManager.Instance.thrillHuntersAppear) dailyTXT.text = dailyTextVariant[1];
+        else dailyTXT.text = dailyTextVariant[4];
+        dailyTXT.gameObject.SetActive(true);
+        dailyTXT.DOFade(1f, dayTextTime / 2);
+        yield return new WaitForSeconds(dayTextTime / 2);
+        dailyTXT.DOFade(0f, dayTextTime / 2);
+        yield return new WaitForSeconds(dayTextTime / 2);
+        dailyTXT.gameObject.SetActive(false);
     }
     public void MoveTime()
     {
@@ -198,6 +221,9 @@ public class GameUI : MonoBehaviour
     }
     public void Night()
     {
+        StopCoroutine(DayTXT());
+        dailyTXT.alpha = 0f;
+        dailyTXT.gameObject.SetActive(false);
         nightIcon.sprite = moonPhasesSprite[GameManager.Instance.daysCounter - 1];
         timeDay.SetActive(false);
         timeNight.SetActive(true);

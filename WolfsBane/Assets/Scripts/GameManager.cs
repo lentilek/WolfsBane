@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [HideInInspector] public float gameIndicator; // 0-100
-    [SerializeField] private int thrillHuntersAppear, policemanAppear;
+    [SerializeField] public int thrillHuntersAppear, policemanAppear;
     private float maxGameIndicator;
     [SerializeField] private Image gameIndicatorFill;
 
