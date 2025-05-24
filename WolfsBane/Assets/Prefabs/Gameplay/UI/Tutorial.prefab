@@ -13478,7 +13478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71, y: 18.7}
+  m_AnchoredPosition: {x: -71, y: 0.9}
   m_SizeDelta: {x: 200, y: 126.9318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5606586016294238177
@@ -13514,7 +13514,8 @@ MonoBehaviour:
 
 
     Sheriffs have a chance of killing Colin
-    at night if he attacks them.'
+    at night if he attacks them. And once they appear they don''t go away on their
+    own.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bd47a1352e6096459e89aabb14d3e1c, type: 2}
   m_sharedMaterial: {fileID: 1475871996132125555, guid: 7bd47a1352e6096459e89aabb14d3e1c,
@@ -13554,7 +13555,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -36.3
+  m_lineSpacing: -45.52
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
