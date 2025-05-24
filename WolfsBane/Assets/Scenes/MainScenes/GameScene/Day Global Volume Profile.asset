@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   color:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
@@ -108,7 +108,7 @@ MonoBehaviour:
     m_Value: -14
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.9716981, g: 0.8664614, b: 0.7837753, a: 1}
+    m_Value: {r: 1, g: 0.966604, b: 0.9481132, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: -0
@@ -130,10 +130,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.80450994, y: 0.8279166, z: 1, w: 0}
+    m_Value: {x: 0.9462972, y: 0.96699786, z: 1, w: 0}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9380931, z: 0.9012629, w: 0}
+    m_Value: {x: 0.87931156, y: 0.8838894, z: 1, w: 0}
   highlights:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.99972993, z: 0.7641831, w: 0}
