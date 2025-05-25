@@ -186,7 +186,7 @@ public class Dialog : MonoBehaviour
                     else if (area.state == 6 && area.AreThereTuristsAround()) area.state = 4;
                     else if (area.state == 5 && !area.AreThereTuristsAround()) area.state = 1;
                     else if (area.state == 5 && area.AreThereTuristsAround()) area.state = 3;
-                    GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenScared;
+                    GameManager.Instance.gameIndicator += turist.GetComponent<Turist>().gameIndicatorWhenAgrresiveTalk;
                     if (GameManager.Instance.gameIndicator > 100) GameManager.Instance.gameIndicator = 100;
                     GameManager.Instance.GetCurrentFillIndicator();
                     GameManager.Instance.turistCamps.Remove(turist);
