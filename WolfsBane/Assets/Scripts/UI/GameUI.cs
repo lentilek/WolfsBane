@@ -44,6 +44,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject[] noKillsPaper, killPaper;
 
     // text at the begining of the day
+    [SerializeField] private Image dailyTextImage;
     [SerializeField] private TextMeshProUGUI dailyTXT;
     [SerializeField] private float dayTextTime;
     [SerializeField] private string[] dailyTextVariant;
@@ -210,10 +211,14 @@ public class GameUI : MonoBehaviour
         else dailyTXT.text = dailyTextVariant[4];
         dailyTXT.gameObject.SetActive(true);
         dailyTXT.DOFade(1f, dayTextTime / 2);
+        dailyTextImage.gameObject.SetActive(true);
+        dailyTextImage.DOFade(.9f, dayTextTime / 2);
         yield return new WaitForSeconds(dayTextTime / 2);
         dailyTXT.DOFade(0f, dayTextTime / 2);
+        dailyTextImage.DOFade(0f, dayTextTime / 2);
         yield return new WaitForSeconds(dayTextTime / 2);
         dailyTXT.gameObject.SetActive(false);
+        dailyTextImage.gameObject.SetActive(false);
     }
     public void MoveTime()
     {
