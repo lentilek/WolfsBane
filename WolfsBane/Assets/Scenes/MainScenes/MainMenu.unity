@@ -1485,6 +1485,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 916853452}
+    - target: {fileID: 3350736575202965166, guid: 248283df77dc3a945b99088b4b14041c,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3645895638575923095, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1528,32 +1533,32 @@ PrefabInstance:
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6371873894280170890, guid: 248283df77dc3a945b99088b4b14041c,
         type: 3}

@@ -80,6 +80,7 @@ MonoBehaviour:
   day1Paper: {fileID: 0}
   noKillsPaper: []
   killPaper: []
+  dailyTextImage: {fileID: 0}
   dailyTXT: {fileID: 322960885903895127}
   dayTextTime: 0
   dailyTextVariant:
@@ -226,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 1128063245605206205, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -187
+      value: 355
       objectReference: {fileID: 0}
     - target: {fileID: 1294169823047084577, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
@@ -346,7 +347,12 @@ PrefabInstance:
     - target: {fileID: 3923910251717672745, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -277
+      value: 265
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173468918712774357, guid: 166efe00dbabd554d865273ceb1cd301,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 837
       objectReference: {fileID: 0}
     - target: {fileID: 5306799832927638820, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
@@ -366,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 6046705111877445004, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -365
+      value: 177
       objectReference: {fileID: 0}
     - target: {fileID: 6384493649245923075, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
@@ -471,32 +477,32 @@ PrefabInstance:
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694721209916914857, guid: 166efe00dbabd554d865273ceb1cd301,
         type: 3}
@@ -1465,32 +1471,32 @@ PrefabInstance:
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2340098634615548500, guid: b455695114895894094ee118ee360fbf,
         type: 3}
