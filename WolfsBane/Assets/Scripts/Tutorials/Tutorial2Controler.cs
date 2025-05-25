@@ -36,6 +36,15 @@ public class Tutorial2Controler : MonoBehaviour
         {
             Part3Button();
         }
+
+        if (currentPart > 1 && !GameUI.Instance.pauseScreen.activeSelf && Input.GetKeyDown(KeyCode.J) && dailyTasks.activeSelf)
+        {
+            GameUI.Instance.OpenTasksMenu();
+        }
+        else if (currentPart > 1 && !GameUI.Instance.pauseScreen.activeSelf && Input.GetKeyDown(KeyCode.J) && !dailyTasks.activeSelf)
+        {
+            GameUI.Instance.CloseTaskMenu();
+        }
     }
     public void Part1Button()
     {

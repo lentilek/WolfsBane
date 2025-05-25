@@ -110,6 +110,9 @@ MonoBehaviour:
     invCollectTXT: {fileID: 8798809232415783459}
   invAnimLenght: 0.3
   invAnimScale: 1.2
+  dailyTasksButton: {fileID: 2356610041987046903}
+  dailyTasksMenu: {fileID: 2994132051257239590}
+  ledger: {fileID: 5203959761727044474}
 --- !u!1 &7141265740337877878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1592,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3860293692514552399, guid: b455695114895894094ee118ee360fbf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3909343588258533555, guid: b455695114895894094ee118ee360fbf,
         type: 3}
       propertyPath: m_IsActive
@@ -2193,6 +2201,12 @@ MonoBehaviour:
 --- !u!1 &4996628535298291610 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4106506949508499119, guid: b455695114895894094ee118ee360fbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 9055236358341685557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5203959761727044474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3860293692514552399, guid: b455695114895894094ee118ee360fbf,
     type: 3}
   m_PrefabInstance: {fileID: 9055236358341685557}
   m_PrefabAsset: {fileID: 0}

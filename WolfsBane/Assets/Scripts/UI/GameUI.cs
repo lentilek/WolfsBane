@@ -55,6 +55,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] private InventoryObject wood, stone, rope, meat;
     [SerializeField] private float invAnimLenght, invAnimScale;
 
+    //  
+    [SerializeField] private GameObject dailyTasksButton, dailyTasksMenu, ledger;
+
     private void Awake()
     {
         if (Instance == null)
@@ -72,6 +75,8 @@ public class GameUI : MonoBehaviour
         apTimeTrans = apTime.GetComponent<RectTransform>();
         apTimeEndTrans = apTimeEnd.GetComponent<RectTransform>();
         isOnStart = true;
+        dailyTasksMenu.SetActive(false);
+        ledger.SetActive(false);
     }
     private void Start()
     {        
@@ -90,8 +95,43 @@ public class GameUI : MonoBehaviour
         {
             Resume();
         }
+        if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.J) && !dailyTasksMenu.activeSelf)
+        {
+            OpenTasksMenu();
+        }else if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.J) && dailyTasksMenu.activeSelf)
+        {
+            CloseTaskMenu();
+        }
+        if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.L) && !ledger.activeSelf)
+        {
+            OpenLedger();
+        }else if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.L) && ledger.activeSelf)
+        {
+            CloseLedger();
+        }
     }
-
+    public void OpenTasksMenu()
+    {
+        dailyTasksButton.SetActive(false);
+        ledger.SetActive(false);
+        dailyTasksMenu.SetActive(true);
+    }
+    public void CloseTaskMenu()
+    {
+        dailyTasksButton.SetActive(true);
+        dailyTasksMenu.SetActive(false);
+    }
+    public void OpenLedger()
+    {
+        dailyTasksButton.SetActive(true);
+        dailyTasksMenu.SetActive(false);
+        ledger.SetActive(true);
+    }
+    public void CloseLedger()
+    {
+        dailyTasksButton.SetActive(true);
+        ledger.SetActive(false);
+    }
     public void Pause()
     {
         Time.timeScale = 0f;
