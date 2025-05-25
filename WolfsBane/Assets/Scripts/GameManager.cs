@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Light mainLight;
     [SerializeField] private Color nightLightColor;
     private bool wasThereKill;
+
+    [SerializeField] private GameObject volumeDay, volumeNight;
     private void Awake()
     {
         if (Instance == null)
@@ -238,6 +240,8 @@ public class GameManager : MonoBehaviour
         Light();
         PlayerControler.Instance.playerModel.transform.eulerAngles = new Vector3(270, 30, 0);
         PlayerControler.Instance.GetCurrentAIModule();
+        volumeDay.SetActive(false);
+        volumeNight.SetActive(true);
         Night();
     }
     public void Light()
@@ -269,6 +273,8 @@ public class GameManager : MonoBehaviour
     }
     public void NewDay()
     {
+        volumeDay.SetActive(true);
+        volumeNight.SetActive(false);
         MusicPlayer.Instance.ChangeMusic(1);
         AudioManager.Instance.PlayAmbient(true);
         if (daysCounter != 0) AudioManager.Instance.PlaySound("day");
