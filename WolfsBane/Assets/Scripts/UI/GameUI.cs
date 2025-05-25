@@ -48,6 +48,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dailyTXT;
     [SerializeField] private float dayTextTime;
     [SerializeField] private string[] dailyTextVariant;
+    private bool isOnStart;
 
     // inventory animation
     [SerializeField] private Color invAnimColor, invAnimTXTColor, invAnimImageColor;
@@ -70,7 +71,7 @@ public class GameUI : MonoBehaviour
         pauseScreen.SetActive(false);
         apTimeTrans = apTime.GetComponent<RectTransform>();
         apTimeEndTrans = apTimeEnd.GetComponent<RectTransform>();
-
+        isOnStart = true;
     }
     private void Start()
     {        
@@ -197,6 +198,10 @@ public class GameUI : MonoBehaviour
     {
         StartCoroutine(DayTXT());
     }
+    public void TutorialStartDay()
+    {
+        if (isOnStart) StartCoroutine(DayTXT());
+    }
     IEnumerator SyncTime()
     {
         yield return new WaitForEndOfFrame();
@@ -205,6 +210,7 @@ public class GameUI : MonoBehaviour
     }
     IEnumerator DayTXT()
     {
+        isOnStart = false;
         if (GameManager.Instance.daysCounter == 1) dailyTXT.text = dailyTextVariant[0];
         else if (GameManager.Instance.gameIndicator >= GameManager.Instance.policemanAppear) dailyTXT.text = $"{dailyTextVariant[2]}\n{dailyTextVariant[3]}";
         else if (GameManager.Instance.gameIndicator >= GameManager.Instance.thrillHuntersAppear) dailyTXT.text = dailyTextVariant[1];

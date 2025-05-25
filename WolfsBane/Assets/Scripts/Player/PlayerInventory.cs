@@ -169,6 +169,8 @@ public class PlayerInventory : MonoBehaviour
         Trap trapComp = ma.gameplayObject.GetComponentInChildren<Trap>();
         if (trapComp != null && GameManager.Instance.UseActionPointAI())
         {
+            if (trapComp.trapType != 5) AudioManager.Instance.PlaySound("woodCollect");
+
             if (trapComp.trapType == 3)
             {
                 if (Random.Range(0, 100) < trapComp.chance) GameManager.Instance.UseActionPointAI();
@@ -178,6 +180,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 GameManager.Instance.UseActionPointAI();
                 GameManager.Instance.UseActionPointAI();
+                AudioManager.Instance.PlaySound("pm");
             }
             GameObject trap = trapComp.gameObject;
             if (trapComp.module.state == 1)
@@ -286,6 +289,7 @@ public class PlayerInventory : MonoBehaviour
                 if (TaskManager.Instance.strongerBarricades) GameManager.Instance.UseActionPointAI();
                 doorTrap = false;
                 House.Instance.doorTrap.SetActive(false);
+                AudioManager.Instance.PlaySound("collectWood");
             }
             if (fenceTrap)
             {
@@ -295,6 +299,7 @@ public class PlayerInventory : MonoBehaviour
                 if (TaskManager.Instance.strongerBarricades) GameManager.Instance.UseActionPointAI();
                 fenceTrap = false;
                 House.Instance.fenceTrap.SetActive(false);
+                AudioManager.Instance.PlaySound("collectWood");
             }
         }
         GameManager.Instance.StartNightWait();
