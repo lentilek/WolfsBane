@@ -279,6 +279,10 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayAmbient(true);
         if (daysCounter != 0) AudioManager.Instance.PlaySound("day");
         daysCounter++;
+        if (Ledger.Instance.book && daysCounter == 7)
+        {
+            MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)].SpawnFernFlower();
+        }
         maxAIActionPoints = maxAIAPDaily[daysCounter - 1];
         GameUI.Instance.Day();
         isNight = false;

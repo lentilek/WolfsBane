@@ -39,6 +39,7 @@ public class MapArea : MonoBehaviour
     public GameObject noActionTip;
     public GameObject noAPTip;
 
+    [SerializeField] private GameObject fernFlower;
     private void Awake()
     {
         buttonDiscover.SetActive(false);
@@ -106,7 +107,7 @@ public class MapArea : MonoBehaviour
         switch (type)
         {
             case 1:
-                Instantiate(emptyModels[Random.Range(0, emptyModels.Length)], decorations.transform, worldPositionStays: false); 
+                Instantiate(emptyModels[Random.Range(0, emptyModels.Length)], decorations.transform, worldPositionStays: false);
                 break;
             case 2:
                 AddResources();
@@ -123,6 +124,12 @@ public class MapArea : MonoBehaviour
             default:
                 break;
         }
+        if (decorations.GetComponentInChildren<LorePickUp>() != null) decorations.GetComponentInChildren<LorePickUp>().module = this;
+    }
+    public void SpawnFernFlower()
+    {
+        Instantiate(fernFlower, decorations.transform, worldPositionStays: false);
+        decorations.GetComponentInChildren<LorePickUp>().module = this;
     }
     private void AddResources()
     {
@@ -143,6 +150,7 @@ public class MapArea : MonoBehaviour
             default:
                 break;
         }
+        if (gameplayObject.GetComponentInChildren<LorePickUp>() != null) gameplayObject.GetComponentInChildren<LorePickUp>().module = this;
     }
     public void AreasAround()
     {

@@ -388,6 +388,15 @@ public class Dialog : MonoBehaviour
         }
         StartCoroutine(TypeLine());
     }
+    public void SpecialDialogue(DialogueSO dialogueSpecial)
+    {
+        dialogueBox.SetActive(true);
+        continueButton.SetActive(false);            
+        dialogTXT.text = string.Empty;
+        index = 0;
+        dialogue = dialogueSpecial;
+        StartCoroutine(TypeLine());
+    }
     IEnumerator TypeLine()
     {
         AudioManager.Instance.DialogueSound();
