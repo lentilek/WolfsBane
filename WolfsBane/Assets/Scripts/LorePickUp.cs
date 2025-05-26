@@ -17,7 +17,7 @@ public class LorePickUp : MonoBehaviour
     }
     private bool IsPlayerNear()
     {
-        if (PlayerControler.Instance.row == module.row && PlayerControler.Instance.column == module.column && !GameManager.Instance.isNight)
+        if (PlayerControler.Instance.row == module.row && PlayerControler.Instance.column == module.column && !GameManager.Instance.isNight && !module.buttonsTraps.activeSelf)
         {
             pickUpButton.SetActive(true);
             return true;
