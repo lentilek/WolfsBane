@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     private bool wasThereKill;
 
     [SerializeField] private GameObject volumeDay, volumeNight;
+    [HideInInspector] public int random;
     private void Awake()
     {
         if (Instance == null)
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        random = Random.Range(1, 100);
         Time.timeScale = 1f;
         isPoliceHere = false;
         daysCounter = 0;
@@ -279,7 +281,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayAmbient(true);
         if (daysCounter != 0) AudioManager.Instance.PlaySound("day");
         daysCounter++;
-        if (Ledger.Instance.book && daysCounter == 7)
+        if (Ledger.Instance != null && Ledger.Instance.book && daysCounter == 7)
         {
             MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)].SpawnFernFlower();
         }
