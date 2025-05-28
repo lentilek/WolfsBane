@@ -18,7 +18,7 @@ public class GameUI : MonoBehaviour
     public static GameUI Instance;
 
     public GameObject gameOverScreen;
-    public GameObject winScreen;
+    public GameObject winScreen, normalComic, specialComic;
     public GameObject pauseScreen;
 
     [SerializeField] private GameObject gameIndicator;

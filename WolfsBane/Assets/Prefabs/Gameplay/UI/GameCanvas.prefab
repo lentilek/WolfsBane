@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 9126606883313765159}
   winScreen: {fileID: 1676927855583236419}
+  normalComic: {fileID: 7397809165373577271}
+  specialComic: {fileID: 2169608700056451222}
   pauseScreen: {fileID: 4900716134430499802}
   gameIndicator: {fileID: 7877807965354665493}
   timeDay: {fileID: 2182772194814565714}
@@ -2119,6 +2121,18 @@ GameObject:
 --- !u!224 &2110625430588954119 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7953633159352338983, guid: 0f551ee6cd5b50343af868fb335484a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8298596525234183200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2169608700056451222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7868199819929052342, guid: 0f551ee6cd5b50343af868fb335484a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8298596525234183200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7397809165373577271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1549455631501968407, guid: 0f551ee6cd5b50343af868fb335484a9,
     type: 3}
   m_PrefabInstance: {fileID: 8298596525234183200}
   m_PrefabAsset: {fileID: 0}

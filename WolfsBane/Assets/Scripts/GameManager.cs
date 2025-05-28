@@ -260,6 +260,15 @@ public class GameManager : MonoBehaviour
             //HighscoreSystem.Instance.GetData();
             daysCounter++;
             AudioManager.Instance.PlaySound("day");
+            if (!Ledger.Instance.SpecialEnding())
+            {
+                GameUI.Instance.normalComic.SetActive(true);
+                GameUI.Instance.specialComic.SetActive(false);
+            }else
+            {
+                GameUI.Instance.normalComic.SetActive(false);
+                GameUI.Instance.specialComic.SetActive(true);
+            }
             GameUI.Instance.winScreen.SetActive(true);
         }
         else

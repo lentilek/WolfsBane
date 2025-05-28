@@ -38,8 +38,8 @@ public class ComicPage : MonoBehaviour
     {
         foreach(var page in pages)
         {
-            page.DOFade(1f, duration);
-            yield return new WaitForSeconds(duration);
+            page.DOFade(1f, duration).SetUpdate(true);
+            yield return new WaitForSecondsRealtime(duration);
         }
     }
 }
