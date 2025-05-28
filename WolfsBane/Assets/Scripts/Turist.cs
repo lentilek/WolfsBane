@@ -21,18 +21,18 @@ public class Turist : MonoBehaviour
 
     private void Awake()
     {
-        fireVFX.SetActive(false);
+        if (fireVFX != null) fireVFX.SetActive(false);
         turistSprite = turistsSprites[Random.Range(0, turistsSprites.Length)];
     }
     private void Update()
     {
         if (GameManager.Instance.isNight)
         {
-            fireVFX.SetActive(true);
+            if (fireVFX != null) fireVFX.SetActive(true);
         }
         else
         {
-            fireVFX.SetActive(false);
+            if (fireVFX != null) fireVFX.SetActive(false);
         }
     }
     public void GetEaten()

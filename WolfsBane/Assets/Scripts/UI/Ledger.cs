@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Ledger : MonoBehaviour
 {
@@ -11,6 +14,10 @@ public class Ledger : MonoBehaviour
     [SerializeField] private GameObject letterNote, bookNote, flowersNote, dyplomaNote, posterNote, fernFlowerNote;
 
     [SerializeField] private DialogueSO[] dialogues;
+
+    [SerializeField] private Image ledgerIcon;
+    [SerializeField] private Color baseLedgerColor, animLedgerColor;
+    [SerializeField] private float animScale, animLength;
 
     private void Awake()
     {
@@ -35,43 +42,64 @@ public class Ledger : MonoBehaviour
         dyplomaNote.SetActive(false);
         posterNote.SetActive(false);
         fernFlowerNote.SetActive(false);
+        baseLedgerColor = ledgerIcon.color;
     }
 
     public void FindLetter()
     {
         letter = true;
         letterNote.SetActive(letter);
+        LedgerAnimation();
         Dialog.Instance.SpecialDialogue(dialogues[0]);
     }
     public void FindBook()
     {
         book = true;
         bookNote.SetActive(book);
+        LedgerAnimation();
         Dialog.Instance.SpecialDialogue(dialogues[1]);
     }
     public void FindFlowers()
     {
         flowers = true;
         flowersNote.SetActive(flowers);
+        LedgerAnimation();
         Dialog.Instance.SpecialDialogue(dialogues[2]);
     }
     public void FindDyploma()
     {
         dyploma = true;
         dyplomaNote.SetActive(dyploma);
+        LedgerAnimation();
         Dialog.Instance.SpecialDialogue(dialogues[3]);
     }
     public void FindPoster()
     {
         poster = true;
         posterNote.SetActive(poster);
+        LedgerAnimation();
         Dialog.Instance.SpecialDialogue(dialogues[4]);
     }
     public void FindFernFlower()
     {
         fernFlower = true;
         fernFlowerNote.SetActive(fernFlower);
+        LedgerAnimation();
         Dialog.Instance.SpecialDialogue(dialogues[5]);
+    }
+    public void LedgerAnimation()
+    {
+        ledgerIcon.gameObject.transform.localScale = Vector3.one;
+        StartCoroutine(LedgerAnim());
+    }
+    private IEnumerator LedgerAnim()
+    {
+        ledgerIcon.color = animLedgerColor;
+        ledgerIcon.gameObject.transform.DOScale(animScale, animLength);
+        yield return new WaitForSeconds(animLength);
+        ledgerIcon.gameObject.transform.DOScale(1f, animLength);
+        yield return new WaitForSeconds(animLength);
+        ledgerIcon.color = baseLedgerColor;
     }
     public bool SpecialEnding()
     {

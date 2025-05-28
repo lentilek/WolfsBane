@@ -281,12 +281,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayAmbient(true);
         if (daysCounter != 0) AudioManager.Instance.PlaySound("day");
         daysCounter++;
-        if (Ledger.Instance != null && Ledger.Instance.book && daysCounter == 7)
-        {
-            MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)].SpawnFernFlower();
-        }
         maxAIActionPoints = maxAIAPDaily[daysCounter - 1];
-        GameUI.Instance.Day();
         isNight = false;
         GameUI.Instance.MoonPhase();
         daysCounterTXT.text = $"Day: {daysCounter}";     
@@ -327,6 +322,7 @@ public class GameManager : MonoBehaviour
             Destroy(turist);
         }
         turistCamps.Clear();
+        GameUI.Instance.Day(); /// ¿eby zgadza³ siê game indicator
         MapBoard.Instance.RegularModuleList();
         if (isPoliceHere && gameIndicator < policemanAppear)
         {
@@ -391,6 +387,10 @@ public class GameManager : MonoBehaviour
             }
             MapBoard.Instance.moduleListRegular.Remove(ma);
             i++;
+        }
+        if (Ledger.Instance != null && Ledger.Instance.book && daysCounter == 7)
+        {
+            MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)].SpawnFernFlower();
         }
         TaskManager.Instance.RandomTasks();
         PlayerControler.Instance.ButtonsAround();

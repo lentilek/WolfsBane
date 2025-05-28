@@ -53,7 +53,7 @@ public class GameUI : MonoBehaviour
     // inventory animation
     [SerializeField] private Color invAnimColor, invAnimTXTColor, invAnimImageColor;
     [SerializeField] private InventoryObject wood, stone, rope, meat;
-    [SerializeField] private float invAnimLenght, invAnimScale;
+    [SerializeField] private float invAnimLength, invAnimScale;
 
     //  
     [SerializeField] private GameObject dailyTasksButton, dailyTasksMenu, ledger;
@@ -184,17 +184,17 @@ public class GameUI : MonoBehaviour
     private IEnumerator InvAnim(InventoryObject invObj, string amount)
     {
         invObj.invImage.color = invAnimColor;
-        invObj.invImage.gameObject.transform.DOScale(invAnimScale, invAnimLenght);
+        invObj.invImage.gameObject.transform.DOScale(invAnimScale, invAnimLength);
         invObj.invTXT.color = invAnimColor;
-        invObj.invTXT.gameObject.transform.DOScale(invAnimScale, invAnimLenght);
+        invObj.invTXT.gameObject.transform.DOScale(invAnimScale, invAnimLength);
         invObj.invCollectTXT.text = amount;
         invObj.invCollectTXT.gameObject.SetActive(true);
-        invObj.invCollectTXT.gameObject.transform.DOScale(invAnimScale, invAnimLenght);
-        yield return new WaitForSeconds(invAnimLenght);
-        invObj.invImage.gameObject.transform.DOScale(1f, invAnimLenght);
-        invObj.invTXT.gameObject.transform.DOScale(1f, invAnimLenght);
-        invObj.invCollectTXT.gameObject.transform.DOScale(1f, invAnimLenght);
-        yield return new WaitForSeconds(invAnimLenght);
+        invObj.invCollectTXT.gameObject.transform.DOScale(invAnimScale, invAnimLength);
+        yield return new WaitForSeconds(invAnimLength);
+        invObj.invImage.gameObject.transform.DOScale(1f, invAnimLength);
+        invObj.invTXT.gameObject.transform.DOScale(1f, invAnimLength);
+        invObj.invCollectTXT.gameObject.transform.DOScale(1f, invAnimLength);
+        yield return new WaitForSeconds(invAnimLength);
         if (invObj != wood) invObj.invImage.color = invAnimImageColor;
         else invObj.invImage.color = Color.white;
         invObj.invTXT.color = invAnimTXTColor;
@@ -258,7 +258,7 @@ public class GameUI : MonoBehaviour
         dailyTXT.gameObject.SetActive(true);
         dailyTXT.DOFade(1f, dayTextTime / 2);
         dailyTextImage.gameObject.SetActive(true);
-        dailyTextImage.DOFade(.9f, dayTextTime / 2);
+        dailyTextImage.DOFade(.7f, dayTextTime / 2);
         yield return new WaitForSeconds(dayTextTime / 2);
         dailyTXT.DOFade(0f, dayTextTime / 2);
         dailyTextImage.DOFade(0f, dayTextTime / 2);
