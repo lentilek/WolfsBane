@@ -52,7 +52,9 @@ MonoBehaviour:
   gameOverScreen: {fileID: 9126606883313765159}
   winScreen: {fileID: 1676927855583236419}
   normalComic: {fileID: 7397809165373577271}
+  normalScreen: {fileID: 5690710509385214925}
   specialComic: {fileID: 2169608700056451222}
+  specialScreen: {fileID: 640214831153603547}
   pauseScreen: {fileID: 4900716134430499802}
   gameIndicator: {fileID: 7877807965354665493}
   timeDay: {fileID: 2182772194814565714}
@@ -2192,6 +2194,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f551ee6cd5b50343af868fb335484a9, type: 3}
+--- !u!1 &640214831153603547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8919650011395342331, guid: 0f551ee6cd5b50343af868fb335484a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8298596525234183200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676927855583236419 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7237053075018534243, guid: 0f551ee6cd5b50343af868fb335484a9,
@@ -2207,6 +2215,12 @@ RectTransform:
 --- !u!1 &2169608700056451222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7868199819929052342, guid: 0f551ee6cd5b50343af868fb335484a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 8298596525234183200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5690710509385214925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4455184406052812781, guid: 0f551ee6cd5b50343af868fb335484a9,
     type: 3}
   m_PrefabInstance: {fileID: 8298596525234183200}
   m_PrefabAsset: {fileID: 0}

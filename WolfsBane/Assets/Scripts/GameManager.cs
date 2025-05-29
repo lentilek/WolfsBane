@@ -263,11 +263,15 @@ public class GameManager : MonoBehaviour
             if (!Ledger.Instance.SpecialEnding())
             {
                 GameUI.Instance.normalComic.SetActive(true);
+                GameUI.Instance.normalScreen.SetActive(true);
                 GameUI.Instance.specialComic.SetActive(false);
+                GameUI.Instance.specialScreen.SetActive(false);
             }else
             {
                 GameUI.Instance.normalComic.SetActive(false);
+                GameUI.Instance.normalScreen.SetActive(false);
                 GameUI.Instance.specialComic.SetActive(true);
+                GameUI.Instance.specialScreen.SetActive(true);
             }
             GameUI.Instance.winScreen.SetActive(true);
         }

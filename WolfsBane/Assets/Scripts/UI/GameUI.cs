@@ -18,7 +18,7 @@ public class GameUI : MonoBehaviour
     public static GameUI Instance;
 
     public GameObject gameOverScreen;
-    public GameObject winScreen, normalComic, specialComic;
+    public GameObject winScreen, normalComic, normalScreen, specialComic, specialScreen;
     public GameObject pauseScreen;
 
     [SerializeField] private GameObject gameIndicator;
@@ -87,25 +87,25 @@ public class GameUI : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !pauseScreen.activeSelf)
+        if(!isOnStart && Input.GetKeyDown(KeyCode.Escape) && !pauseScreen.activeSelf && !winScreen.activeSelf && !gameOverScreen.activeSelf)
         {
             Pause();
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && pauseScreen.activeSelf)
+        else if(!isOnStart && Input.GetKeyDown(KeyCode.Escape) && pauseScreen.activeSelf && !winScreen.activeSelf && !gameOverScreen.activeSelf)
         {
             Resume();
         }
-        if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.J) && !dailyTasksMenu.activeSelf)
+        if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.J) && !dailyTasksMenu.activeSelf && !winScreen.activeSelf && !gameOverScreen.activeSelf)
         {
             OpenTasksMenu();
-        }else if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.J) && dailyTasksMenu.activeSelf)
+        }else if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.J) && dailyTasksMenu.activeSelf && !winScreen.activeSelf && !gameOverScreen.activeSelf)
         {
             CloseTaskMenu();
         }
-        if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.L) && !ledger.activeSelf)
+        if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.L) && !ledger.activeSelf && !winScreen.activeSelf && !gameOverScreen.activeSelf)
         {
             OpenLedger();
-        }else if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.L) && ledger.activeSelf)
+        }else if (!isOnStart && !pauseScreen.activeSelf && SceneManager.GetActiveScene().buildIndex == 1 && Input.GetKeyDown(KeyCode.L) && ledger.activeSelf && !winScreen.activeSelf && !gameOverScreen.activeSelf)
         {
             CloseLedger();
         }
