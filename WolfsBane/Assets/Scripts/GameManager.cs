@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
                 gameIndicator = 0;
                 isPoliceHere = false;
             }
-            if (turist != null && UseActionPointAI())
+            else if (turist != null && UseActionPointAI())
             {
                 if (area.AreThereTuristsAround()) area.state = 4;
                 else if (area.state == 6) area.state = 2;
@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndNightCheckIfWon()
     {
-        if(daysCounter == daysToWin)
+        if(daysCounter == daysToWin && !GameUI.Instance.gameOverScreen.activeSelf)
         {
             Time.timeScale = 0f;
             //HighscoreSystem.Instance.GetData();
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
             }
             GameUI.Instance.winScreen.SetActive(true);
         }
-        else
+        else if (daysCounter != daysToWin)
         {
             nextDayButton.SetActive(true);
             if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -335,7 +335,6 @@ public class GameManager : MonoBehaviour
             Destroy(turist);
         }
         turistCamps.Clear();
-        GameUI.Instance.Day(); /// ¿eby zgadza³ siê game indicator
         MapBoard.Instance.RegularModuleList();
         if (isPoliceHere && gameIndicator < policemanAppear)
         {
@@ -405,6 +404,7 @@ public class GameManager : MonoBehaviour
         {
             MapBoard.Instance.moduleListRegular[Random.Range(0, MapBoard.Instance.moduleListRegular.Count)].SpawnFernFlower();
         }
+        GameUI.Instance.Day(); /// ¿eby zgadza³ siê game indicator
         TaskManager.Instance.RandomTasks();
         PlayerControler.Instance.ButtonsAround();
     }
