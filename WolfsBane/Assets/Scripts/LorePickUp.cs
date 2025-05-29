@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LorePickUp : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LorePickUp : MonoBehaviour
 
     private void Awake()
     {
+        if (SceneManager.GetActiveScene().buildIndex != 1) this.enabled = false;
         pickUpButton.SetActive(false);
     }
     private void Update()
