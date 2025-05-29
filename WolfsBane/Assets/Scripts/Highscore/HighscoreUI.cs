@@ -21,22 +21,22 @@ public class HighscoreUI : MonoBehaviour
         playerId[3].text = $"ID: {score.id4}";
         playerId[4].text = $"ID: {score.id5}";
 
-        days[0].text = $"Nights survived: {score.days1}";
-        days[1].text = $"Nights survived: {score.days2}";
-        days[2].text = $"Nights survived: {score.days3}";
-        days[3].text = $"Nights survived: {score.days4}";
-        days[4].text = $"Nights survived: {score.days5}";
+        days[0].text = $"Nights survived: \n{score.days1}";
+        days[1].text = $"Nights survived: \n{score.days2}";
+        days[2].text = $"Nights survived: \n{score.days3}";
+        days[3].text = $"Nights survived: \n{score.days4}";
+        days[4].text = $"Nights survived: \n{score.days5}";
 
-        turistsEaten[0].text = $"Turists eaten: {score.turistseaten1}";
-        turistsEaten[1].text = $"Turists eaten: {score.turistseaten2}";
-        turistsEaten[2].text = $"Turists eaten: {score.turistseaten3}";
-        turistsEaten[3].text = $"Turists eaten: {score.turistseaten4}";
-        turistsEaten[4].text = $"Turists eaten: {score.turistseaten5}";
+        turistsEaten[0].text = $"Turists eaten: \n{score.turistseaten1}";
+        turistsEaten[1].text = $"Turists eaten: \n{score.turistseaten2}";
+        turistsEaten[2].text = $"Turists eaten: \n{score.turistseaten3}";
+        turistsEaten[3].text = $"Turists eaten: \n{score.turistseaten4}";
+        turistsEaten[4].text = $"Turists eaten: \n{score.turistseaten5}";
 
-        panicMeter[0].text = $"Panic Meter: {score.panicmeter1}";
-        panicMeter[1].text = $"Panic Meter: {score.panicmeter2}";
-        panicMeter[2].text = $"Panic Meter: {score.panicmeter3}";
-        panicMeter[3].text = $"Panic Meter: {score.panicmeter4}";
-        panicMeter[4].text = $"Panic Meter: {score.panicmeter5}";
+        panicMeter[0].text = $"Panic Meter: \n{score.panicmeter1}";
+        panicMeter[1].text = $"Panic Meter: \n{score.panicmeter2}";
+        panicMeter[2].text = $"Panic Meter: \n{score.panicmeter3}";
+        panicMeter[3].text = $"Panic Meter: \n{score.panicmeter4}";
+        panicMeter[4].text = $"Panic Meter: \n{score.panicmeter5}";
     }
 }
