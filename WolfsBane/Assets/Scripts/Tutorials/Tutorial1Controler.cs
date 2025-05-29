@@ -7,6 +7,7 @@ public class Tutorial1Controler : MonoBehaviour
 {
     private int currentPart; 
     [SerializeField] private MapArea area1, area2;
+    [SerializeField] private MapArea[] areasOff;
     [SerializeField] private GameObject backpack, part2UI, part3UI, part4UI;
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Tutorial1Controler : MonoBehaviour
     }
     private void Update()
     {
+        ActionsOff();
         GameManager.Instance.nightButton.SetActive(false);
         area2.buttonAction.SetActive(false);
         if(currentPart == 1 || currentPart == 4)
@@ -28,6 +30,13 @@ public class Tutorial1Controler : MonoBehaviour
         else
         {
             //area1.buttonAction.SetActive(true);
+        }
+    }
+    private void ActionsOff()
+    {
+        foreach(MapArea ma in areasOff)
+        {
+            ma.buttonAction.SetActive(false);
         }
     }
     public void Part1Button()
@@ -49,6 +58,7 @@ public class Tutorial1Controler : MonoBehaviour
         currentPart = 4;
         part3UI.SetActive(false);
         part4UI.SetActive(true);
+        PlayerPrefs.SetInt("Tutorials", 1);
     }
     public void GoToScene(int index)
     {

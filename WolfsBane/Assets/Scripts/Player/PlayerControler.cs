@@ -127,7 +127,7 @@ public class PlayerControler : MonoBehaviour
             MapArea module = MapBoard.Instance.map[row].moduleRow[column - 1];
             if (module.isAvailable) areasToGo.Add(module);
         }
-        if ((column + 1) < MapBoard.Instance.map.Length)
+        if ((column + 1) < MapBoard.Instance.map[row].moduleRow.Length)
         {
             MapArea module = MapBoard.Instance.map[row].moduleRow[column + 1];
             if (module.isAvailable) areasToGo.Add(module);
@@ -207,7 +207,9 @@ public class PlayerControler : MonoBehaviour
                 topState = module.state;
             }
         }
-        MapArea area = areasToChoose[Random.Range(0, areasToChoose.Count)];
+        MapArea area;
+        if (areasToChoose.Count > 1) area = areasToChoose[Random.Range(0, areasToChoose.Count)];
+        else area = areasToChoose[0];
         MovePlayer(area.row, area.column, area.gameObject.transform.position);
         area.isVisible = true;
         area.cloud.SetActive(false);
@@ -239,8 +241,7 @@ public class PlayerControler : MonoBehaviour
         for (int i = 0; i < areasToGo.Count; i++)
         {
             areasToGo[i].buttonAction.SetActive(true);
-            areasToGo[i].buttonDiscover.SetActive(false);
-            areasToGo[i].buttonGo.SetActive(false);
+            areasToGo[i].InteractionsButtonsOff();
         }
         MapBoard.Instance.map[row].moduleRow[column].buttonAction.SetActive(true);
         ButtonHide();
@@ -258,6 +259,7 @@ public class PlayerControler : MonoBehaviour
         playerPosition.x = position.x;
         playerPosition.z = position.z;
 
+        AudioManager.Instance.PlaySound("move");
         PlayerMoveAnimation.Instance.MoveAnimation(playerPosition);
         //this.transform.position = playerPosition;
     }

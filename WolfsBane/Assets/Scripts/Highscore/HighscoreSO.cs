@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Score", menuName = "ScriptableObject/Highscores")]
+[CreateAssetMenu(fileName = "New Score", menuName = "Highscores")]
 public class HighscoreSO : ScriptableObject
 {
     public string id1;

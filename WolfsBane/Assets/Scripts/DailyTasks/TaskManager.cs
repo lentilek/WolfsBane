@@ -20,6 +20,12 @@ public class TaskManager : MonoBehaviour
     private List<DailyTaskSO> currentTaskRewards = new List<DailyTaskSO>();
     [SerializeField] private int resourceRewardAmount;
     [SerializeField] private int indicatorRewardAmount;
+    [SerializeField] private int talkChanceRewardAmount;
+    public int additionalResourcesAmount;
+    [HideInInspector] public bool moreResources;
+    [SerializeField] private int bigTalkChanceRewardAmount;
+    [HideInInspector] public bool strongerBarricades;
+    [HideInInspector] public int lessWerewolfActions;
 
     [HideInInspector] public int completeTasksCount;
 
@@ -57,6 +63,7 @@ public class TaskManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        strongerBarricades = false;
     }
 
     public void RandomTasks()
@@ -426,6 +433,24 @@ public class TaskManager : MonoBehaviour
             case 5:
                 RewardResource(4);
                 break;
+            case 6:
+                Dialog.Instance.talkBonusChance += talkChanceRewardAmount;
+                break;
+            case 7:
+                moreResources = true;
+                break;
+            case 8:
+                strongerBarricades = true;
+                break;
+            case 9:
+                Dialog.Instance.talkBonusChance += bigTalkChanceRewardAmount;
+                break;
+            case 10:
+                lessWerewolfActions += 1;
+                break;
+            case 11:
+                lessWerewolfActions += 3;
+                break;
             default: break;
         }
     }
@@ -434,20 +459,40 @@ public class TaskManager : MonoBehaviour
         switch (type)
         {
             case 1:
-                PlayerInventory.Instance.woodAmount += resourceRewardAmount;
-                PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+                if (PlayerInventory.Instance.woodAmount < PlayerInventory.Instance.maxWoodAmount)
+                {
+                    PlayerInventory.Instance.woodAmount += resourceRewardAmount;
+                    if (PlayerInventory.Instance.woodAmount > PlayerInventory.Instance.maxWoodAmount) PlayerInventory.Instance.woodAmount = PlayerInventory.Instance.maxWoodAmount;
+                    PlayerInventory.Instance.woodAmountTXT.text = $"{PlayerInventory.Instance.woodAmount}/{PlayerInventory.Instance.maxWoodAmount}";
+                    GameUI.Instance.InventoryAnimation(1, $"+{resourceRewardAmount}");
+                }
                 break;
             case 2:
-                PlayerInventory.Instance.stoneAmount += resourceRewardAmount;
-                PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+                if (PlayerInventory.Instance.stoneAmount < PlayerInventory.Instance.maxStoneAmount)
+                {
+                    PlayerInventory.Instance.stoneAmount += resourceRewardAmount;
+                    if (PlayerInventory.Instance.stoneAmount > PlayerInventory.Instance.maxStoneAmount) PlayerInventory.Instance.stoneAmount = PlayerInventory.Instance.maxStoneAmount;
+                    PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+                    GameUI.Instance.InventoryAnimation(2, $"+{resourceRewardAmount}");
+                }
                 break;
             case 3:
-                PlayerInventory.Instance.ropeAmount += resourceRewardAmount;
-                PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+                if (PlayerInventory.Instance.ropeAmount < PlayerInventory.Instance.maxRopeAmount)
+                {
+                    PlayerInventory.Instance.ropeAmount += resourceRewardAmount;
+                    if (PlayerInventory.Instance.ropeAmount > PlayerInventory.Instance.maxRopeAmount) PlayerInventory.Instance.ropeAmount = PlayerInventory.Instance.maxRopeAmount;
+                    PlayerInventory.Instance.ropeAmountTXT.text = $"{PlayerInventory.Instance.ropeAmount}/{PlayerInventory.Instance.maxRopeAmount}";
+                    GameUI.Instance.InventoryAnimation(3, $"+{resourceRewardAmount}");
+                }
                 break;
             case 4:
-                PlayerInventory.Instance.meatAmount += resourceRewardAmount;
-                PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
+                if (PlayerInventory.Instance.meatAmount < PlayerInventory.Instance.maxMeatAmount)
+                {
+                    PlayerInventory.Instance.meatAmount += resourceRewardAmount;
+                    if (PlayerInventory.Instance.meatAmount > PlayerInventory.Instance.maxMeatAmount) PlayerInventory.Instance.meatAmount = PlayerInventory.Instance.maxMeatAmount;
+                    PlayerInventory.Instance.meatAmountTXT.text = $"{PlayerInventory.Instance.meatAmount}/{PlayerInventory.Instance.maxMeatAmount}";
+                    GameUI.Instance.InventoryAnimation(4, $"+{resourceRewardAmount}");
+                }
                 break;
             default: break;
         }

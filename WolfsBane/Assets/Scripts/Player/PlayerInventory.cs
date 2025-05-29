@@ -61,27 +61,35 @@ public class PlayerInventory : MonoBehaviour
     public void CollectWood()
     {
         woodAmount += woodCollect;
+        if (TaskManager.Instance.moreResources) woodAmount += TaskManager.Instance.additionalResourcesAmount;
         if (woodAmount > maxWoodAmount) woodAmount = maxWoodAmount;
         woodAmountTXT.text = $"{woodAmount}/{maxWoodAmount}";
+        GameUI.Instance.InventoryAnimation(1, $"+{woodCollect}");
     }
     public void CollectStone()
     {
         stoneAmount += stoneCollect;
+        if (TaskManager.Instance.moreResources) stoneAmount += TaskManager.Instance.additionalResourcesAmount;
         if (stoneAmount > maxStoneAmount) stoneAmount = maxStoneAmount;
         stoneAmountTXT.text = $"{stoneAmount}/{maxStoneAmount}";
+        GameUI.Instance.InventoryAnimation(2, $"+{stoneCollect}");
     }
     public void CollectRope()
     {
         ropeAmount += ropeCollect;
+        if (TaskManager.Instance.moreResources) ropeAmount += TaskManager.Instance.additionalResourcesAmount;
         if (ropeAmount > maxRopeAmount) ropeAmount = maxRopeAmount;
         ropeAmountTXT.text = $"{ropeAmount}/{maxRopeAmount}";
+        GameUI.Instance.InventoryAnimation(3, $"+{ropeCollect}");
     }
     public void CollectMeat()
     {
         chickensAmount--;
         meatAmount += meatCollect;
+        if (TaskManager.Instance.moreResources) meatAmount += TaskManager.Instance.additionalResourcesAmount;
         if (meatAmount > maxMeatAmount) meatAmount = maxMeatAmount;
         meatAmountTXT.text = $"{meatAmount}/{maxMeatAmount}";
+        GameUI.Instance.InventoryAnimation(4, $"+{meatCollect}");
     }
     public bool IsThereInventorySpace(int resourceIndex)
     {
@@ -159,8 +167,10 @@ public class PlayerInventory : MonoBehaviour
     public bool CheckTrap(MapArea ma)
     {
         Trap trapComp = ma.gameplayObject.GetComponentInChildren<Trap>();
-        if (trapComp != null)
+        if (trapComp != null && GameManager.Instance.UseActionPointAI())
         {
+            if (trapComp.trapType != 5) AudioManager.Instance.PlaySound("woodCollect");
+
             if (trapComp.trapType == 3)
             {
                 if (Random.Range(0, 100) < trapComp.chance) GameManager.Instance.UseActionPointAI();
@@ -170,27 +180,28 @@ public class PlayerInventory : MonoBehaviour
             {
                 GameManager.Instance.UseActionPointAI();
                 GameManager.Instance.UseActionPointAI();
+                AudioManager.Instance.PlaySound("pm");
             }
             GameObject trap = trapComp.gameObject;
-            if (trapComp.module.state == 1 && GameManager.Instance.UseActionPointAI())
+            if (trapComp.module.state == 1)
             {
                 trapComp.module.state = 2;
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
-            else if (trapComp.module.state == 3 && GameManager.Instance.UseActionPointAI())
+            else if (trapComp.module.state == 3)
             {
                 trapComp.module.state = 4;
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
-            else if (trapComp.module.state == 5 && GameManager.Instance.UseActionPointAI())
+            else if (trapComp.module.state == 5)
             {
                 trapComp.module.state = 6;
                 trapsList.Remove(trap);
                 Destroy(trap);
             }
-            else if(trapComp.module.state == 7 && GameManager.Instance.UseActionPointAI())
+            else if(trapComp.module.state == 7)
             {
                 trapComp.module.state = 2;
                 if (trapComp.trapType == 2)
@@ -268,21 +279,27 @@ public class PlayerInventory : MonoBehaviour
     IEnumerator Waiting(float time)
     {
         if (MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].type == 4 && 
-            MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].state == 1)
+            MapBoard.Instance.map[PlayerControler.Instance.row].moduleRow[PlayerControler.Instance.column].resourceType == 5)
         {
             if (doorTrap)
             {
                 yield return new WaitForSeconds(time);
                 GameManager.Instance.UseActionPointAI();
+                GameManager.Instance.UseActionPointAI();
+                if (TaskManager.Instance.strongerBarricades) GameManager.Instance.UseActionPointAI();
                 doorTrap = false;
                 House.Instance.doorTrap.SetActive(false);
+                AudioManager.Instance.PlaySound("collectWood");
             }
             if (fenceTrap)
             {
                 yield return new WaitForSeconds(time);
                 GameManager.Instance.UseActionPointAI();
+                GameManager.Instance.UseActionPointAI();
+                if (TaskManager.Instance.strongerBarricades) GameManager.Instance.UseActionPointAI();
                 fenceTrap = false;
                 House.Instance.fenceTrap.SetActive(false);
+                AudioManager.Instance.PlaySound("collectWood");
             }
         }
         GameManager.Instance.StartNightWait();

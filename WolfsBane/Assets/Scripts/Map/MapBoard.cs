@@ -37,7 +37,9 @@ public class MapBoard : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
-        _random = new Random(seed);
+        //seed = NextUInt(1, 100);
+        //seed = Random.NextInt(1, 100);
+        //_random = new Random(seed);
         mapRandomBlocked.Clear();
         mapRandomResource.Clear();
         moduleListResource.Clear();
@@ -55,8 +57,11 @@ public class MapBoard : MonoBehaviour
             }
         }
     }
+    //private int NextUInt(int min, int max);
     private void Start()
     {
+        seed = (uint)GameManager.Instance.random;
+        _random = new Random(seed);
         _random.InitState(seed);
         RandomMap();
     }

@@ -25,6 +25,11 @@ public class Tutorial6Controls : MonoBehaviour
         PlayerInventory.Instance.stoneAmount = 1;
         StartCoroutine(Night());
     }
+    private void Update()
+    {
+        if (part3UI.activeSelf) part2UI.SetActive(false);
+    }
+
     IEnumerator Night()
     {
         yield return new WaitForSeconds(0.1f);
@@ -76,6 +81,7 @@ public class Tutorial6Controls : MonoBehaviour
         //currentPart = 7;
         part6UI.SetActive(false);
         part7UI.SetActive(true);
+        PlayerPrefs.SetInt("Tutorials", 1);
     }
     public void GoToScene(int index)
     {

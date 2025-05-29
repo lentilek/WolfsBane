@@ -36,6 +36,15 @@ public class Tutorial2Controler : MonoBehaviour
         {
             Part3Button();
         }
+
+        if (currentPart > 1 && !GameUI.Instance.pauseScreen.activeSelf && Input.GetKeyDown(KeyCode.J) && dailyTasks.activeSelf)
+        {
+            GameUI.Instance.OpenTasksMenu();
+        }
+        else if (currentPart > 1 && !GameUI.Instance.pauseScreen.activeSelf && Input.GetKeyDown(KeyCode.J) && !dailyTasks.activeSelf)
+        {
+            GameUI.Instance.CloseTaskMenu();
+        }
     }
     public void Part1Button()
     {
@@ -56,6 +65,7 @@ public class Tutorial2Controler : MonoBehaviour
         part3UI.SetActive(false);
         part4UI.SetActive(true);
         currentPart = 4;
+        PlayerPrefs.SetInt("Tutorials", 1);
     }
     public void GoToScene(int index)
     {

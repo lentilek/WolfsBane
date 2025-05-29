@@ -7,9 +7,11 @@ public class RockResearch : MonoBehaviour
 {
     [SerializeField] public GameObject rockSample, buttonRockSample;
     [HideInInspector] public MapArea module;
+    [SerializeField] private GameObject rockIcon;
     private void Awake()
     {
         rockSample.SetActive(false);
+        rockIcon.SetActive(false);
     }
     private void Update()
     {
@@ -24,10 +26,15 @@ public class RockResearch : MonoBehaviour
     public void MiniGame()
     {
         AudioManager.Instance.PlaySound("uiSound");
-        if (IsPlayerNear() && GameManager.Instance.UseActionPoint())
+        if (IsPlayerNear())
         {
-            PlayerInventory.Instance.stoneAmount++;
-            PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+            if (PlayerInventory.Instance.stoneAmount < PlayerInventory.Instance.maxStoneAmount)
+            {
+                PlayerInventory.Instance.stoneAmount++;
+                PlayerInventory.Instance.stoneAmountTXT.text = $"{PlayerInventory.Instance.stoneAmount}/{PlayerInventory.Instance.maxStoneAmount}";
+                GameUI.Instance.InventoryAnimation(2, $"+1");
+            }
+            AudioManager.Instance.PlaySound("taskRockResearch");
             Done();
         }
     }
@@ -49,11 +56,22 @@ public class RockResearch : MonoBehaviour
         {
             if(PlayerControler.Instance.row == ma.row && PlayerControler.Instance.column == ma.column && !GameManager.Instance.isNight)
             {
+                rockIcon.SetActive(false);
                 if (rockSample.activeSelf) buttonRockSample.SetActive(true);
                 return true;
             }
         }
+        if (rockSample.activeSelf) rockIcon.SetActive(true);
+        else rockIcon.SetActive(false);
         buttonRockSample.SetActive(false);
         return false;
+    }
+    public void UISound()
+    {
+        AudioManager.Instance.PlaySound("uiSound");
+    }
+    public void UIHover()
+    {
+        //AudioManager.Instance.PlaySound("uiHover");
     }
 }

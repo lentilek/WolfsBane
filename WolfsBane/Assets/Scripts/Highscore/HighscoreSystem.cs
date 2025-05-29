@@ -100,8 +100,10 @@ public class HighscoreSystem : MonoBehaviour
         LoadData();
         if (data != null)
         {
-            string id = "Player";
-            int days = GameManager.Instance.daysCounter;
+            string id;
+            if(GameUI.Instance.playerName != null) id = GameUI.Instance.playerName;
+            else id = "Player";
+            int days = GameManager.Instance.daysCounter - 1;
             int turist = GameManager.Instance.turistEaten;
             float pm = GameManager.Instance.highestPM;
             if((days > data.days1) || (days == data.days1 && turist < data.turistseaten1) ||

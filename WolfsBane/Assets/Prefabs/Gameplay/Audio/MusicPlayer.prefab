@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362920d98db40fc4f885b5479c10805a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicMenu: {fileID: 8300000, guid: f7f999e2a634236498b5ffca806964b5, type: 3}
+  musicDay: {fileID: 8300000, guid: 2255243d49eac6d4a8096815aa98971d, type: 3}
+  musicNight: {fileID: 8300000, guid: 66d5a476624bed14b9f12d4e0d4775d6, type: 3}
+  fadeTime: 0.7
+  audioSrc: {fileID: 5170461740716718318}
 --- !u!82 &5170461740716718318
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55,9 +60,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 34de0d9f67e3695498835931703e83bb, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
